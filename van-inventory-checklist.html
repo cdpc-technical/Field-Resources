@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Van Inventory Checklist | ClearDefense Pest Control</title>
+  <style>
+
+    :root {
+      --cd-black: #0e0e0e;
+      --cd-cyan: #00AEEF;
+      --cd-white: #ffffff;
+      --cd-gray-50: #f7f8fa;
+      --cd-gray-100: #eef0f4;
+      --cd-gray-200: #d8dce6;
+      --cd-gray-700: #3a3f4d;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background: var(--cd-white);
+      color: var(--cd-gray-700);
+      padding: 0;
+      margin: 0;
+    }
+
+    .page {
+      max-width: 850px;
+      margin: 0 auto;
+      background: var(--cd-white);
+      padding: 0;
+    }
+
+    /* Header */
+    .header {
+      background: var(--cd-black);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .header-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .header-brand .company {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--cd-white);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .header-brand .company span {
+      color: var(--cd-cyan);
+    }
+
+    .header-brand .subtitle {
+      font-size: 9px;
+      font-weight: 500;
+      color: var(--cd-cyan);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .header-title {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cd-white);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      text-align: right;
+    }
+
+    .header-title span {
+      color: var(--cd-cyan);
+    }
+
+    .cyan-strip {
+      background: var(--cd-cyan);
+      height: 3px;
+    }
+
+    /* Content */
+    .body {
+      padding: 20px 24px;
+    }
+
+    .instructions {
+      background: var(--cd-gray-50);
+      border-left: 3px solid var(--cd-cyan);
+      padding: 10px 14px;
+      margin-bottom: 18px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--cd-gray-700);
+      line-height: 1.4;
+    }
+
+    .instructions strong {
+      color: var(--cd-black);
+      font-weight: 600;
+    }
+
+    /* Table */
+    .inventory-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1.5px solid var(--cd-gray-200);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .inventory-table thead {
+      background: var(--cd-black);
+    }
+
+    .inventory-table th {
+      padding: 12px 14px;
+      text-align: left;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cd-white);
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .inventory-table th:last-child {
+      border-right: none;
+      text-align: center;
+    }
+
+    .inventory-table tbody tr {
+      border-bottom: 1px solid var(--cd-gray-100);
+      transition: background-color 0.1s;
+    }
+
+    .inventory-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .inventory-table tbody tr:hover {
+      background: var(--cd-gray-50);
+    }
+
+    .inventory-table td {
+      padding: 11px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cd-gray-700);
+    }
+
+    .inventory-table td.product-name {
+      font-weight: 600;
+      width: 65%;
+    }
+
+    .inventory-table td.max-load {
+      text-align: center;
+      width: 25%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--cd-black);
+    }
+
+    .inventory-table td.checkbox {
+      text-align: center;
+      width: 10%;
+    }
+
+    .checkbox-box {
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid var(--cd-gray-200);
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .checkbox-box:hover {
+      border-color: var(--cd-cyan);
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      gap: 24px;
+      margin-top: 24px;
+      padding: 16px 0;
+      border-top: 1px solid var(--cd-gray-200);
+      font-size: 11px;
+      color: var(--cd-gray-700);
+    }
+
+    .footer-item {
+      flex: 1;
+    }
+
+    .footer-label {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cd-cyan);
+      margin-bottom: 4px;
+    }
+
+    .footer-value {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--cd-gray-700);
+      border-bottom: 1px solid var(--cd-gray-200);
+      padding-bottom: 4px;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .page {
+        max-width: 100%;
+        box-shadow: none;
+        padding: 0;
+      }
+      .instructions {
+        page-break-inside: avoid;
+      }
+      .inventory-table {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+
+<style>
+  .cdpc-bar { display:flex; align-items:center; justify-content:space-between;
+    gap:16px; padding:11px 28px; background:#f4f6f8;
+    border-bottom:1px solid #dfe3e8; flex-wrap:wrap; }
+  .cdpc-bar .left { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .cdpc-back { font-family:'Barlow Condensed','Barlow',-apple-system,Arial,sans-serif;
+    font-size:15px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    color:#0b0b0b; text-decoration:none; white-space:nowrap; }
+  .cdpc-back:hover { color:#00AEEF; }
+  .cdpc-crumb { font-family:'Barlow Condensed','Barlow',-apple-system,Arial,sans-serif;
+    font-size:13px; letter-spacing:.10em; text-transform:uppercase; color:#7a828a; }
+  .cdpc-print { font-family:'Barlow Condensed','Barlow',-apple-system,Arial,sans-serif;
+    font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+    color:#fff; background:#0e0e0e; border:none; border-radius:4px;
+    padding:8px 18px; cursor:pointer; display:inline-flex; align-items:center;
+    gap:8px; white-space:nowrap; }
+  .cdpc-print:hover { background:#00AEEF; }
+  .cdpc-print:focus-visible { outline:3px solid #00AEEF; outline-offset:2px; }
+  @media print {
+    .cdpc-bar { display:none !important; }
+    @page { margin:12mm; }
+  }
+</style>
+
+<style>
+/* --- CDPC mobile / small-screen fixes (screen only; print unaffected) --- */
+@media screen and (max-width: 820px) {
+  html, body { max-width: 100%; }
+  .page { box-shadow: none !important; max-width: 100% !important; }
+
+  /* reclaim the 40px side gutters */
+  .body { padding: 18px 15px 26px !important; }
+  .header { padding: 18px 15px 16px !important; flex-wrap: wrap !important;
+            gap: 12px !important; align-items: flex-start !important; }
+  .header-title, .htitle { text-align: left !important; }
+  .meta-bar { flex-wrap: wrap !important; gap: 8px 18px !important;
+              padding-left: 15px !important; padding-right: 15px !important; }
+  .footer { flex-wrap: wrap !important; gap: 10px !important;
+            padding-left: 15px !important; padding-right: 15px !important; }
+
+  /* multi-column grids collapse to one column */
+  .products-grid, .overview-row, .id-grid, .station-grid,
+  .toc-grid, .products-two-col {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* the pill/bubble tags: let them wrap instead of clipping */
+  .prod-tag, .ppe-label, .protocol-badge, .meta-item {
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+  }
+  .protocol-badge { margin-left: 0 !important; }
+  .protocol-header, .products-header, .ppe-bar, .post-service-box,
+  .notice-box, .section-divider, .step-item, .products-used, .ppe-items {
+    flex-wrap: wrap !important;
+  }
+  .protocol-header { gap: 8px !important; align-items: flex-start !important; }
+
+  /* wide tables scroll sideways rather than getting cut off */
+  table { display: block !important; width: 100% !important;
+          overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+  .level-table, .rotation-table { white-space: normal !important; }
+
+  /* nav bar */
+  .cdpc-bar { padding: 10px 15px !important; }
+}
+@media screen and (max-width: 480px) {
+  .body { padding: 15px 12px 22px !important; }
+  .header { padding: 15px 12px 14px !important; }
+  .meta-bar, .footer, .cdpc-bar { padding-left: 12px !important; padding-right: 12px !important; }
+}
+</style>
+</head>
+<body>
+<div class="cdpc-bar">
+  <div class="left">
+    <a class="cdpc-back" href="tools.html">&#8592; Tools</a>
+    <span class="cdpc-crumb">Tools &middot; Checklist</span>
+  </div>
+  <button class="cdpc-print" onclick="window.print()" aria-label="Print or save this page as PDF"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6V2h8v4M4 12H2V6h12v6h-2M4 10h8v4H4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>Print / Save PDF</button>
+</div>
+
+
+<div class="page">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-brand">
+      <div class="company">Clear<span>Defense</span></div>
+      <div class="subtitle">Pest Control</div>
+    </div>
+    <div class="header-title">Van Inventory<span>Checklist</span></div>
+  </div>
+
+  <div class="cyan-strip"></div>
+
+  <!-- Body -->
+  <div class="body">
+    
+    <div class="instructions">
+      <strong>PRODUCT SIGN OUT—</strong> Make sure you have everything on this list but do not exceed max loadout number without approval.
+    </div>
+
+    <!-- Inventory Table -->
+    <table class="inventory-table">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Max Load Out (Unit)</th>
+          <th>✓</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="product-name">Alpine Flea and Bed Bug</td>
+          <td class="max-load">2.5</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Alpine Fly Bait</td>
+          <td class="max-load">1.5</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Doxem NXT Aerosol</td>
+          <td class="max-load">1.5</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">D-Fense NXT Aerosol</td>
+          <td class="max-load">1.5</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Spectre PS Aerosol</td>
+          <td class="max-load">1.5</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Stryker Wasp/Hornet</td>
+          <td class="max-load">2.5</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Invade Hotspot</td>
+          <td class="max-load">1.5</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">D-Fense (1lb)</td>
+          <td class="max-load">2.0</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Maxforce Fleet Ant</td>
+          <td class="max-load">2.5</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Advion Ant Bait</td>
+          <td class="max-load">1.5</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Sumari Ant Gel Bait</td>
+          <td class="max-load">1.5</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Maxforce FC Mag</td>
+          <td class="max-load">2.0</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Vendetta Nitro</td>
+          <td class="max-load">1.5</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Vendetta Plus Roach</td>
+          <td class="max-load">1.5</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Invict Ant Insect</td>
+          <td class="max-load">1.5</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">T1 Mouse</td>
+          <td class="max-load">6</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Trapper Mini Rex</td>
+          <td class="max-load">12</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Protecta EVO</td>
+          <td class="max-load">2</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Contrac Blox (4lb)</td>
+          <td class="max-load">1</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Alpine WSG (200 gram)</td>
+          <td class="max-load">1.1</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+        <tr>
+          <td class="product-name">Taurus</td>
+          <td class="max-load">1.1</td>
+          <td class="checkbox"><div class="checkbox-box"></div></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+  </div>
+
+</div>
+
+</body>
+</html>
