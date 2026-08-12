@@ -8,10 +8,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:#0a0b0d; --surface:#131619; --card:#1a1e23; --card-hi:#232931;
-    --line:#2b323b; --line-soft:#20262d;
-    --text:#e9edf1; --muted:#8b949e; --dim:#6b737c;
-    --cd-cyan:#00AEEF; --cd-cyan-dk:#33c1f3; --cd-red:#ff6b5b;
+    --bg:#4e545c; --surface:#5c626a; --card:#0e0e0e; --card-hi:#1c2126;
+    --line:#3f454c; --line-soft:#2a2f35;
+    --text:#f2f5f8; --muted:#9aa2ab; --dim:#c3cad1;
+    --cd-cyan:#00AEEF; --cd-cyan-lt:#7fd8f7; --cd-red:#ff8577;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { font-family:'Barlow',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
@@ -25,43 +25,43 @@
   .company { font-family:'Barlow Condensed',sans-serif; font-size:25px; font-weight:800;
     color:#fff; letter-spacing:.04em; line-height:1; text-transform:uppercase; }
   .company span { color:var(--cd-cyan); }
-  .company.small { font-size:16px; color:var(--muted); margin-top:1px; }
+  .company.small { font-size:16px; color:#8a9099; margin-top:1px; }
   .htitle { font-family:'Barlow Condensed',sans-serif; font-size:26px; font-weight:800;
     color:#fff; text-transform:uppercase; letter-spacing:.05em; line-height:1; text-align:right; }
   .htitle span { color:var(--cd-cyan); }
-  .hmeta { font-family:'Barlow Condensed',sans-serif; font-size:12px; color:var(--muted);
+  .hmeta { font-family:'Barlow Condensed',sans-serif; font-size:12px; color:#8a9099;
     letter-spacing:.12em; text-transform:uppercase; text-align:right; margin-top:5px; }
   .cyan-strip { background:var(--cd-cyan); height:4px; }
 
-  .metabar { background:#0e1114; border-bottom:1px solid var(--line);
+  .metabar { background:#464c53; border-bottom:1px solid var(--line);
     padding:11px 24px; display:flex; gap:26px; flex-wrap:wrap;
     font-family:'Barlow Condensed',sans-serif; font-size:13px;
-    letter-spacing:.1em; text-transform:uppercase; color:var(--dim); }
-  .metabar b { color:var(--text); font-weight:700; }
+    letter-spacing:.1em; text-transform:uppercase; color:#cdd4da; }
+  .metabar b { color:#fff; font-weight:700; }
   .metabar .cls { color:var(--cd-red); font-weight:700; }
 
   .wrap { padding:22px 24px 40px; }
 
   .searchbar { position:relative; margin-bottom:26px; }
   #q { width:100%; padding:14px 16px 14px 44px; font-family:'Barlow',sans-serif;
-    font-size:16px; color:var(--text); background:var(--card);
-    border:2px solid var(--line); border-radius:6px; }
-  #q::placeholder { color:var(--dim); }
-  #q:focus { outline:none; border-color:var(--cd-cyan); background:var(--card-hi); }
+    font-size:16px; color:var(--text); background:#14181c;
+    border:2px solid #2a3037; border-radius:6px; }
+  #q::placeholder { color:#7d858e; }
+  #q:focus { outline:none; border-color:var(--cd-cyan); }
   .searchbar svg { position:absolute; left:15px; top:50%; transform:translateY(-50%);
     pointer-events:none; }
-  .searchbar svg circle, .searchbar svg path { stroke:#7b838c; }
-  .nores { display:none; padding:24px 4px; color:var(--muted); font-size:15px; }
+  .searchbar svg circle, .searchbar svg path { stroke:#9aa2ab; }
+  .nores { display:none; padding:24px 4px; color:#e3e8ec; font-size:15px; }
 
   .sec { margin-bottom:30px; }
   .sec-head { display:flex; align-items:center; gap:14px; margin-bottom:6px; }
   .sec-head h2 { font-family:'Barlow Condensed',sans-serif; font-size:20px; font-weight:700;
     text-transform:uppercase; letter-spacing:.11em; color:#fff; white-space:nowrap; }
-  .sec-head .line { flex:1; height:2px; background:var(--line); }
+  .sec-head .line { flex:1; height:2px; background:rgba(255,255,255,.22); }
   .sec-head .count { font-family:'Barlow Condensed',sans-serif; font-size:14px;
     color:var(--dim); letter-spacing:.08em; }
   .grp { font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:700;
-    text-transform:uppercase; letter-spacing:.14em; color:var(--cd-cyan-dk);
+    text-transform:uppercase; letter-spacing:.14em; color:var(--cd-cyan-lt);
     margin:18px 0 7px; }
 
   .rows { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
@@ -80,30 +80,20 @@
   .row:hover .chev { color:var(--cd-cyan); }
   .row.tool .name { font-size:16px; }
 
+  .row.soon { cursor:default; opacity:.72; border-style:dashed; }
+  .row.soon:hover { border-color:var(--line-soft); background:var(--card); }
+  .row.soon .num { color:#6d757d; }
+  .soon-badge { font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--cd-cyan);
+    border:1px solid rgba(0,174,239,.45); background:rgba(0,174,239,.12);
+    border-radius:20px; padding:3px 10px; white-space:nowrap; }
+
   .footer { background:#000; padding:18px 24px; display:flex;
     justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; }
-  .footer-text { font-size:11.5px; color:var(--dim); }
+  .footer-text { font-size:11.5px; color:#8a9099; }
   .footer-brand { font-family:'Barlow Condensed',sans-serif; font-size:15px;
     font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:.09em; }
   .footer-brand span { color:var(--cd-cyan); }
-
-  @media (max-width:700px) {
-    .rows { grid-template-columns:1fr; }
-  }
-  @media (max-width:560px) {
-    .header { padding:14px 16px; }
-    .htitle { font-size:21px; text-align:left; }
-    .hmeta { text-align:left; }
-    .metabar { padding:10px 16px; gap:16px; font-size:12px; }
-    .wrap { padding:18px 16px 32px; }
-    .company { font-size:21px; }
-  }
-  @media print {
-    .searchbar { display:none; }
-    body, .page { background:#fff; color:#000; }
-    .row { background:#fff; border-color:#ccc; }
-    .name, .sec-head h2 { color:#000; }
-  }
 
   .tiles { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
   .tile { display:flex; align-items:flex-start; gap:15px; padding:22px 20px;
@@ -127,13 +117,28 @@
   .hits { display:none; }
   .hits.on { display:block; }
   .tiles.off { display:none; }
-  @media (max-width:700px) { .tiles { grid-template-columns:1fr; } }
 
   .catback { display:inline-flex; align-items:center; gap:7px;
     font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:600;
-    letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+    letter-spacing:.09em; text-transform:uppercase; color:#e0e5ea;
     text-decoration:none; margin-bottom:16px; }
   .catback:hover { color:var(--cd-cyan); }
+
+  @media (max-width:700px) { .tiles, .rows { grid-template-columns:1fr; } }
+  @media (max-width:560px) {
+    .header { padding:14px 16px; }
+    .htitle { font-size:21px; text-align:left; }
+    .hmeta { text-align:left; }
+    .metabar { padding:10px 16px; gap:16px; font-size:12px; }
+    .wrap { padding:18px 16px 32px; }
+    .company { font-size:21px; }
+  }
+  @media print {
+    .searchbar { display:none; }
+    body, .page { background:#fff; color:#000; }
+    .row, .tile { background:#fff; border-color:#ccc; }
+    .name, .tile-name, .sec-head h2 { color:#000; }
+  }
 </style>
 </head>
 <body>
@@ -154,7 +159,7 @@
   <div class="cyan-strip"></div>
   <div class="metabar">
     <span>Issued By <b>Ryan Hughes</b></span>
-    <span>Version <b>2.0</b></span>
+    <span>Version <b>2.1</b></span>
     <span>Year <b>2026</b></span>
     <span class="cls">Internal Use Only</span>
   </div>
@@ -167,7 +172,7 @@
 
   </div>
   <div class="footer">
-    <div class="footer-text">Issued by Ryan Hughes &middot; Technical Manager &nbsp;|&nbsp; Version 2.0 &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Internal Use Only</div>
+    <div class="footer-text">Issued by Ryan Hughes &middot; Technical Manager &nbsp;|&nbsp; Version 2.1 &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Internal Use Only</div>
     <div class="footer-brand">Clear<span>Defense</span> Pest Control</div>
   </div>
 </div>

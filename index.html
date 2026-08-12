@@ -8,10 +8,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:#0a0b0d; --surface:#131619; --card:#1a1e23; --card-hi:#232931;
-    --line:#2b323b; --line-soft:#20262d;
-    --text:#e9edf1; --muted:#8b949e; --dim:#6b737c;
-    --cd-cyan:#00AEEF; --cd-cyan-dk:#33c1f3; --cd-red:#ff6b5b;
+    --bg:#4e545c; --surface:#5c626a; --card:#0e0e0e; --card-hi:#1c2126;
+    --line:#3f454c; --line-soft:#2a2f35;
+    --text:#f2f5f8; --muted:#9aa2ab; --dim:#c3cad1;
+    --cd-cyan:#00AEEF; --cd-cyan-lt:#7fd8f7; --cd-red:#ff8577;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { font-family:'Barlow',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
@@ -25,43 +25,43 @@
   .company { font-family:'Barlow Condensed',sans-serif; font-size:25px; font-weight:800;
     color:#fff; letter-spacing:.04em; line-height:1; text-transform:uppercase; }
   .company span { color:var(--cd-cyan); }
-  .company.small { font-size:16px; color:var(--muted); margin-top:1px; }
+  .company.small { font-size:16px; color:#8a9099; margin-top:1px; }
   .htitle { font-family:'Barlow Condensed',sans-serif; font-size:26px; font-weight:800;
     color:#fff; text-transform:uppercase; letter-spacing:.05em; line-height:1; text-align:right; }
   .htitle span { color:var(--cd-cyan); }
-  .hmeta { font-family:'Barlow Condensed',sans-serif; font-size:12px; color:var(--muted);
+  .hmeta { font-family:'Barlow Condensed',sans-serif; font-size:12px; color:#8a9099;
     letter-spacing:.12em; text-transform:uppercase; text-align:right; margin-top:5px; }
   .cyan-strip { background:var(--cd-cyan); height:4px; }
 
-  .metabar { background:#0e1114; border-bottom:1px solid var(--line);
+  .metabar { background:#464c53; border-bottom:1px solid var(--line);
     padding:11px 24px; display:flex; gap:26px; flex-wrap:wrap;
     font-family:'Barlow Condensed',sans-serif; font-size:13px;
-    letter-spacing:.1em; text-transform:uppercase; color:var(--dim); }
-  .metabar b { color:var(--text); font-weight:700; }
+    letter-spacing:.1em; text-transform:uppercase; color:#cdd4da; }
+  .metabar b { color:#fff; font-weight:700; }
   .metabar .cls { color:var(--cd-red); font-weight:700; }
 
   .wrap { padding:22px 24px 40px; }
 
   .searchbar { position:relative; margin-bottom:26px; }
   #q { width:100%; padding:14px 16px 14px 44px; font-family:'Barlow',sans-serif;
-    font-size:16px; color:var(--text); background:var(--card);
-    border:2px solid var(--line); border-radius:6px; }
-  #q::placeholder { color:var(--dim); }
-  #q:focus { outline:none; border-color:var(--cd-cyan); background:var(--card-hi); }
+    font-size:16px; color:var(--text); background:#14181c;
+    border:2px solid #2a3037; border-radius:6px; }
+  #q::placeholder { color:#7d858e; }
+  #q:focus { outline:none; border-color:var(--cd-cyan); }
   .searchbar svg { position:absolute; left:15px; top:50%; transform:translateY(-50%);
     pointer-events:none; }
-  .searchbar svg circle, .searchbar svg path { stroke:#7b838c; }
-  .nores { display:none; padding:24px 4px; color:var(--muted); font-size:15px; }
+  .searchbar svg circle, .searchbar svg path { stroke:#9aa2ab; }
+  .nores { display:none; padding:24px 4px; color:#e3e8ec; font-size:15px; }
 
   .sec { margin-bottom:30px; }
   .sec-head { display:flex; align-items:center; gap:14px; margin-bottom:6px; }
   .sec-head h2 { font-family:'Barlow Condensed',sans-serif; font-size:20px; font-weight:700;
     text-transform:uppercase; letter-spacing:.11em; color:#fff; white-space:nowrap; }
-  .sec-head .line { flex:1; height:2px; background:var(--line); }
+  .sec-head .line { flex:1; height:2px; background:rgba(255,255,255,.22); }
   .sec-head .count { font-family:'Barlow Condensed',sans-serif; font-size:14px;
     color:var(--dim); letter-spacing:.08em; }
   .grp { font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:700;
-    text-transform:uppercase; letter-spacing:.14em; color:var(--cd-cyan-dk);
+    text-transform:uppercase; letter-spacing:.14em; color:var(--cd-cyan-lt);
     margin:18px 0 7px; }
 
   .rows { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
@@ -80,30 +80,20 @@
   .row:hover .chev { color:var(--cd-cyan); }
   .row.tool .name { font-size:16px; }
 
+  .row.soon { cursor:default; opacity:.72; border-style:dashed; }
+  .row.soon:hover { border-color:var(--line-soft); background:var(--card); }
+  .row.soon .num { color:#6d757d; }
+  .soon-badge { font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--cd-cyan);
+    border:1px solid rgba(0,174,239,.45); background:rgba(0,174,239,.12);
+    border-radius:20px; padding:3px 10px; white-space:nowrap; }
+
   .footer { background:#000; padding:18px 24px; display:flex;
     justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; }
-  .footer-text { font-size:11.5px; color:var(--dim); }
+  .footer-text { font-size:11.5px; color:#8a9099; }
   .footer-brand { font-family:'Barlow Condensed',sans-serif; font-size:15px;
     font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:.09em; }
   .footer-brand span { color:var(--cd-cyan); }
-
-  @media (max-width:700px) {
-    .rows { grid-template-columns:1fr; }
-  }
-  @media (max-width:560px) {
-    .header { padding:14px 16px; }
-    .htitle { font-size:21px; text-align:left; }
-    .hmeta { text-align:left; }
-    .metabar { padding:10px 16px; gap:16px; font-size:12px; }
-    .wrap { padding:18px 16px 32px; }
-    .company { font-size:21px; }
-  }
-  @media print {
-    .searchbar { display:none; }
-    body, .page { background:#fff; color:#000; }
-    .row { background:#fff; border-color:#ccc; }
-    .name, .sec-head h2 { color:#000; }
-  }
 
   .tiles { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
   .tile { display:flex; align-items:flex-start; gap:15px; padding:22px 20px;
@@ -127,7 +117,28 @@
   .hits { display:none; }
   .hits.on { display:block; }
   .tiles.off { display:none; }
-  @media (max-width:700px) { .tiles { grid-template-columns:1fr; } }
+
+  .catback { display:inline-flex; align-items:center; gap:7px;
+    font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; color:#e0e5ea;
+    text-decoration:none; margin-bottom:16px; }
+  .catback:hover { color:var(--cd-cyan); }
+
+  @media (max-width:700px) { .tiles, .rows { grid-template-columns:1fr; } }
+  @media (max-width:560px) {
+    .header { padding:14px 16px; }
+    .htitle { font-size:21px; text-align:left; }
+    .hmeta { text-align:left; }
+    .metabar { padding:10px 16px; gap:16px; font-size:12px; }
+    .wrap { padding:18px 16px 32px; }
+    .company { font-size:21px; }
+  }
+  @media print {
+    .searchbar { display:none; }
+    body, .page { background:#fff; color:#000; }
+    .row, .tile { background:#fff; border-color:#ccc; }
+    .name, .tile-name, .sec-head h2 { color:#000; }
+  }
 </style>
 </head>
 <body>
@@ -148,31 +159,31 @@
   <div class="cyan-strip"></div>
   <div class="metabar">
     <span>Issued By <b>Ryan Hughes</b></span>
-    <span>Version <b>2.0</b></span>
+    <span>Version <b>2.1</b></span>
     <span>Year <b>2026</b></span>
     <span class="cls">Internal Use Only</span>
   </div>
   <div class="wrap">
     <div class="searchbar">
       <svg width="17" height="17" viewBox="0 0 16 16" fill="none">
-        <circle cx="7" cy="7" r="5" stroke="#8a9099" stroke-width="1.8"/>
-        <path d="M11 11l4 4" stroke="#8a9099" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="7" cy="7" r="5" stroke="#9aa2ab" stroke-width="1.8"/>
+        <path d="M11 11l4 4" stroke="#9aa2ab" stroke-width="1.8" stroke-linecap="round"/>
       </svg>
       <input type="search" id="q" placeholder="Search all protocols, references and tools&hellip;"
              autocomplete="off" aria-label="Search all protocols, references and tools">
     </div>
     <div class="nores" id="nores">No match. Check the spelling, or clear the search.</div>
-    <div class="tiles" id="tiles"><a class="tile" href="general-pest.html"><span class="tile-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2 4 6v6c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V6z"/></svg></span><span class="tile-txt"><span class="tile-name">General Pest Service Protocols</span><span class="tile-sub">Roaches, ants, stinging insects, spiders, beetles, rodents</span><span class="tile-count">16 items</span></span></a><a class="tile" href="vector-control.html"><span class="tile-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2v20M2 8h20M5 5l14 14M19 5 5 19"/></svg></span><span class="tile-txt"><span class="tile-name">Vector Pest Control</span><span class="tile-sub">Mosquito, flea and tick service</span><span class="tile-count">3 items</span></span></a><a class="tile" href="seasonal-full-service.html"><span class="tile-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14v16H5z"/></svg></span><span class="tile-txt"><span class="tile-name">Seasonal Full Service Protocols</span><span class="tile-sub">Route protocols by season and service type</span><span class="tile-count">6 items</span></span></a><a class="tile" href="references.html"><span class="tile-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><path d="M4 4h11l5 5v11H4zM15 4v5h5"/></svg></span><span class="tile-txt"><span class="tile-name">References</span><span class="tile-sub">Product lists, mix rates and special handling</span><span class="tile-count">3 items</span></span></a><a class="tile" href="tools.html"><span class="tile-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><path d="M9 3H5v4l4 4 4-4V3zM14 21h5v-5l-5-5-5 5z"/></svg></span><span class="tile-txt"><span class="tile-name">Tools</span><span class="tile-sub">Quoting calculators, dilution and van inventory</span><span class="tile-count">4 items</span></span></a></div>
+    <div class="tiles" id="tiles"><a class="tile" href="general-pest.html"><span class="tile-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2 4 6v6c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V6z"/></svg></span><span class="tile-txt"><span class="tile-name">General Pest Service Protocols</span><span class="tile-sub">Roaches, ants, stinging insects, spiders, beetles, rodents</span><span class="tile-count">14 items</span></span></a><a class="tile" href="wdo.html"><span class="tile-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><path d="M3 21h18M6 21V9l6-5 6 5v12M10 21v-5h4v5"/></svg></span><span class="tile-txt"><span class="tile-name">WDO</span><span class="tile-sub">Wood-destroying organisms &mdash; carpenter ants and termite</span><span class="tile-count">3 items</span></span></a><a class="tile" href="vector-control.html"><span class="tile-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2v20M2 8h20M5 5l14 14M19 5 5 19"/></svg></span><span class="tile-txt"><span class="tile-name">Vector Pest Control</span><span class="tile-sub">Mosquito, flea and tick service</span><span class="tile-count">3 items</span></span></a><a class="tile" href="seasonal-full-service.html"><span class="tile-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14v16H5z"/></svg></span><span class="tile-txt"><span class="tile-name">Seasonal Full Service Protocols</span><span class="tile-sub">Route protocols by season and service type</span><span class="tile-count">6 items</span></span></a><a class="tile" href="references.html"><span class="tile-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><path d="M4 4h11l5 5v11H4zM15 4v5h5"/></svg></span><span class="tile-txt"><span class="tile-name">References</span><span class="tile-sub">Product lists and special handling</span><span class="tile-count">2 items</span></span></a><a class="tile" href="tools.html"><span class="tile-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><path d="M9 3H5v4l4 4 4-4V3zM14 21h5v-5l-5-5-5 5z"/></svg></span><span class="tile-txt"><span class="tile-name">Tools</span><span class="tile-sub">Quoting calculators, dilution and van inventory</span><span class="tile-count">4 items</span></span></a></div>
     <div class="hits" id="hits"></div>
 
   </div>
   <div class="footer">
-    <div class="footer-text">Issued by Ryan Hughes &middot; Technical Manager &nbsp;|&nbsp; Version 2.0 &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Internal Use Only</div>
+    <div class="footer-text">Issued by Ryan Hughes &middot; Technical Manager &nbsp;|&nbsp; Version 2.1 &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Internal Use Only</div>
     <div class="footer-brand">Clear<span>Defense</span> Pest Control</div>
   </div>
 </div>
 <script>
-var IDX = [{"n": "German Roaches", "u": "german-roaches.html", "c": "General Pest Service Protocols", "k": "01"}, {"n": "Trailing House Ants", "u": "trailing-house-ants.html", "c": "General Pest Service Protocols", "k": "02"}, {"n": "Fire Ant Control", "u": "fire-ants.html", "c": "General Pest Service Protocols", "k": "03"}, {"n": "Lady Bugs", "u": "lady-bugs.html", "c": "General Pest Service Protocols", "k": "04"}, {"n": "Stink Bugs", "u": "stink-bugs.html", "c": "General Pest Service Protocols", "k": "05"}, {"n": "Brown Recluse", "u": "brown-recluse.html", "c": "General Pest Service Protocols", "k": "06"}, {"n": "Wasp Control", "u": "wasp-control.html", "c": "General Pest Service Protocols", "k": "07"}, {"n": "Carpenter Bee", "u": "carpenter-bee.html", "c": "General Pest Service Protocols", "k": "08"}, {"n": "Earwigs", "u": "earwigs.html", "c": "General Pest Service Protocols", "k": "09"}, {"n": "American Roaches", "u": "american-roaches.html", "c": "General Pest Service Protocols", "k": "10"}, {"n": "Carpenter Ants - Exterior", "u": "carpenter-ants-exterior.html", "c": "General Pest Service Protocols", "k": "11"}, {"n": "Carpenter Ants - Interior", "u": "carpenter-ants-interior.html", "c": "General Pest Service Protocols", "k": "12"}, {"n": "Small Flies", "u": "small-flies.html", "c": "General Pest Service Protocols", "k": "13"}, {"n": "Varied Carpet Beetle", "u": "varied-carpet-beetle.html", "c": "General Pest Service Protocols", "k": "14"}, {"n": "Rat Control", "u": "rat-control.html", "c": "General Pest Service Protocols", "k": "15"}, {"n": "Mouse Control", "u": "mouse-control.html", "c": "General Pest Service Protocols", "k": "16"}, {"n": "Mosquito Service", "u": "mosquito-service.html", "c": "Vector Pest Control", "k": "17"}, {"n": "Fleas", "u": "fleas.html", "c": "Vector Pest Control", "k": "18"}, {"n": "Tick Control", "u": "tick-control.html", "c": "Vector Pest Control", "k": "19"}, {"n": "Rainy Day Protocol", "u": "rainy-day.html", "c": "Seasonal Full Service Protocols", "k": "20"}, {"n": "Quarterly - Winter Route", "u": "quarterly-winter-route.html", "c": "Seasonal Full Service Protocols", "k": "21"}, {"n": "Quarterly - Trans Season Route", "u": "quarterly-trans-season-route.html", "c": "Seasonal Full Service Protocols", "k": "22"}, {"n": "Initial Service - Peak Season", "u": "initial-service-peak-season.html", "c": "Seasonal Full Service Protocols", "k": "23"}, {"n": "Quarterly - Peak Season Route", "u": "quarterly-peak-season-route.html", "c": "Seasonal Full Service Protocols", "k": "24"}, {"n": "Quarterly - Trans Season Start", "u": "quarterly-trans-season-start.html", "c": "Seasonal Full Service Protocols", "k": "25"}, {"n": "Sensitive Pet Households", "u": "sensitive-pet-interior.html", "c": "References", "k": ""}, {"n": "Approved Products List", "u": "approved-products.html", "c": "References", "k": ""}, {"n": "Season Mix Quick Reference", "u": "season-mix-reference.html", "c": "References", "k": ""}, {"n": "Residential Quote Calculator", "u": "residential-quote-calculator.html", "c": "Tools", "k": ""}, {"n": "Commercial Quote Calculator", "u": "commercial-quote-calculator.html", "c": "Tools", "k": ""}, {"n": "Dilution Calculator", "u": "dilution-calculator.html", "c": "Tools", "k": ""}, {"n": "Van Inventory Checklist", "u": "van-inventory-checklist.html", "c": "Tools", "k": ""}];
+var IDX = [{"n": "German Roaches", "u": "german-roaches.html", "c": "General Pest Service Protocols", "k": "01"}, {"n": "Trailing House Ants", "u": "trailing-house-ants.html", "c": "General Pest Service Protocols", "k": "02"}, {"n": "Fire Ant Control", "u": "fire-ants.html", "c": "General Pest Service Protocols", "k": "03"}, {"n": "Lady Bugs", "u": "lady-bugs.html", "c": "General Pest Service Protocols", "k": "04"}, {"n": "Stink Bugs", "u": "stink-bugs.html", "c": "General Pest Service Protocols", "k": "05"}, {"n": "Brown Recluse", "u": "brown-recluse.html", "c": "General Pest Service Protocols", "k": "06"}, {"n": "Wasp Control", "u": "wasp-control.html", "c": "General Pest Service Protocols", "k": "07"}, {"n": "Carpenter Bee", "u": "carpenter-bee.html", "c": "General Pest Service Protocols", "k": "08"}, {"n": "Earwigs", "u": "earwigs.html", "c": "General Pest Service Protocols", "k": "09"}, {"n": "American Roaches", "u": "american-roaches.html", "c": "General Pest Service Protocols", "k": "10"}, {"n": "Small Flies", "u": "small-flies.html", "c": "General Pest Service Protocols", "k": "11"}, {"n": "Varied Carpet Beetle", "u": "varied-carpet-beetle.html", "c": "General Pest Service Protocols", "k": "12"}, {"n": "Rat Control", "u": "rat-control.html", "c": "General Pest Service Protocols", "k": "13"}, {"n": "Mouse Control", "u": "mouse-control.html", "c": "General Pest Service Protocols", "k": "14"}, {"n": "Carpenter Ants - Exterior", "u": "carpenter-ants-exterior.html", "c": "WDO", "k": "15"}, {"n": "Carpenter Ants - Interior", "u": "carpenter-ants-interior.html", "c": "WDO", "k": "16"}, {"n": "Mosquito Service", "u": "mosquito-service.html", "c": "Vector Pest Control", "k": "17"}, {"n": "Fleas", "u": "fleas.html", "c": "Vector Pest Control", "k": "18"}, {"n": "Tick Control", "u": "tick-control.html", "c": "Vector Pest Control", "k": "19"}, {"n": "Rainy Day Protocol", "u": "rainy-day.html", "c": "Seasonal Full Service Protocols", "k": "20"}, {"n": "Quarterly - Winter Route", "u": "quarterly-winter-route.html", "c": "Seasonal Full Service Protocols", "k": "21"}, {"n": "Quarterly - Trans Season Route", "u": "quarterly-trans-season-route.html", "c": "Seasonal Full Service Protocols", "k": "22"}, {"n": "Initial Service - Peak Season", "u": "initial-service-peak-season.html", "c": "Seasonal Full Service Protocols", "k": "23"}, {"n": "Quarterly - Peak Season Route", "u": "quarterly-peak-season-route.html", "c": "Seasonal Full Service Protocols", "k": "24"}, {"n": "Quarterly - Trans Season Start", "u": "quarterly-trans-season-start.html", "c": "Seasonal Full Service Protocols", "k": "25"}, {"n": "Sensitive Pet Households", "u": "sensitive-pet-interior.html", "c": "References", "k": ""}, {"n": "Approved Products List", "u": "approved-products.html", "c": "References", "k": ""}, {"n": "Residential Quote Calculator", "u": "residential-quote-calculator.html", "c": "Tools", "k": ""}, {"n": "Commercial Quote Calculator", "u": "commercial-quote-calculator.html", "c": "Tools", "k": ""}, {"n": "Dilution Calculator", "u": "dilution-calculator.html", "c": "Tools", "k": ""}, {"n": "Van Inventory Checklist", "u": "van-inventory-checklist.html", "c": "Tools", "k": ""}];
 var q=document.getElementById('q'), tiles=document.getElementById('tiles'),
     hits=document.getElementById('hits'), nores=document.getElementById('nores');
 q.addEventListener('input', function(){
