@@ -726,68 +726,6 @@
 
   .crawl-box .step-text { color: #b0b8c8; }
 
-
-  /* ===== ADDED PROTOCOL COMPONENTS (Small Fly / Rat / Mouse / Carpet Beetle) ===== */
-  .lifecycle-table, .density-table, .bait-table, .level-table {
-    width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px;
-  }
-  .lifecycle-table th, .density-table th, .bait-table th, .level-table th {
-    background: var(--cd-black); color: var(--cd-cyan);
-    font-family: 'Barlow Condensed', sans-serif; font-size: 10.5px;
-    font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
-    padding: 7px 10px; text-align: left; border: 1px solid #222;
-  }
-  .lifecycle-table td, .density-table td, .bait-table td, .level-table td {
-    padding: 7px 10px; border: 1px solid var(--cd-gray-200);
-    color: #404555; vertical-align: top;
-  }
-  .lifecycle-table tr:nth-child(even) td,
-  .density-table tr:nth-child(even) td,
-  .bait-table tr:nth-child(even) td,
-  .level-table tr:nth-child(even) td { background: var(--cd-gray-50); }
-  .lifecycle-table .stage, .bait-table .bn, .density-table .level, .level-table .lv {
-    font-weight: 700; color: var(--cd-gray-700);
-  }
-  .level-table .lv { white-space: nowrap; }
-  .density-table .count {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 22px;
-    font-weight: 800; color: var(--cd-cyan-dark);
-  }
-
-  .id-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-  .id-box {
-    background: var(--cd-gray-50); border: 1px solid var(--cd-gray-200);
-    border-radius: var(--border-r); padding: 10px 13px;
-  }
-  .id-box .id-title {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--cd-cyan-dark); margin-bottom: 4px;
-  }
-  .id-box p { font-size: 12px; color: #404555; line-height: 1.5; }
-
-  .station-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-  .station-box { border-radius: var(--border-r); padding: 10px 13px; }
-  .station-box.interior { background: var(--cd-green-light); border: 1px solid #9fe0c0; border-left: 4px solid var(--cd-green); }
-  .station-box.exterior { background: var(--cd-cyan-light); border: 1px solid #aaddf5; border-left: 4px solid var(--cd-cyan-dark); }
-  .station-box.restricted { background: var(--cd-red-light); border: 1px solid #f5c0bb; border-left: 4px solid var(--cd-red); }
-  .station-box .st-title {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700;
-    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 5px;
-  }
-  .station-box.interior .st-title { color: var(--cd-green); }
-  .station-box.exterior .st-title { color: var(--cd-cyan-dark); }
-  .station-box.restricted .st-title { color: var(--cd-red); }
-  .station-box p { font-size: 12px; color: #404555; line-height: 1.5; }
-
-  .amber-note {
-    background: var(--cd-amber-light); border: 1px solid var(--cd-amber-border);
-    border-left: 4px solid #c8870a; border-radius: var(--border-r);
-    padding: 9px 13px; margin-top: 10px; font-size: 12px;
-    color: #5a3d00; line-height: 1.52;
-  }
-  .amber-note strong { font-weight: 700; }
-
   /* ===== FOOTER ===== */
   .footer {
     background: var(--cd-black);
@@ -931,38 +869,119 @@
       <span class="sdlabel">Seasonal Full Service Protocol</span>
       <span class="sdline"></span>
     </div>
-    <div class="protocol-card"  id="quarterly-peak">
-      <div class="protocol-header">
+    <div class="protocol-card" id="quarterly-peak">
+<div class="protocol-header">
         <div class="protocol-icon">☀️</div>
         <div class="protocol-title-wrap">
-          <div class="protocol-title">Quarterly Pest Control Peak Season Route</div>
+          <div class="protocol-title">Quarterly Pest Control - Peak Season Route</div>
           <div class="protocol-objective">Standard quarterly route during peak pest season. Dual-product spray mix (Sumari + Suspend PZ) for maximum efficacy.</div>
         </div>
-        <div class="route-badge peak">APR – AUG</div>
+        <div class="route-badge peak">APR - AUG</div>
       </div>
       <div class="protocol-body">
         <div class="overview-row">
           <div class="ov-box"><div class="ov-label">Rate Sheet</div><div class="ov-value">Peak Season RT</div></div>
           <div class="ov-box"><div class="ov-label">Frequency</div><div class="ov-value">Quarterly (Every 90 Days)</div></div>
-          <div class="ov-box"><div class="ov-label">Months</div><div class="ov-value">April – August</div></div>
+          <div class="ov-box"><div class="ov-label">Months</div><div class="ov-value">April - August</div></div>
         </div>
-        <div class="info-note" style="margin-bottom:14px;">All steps identical to the standard route protocol. Season-specific chemistry below.</div>
-        <div class="step-item" style="margin-bottom:12px;">
-          <div class="step-num">4</div>
-          <div class="step-content">
-            <div class="step-title">Granulation Peak Season</div>
-            <div class="step-text">3–4 lbs in granulator set on three. Standard route granulation procedure.</div>
-            <div class="products-used"><span class="prod-tag">Wisdom EZ (Bifenthrin)  Amguard</span></div>
+        <div class="ppe-bar">
+          <span class="ppe-label">PPE Required</span>
+          <div class="ppe-items">
+            <span class="ppe-tag">Gloves</span><span class="ppe-tag">Safety Glasses</span><span class="ppe-tag">Hat</span><span class="ppe-tag">Pants</span><span class="ppe-tag">Boots</span><span class="ppe-tag">Long Sleeves</span>
           </div>
         </div>
-        <div class="step-item">
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <div class="step-title">Arrival and Intro</div>
+              <div class="step-text">Park in road if possible. Clock in to FieldRoutes. <strong>Knock and ring the doorbell (Mandatory).</strong> Inquire about needs and anything they'd like addressed. Request they open garage.</div>
+            </div>
+          </div>
+          <div class="step-divider"></div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <div class="step-title">Inspection</div>
+              <div class="step-text">Inspect exterior from top to bottom for conducive conditions, foraging avenues, and pest sources. Look for wasp nests, dirt daubers, spider webs, and other pest debris. Inspect around windows for breaks in caulking, damaged screens, and holes in foundation. Note trailing ants and ant hills.</div>
+            </div>
+          </div>
+          <div class="step-divider"></div>
+          <div class="step-item" style="margin-bottom:12px;">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">De-Webbing / Pest Debris Removal</div>
+            <div class="step-text">Dust the de-web head with D-Fense Dust prior to de-webbing (do this in a grassy area - be careful of drift). De-web full structure using Cotton Candy Method.</div>
+            <div class="products-used"><span class="prod-tag">D-Fense Dust (Deltamethrin) - Control Solutions</span></div>
+          </div>
+        </div>
+          <div class="step-divider"></div>
+          <div class="step-item" style="margin-bottom:12px;">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Granulation - Peak Season</div>
+            <div class="step-text">
+                <p>Fill granulator with approximately 3-4 lbs of granule, set on three. Walk around the home maintaining <strong>7-9 ft from the foundation.</strong> Rotate torso left to right as you turn the handle. Avoid cement walkways, driveways, patios, and decks. Focus heavily on landscape beds - get granule behind bushes, trees, and plants.</p>
+              </div>
+            <div class="products-used"><span class="prod-tag">Wisdom EZ (Bifenthrin) - Amguard</span></div>
+          </div>
+        </div>
+          <div class="step-divider"></div>
+          <div class="step-item">
           <div class="step-num">5</div>
           <div class="step-content">
-            <div class="step-title">Power-Spraying Peak Season Mix</div>
-            <div class="step-text">Full standard application for foundation, walls, overhangs, attachments, and landscape beds.</div>
-            <div class="mix-spec"><span class="mix-name">Sumari</span><span class="mix-rate">0.20%  0.25oz/gal</span><span style="color:#888;font-size:10px;">(Clothianidin/Pyriproxyfen) MGK</span></div>
-            <div class="mix-spec"><span class="mix-name">Suspend PZ</span><span class="mix-rate">0.146%  0.1875oz/gal</span><span style="color:#888;font-size:10px;">(Deltamethrin) ENVU</span></div>
+            <div class="step-title">Power-Spraying - Peak Season Mix</div>
+            <div class="step-text">
+                <p><strong>Foundation:</strong> Fan spray around base - 3 ft up and 4 ft out, applying heavier product at 4 ft out (spend 16 sec per 10 linear ft). Pin stream along foundation until product bubbles. <strong>This is one of the most impactful and important steps.</strong></p>
+<p><strong>Exterior Walls &amp; Overhangs:</strong> Spray around all entry points - doors, windows, soffits, overhangs, and behind downspouts. Ensure all cracks/crevices and potential entry points are protected.</p>
+<p><strong>Attachments &amp; Additions:</strong> Fan spray underside of decks/railing, around lights, under splashguards. Treat playsets per label. Treat under mailbox.</p>
+<p><strong>Landscape Beds:</strong> Fan spray HEAVILY - product should reach 1-2 inches below surface. Treat minimum 4 ft and up to 10 ft out.</p>
+              </div>
+            <div class="mix-spec"><span class="mix-name">Sumari</span><span class="mix-rate">0.20% - 0.25oz/gal</span><span style="color:#888;font-size:10px;">(Clothianidin/Pyriproxyfen) MGK</span></div>
+            <div class="mix-spec"><span class="mix-name">Suspend PZ</span><span class="mix-rate">0.146% - 0.1875oz/gal</span><span style="color:#888;font-size:10px;">(Deltamethrin) ENVU</span></div>
             <div class="info-note" style="margin-top:8px;"><strong>Garage &amp; Interior Mix:</strong> Suspend Polyzone 0.03% at 0.75oz/gallon.</div>
+          </div>
+        </div>
+          <div class="step-divider"></div>
+          <div class="step-item">
+            <div class="step-num">6</div>
+            <div class="step-content">
+              <div class="step-title">Garage</div>
+              <div class="step-text">With B&amp;G on fine fan spray, treat along all baseboards (6 in. up and 6 in. out). Treat behind storage, up garage door slides, and other junctions where pests and webs are commonly found. Treat below all sinks where pipes come through walls. Place glue boards around all garage doors including hinged doors (2 per door, one on each side).</div>
+              <div class="products-used"><span class="prod-tag">Suspend Polyzone 0.03% (Deltamethrin) - ENVU</span><span class="prod-tag">Trapper Max Glueboards - Bell Labs</span></div>
+            </div>
+          </div>
+          <div class="step-divider"></div>
+          <div class="step-item">
+            <div class="step-num">7</div>
+            <div class="step-content">
+              <div class="step-title">Interior</div>
+              <div class="step-text">Place shoe covers before entering. With B&amp;G on fine fan spray, treat along all baseboards (6 in. up and 6 in. out if carpeted). With hardwood flooring, keep product on the baseboard and wall. Do not treat closets unless requested by the customer.</div>
+              <div class="products-used"><span class="prod-tag">Suspend Polyzone 0.03% (Deltamethrin) - ENVU</span></div>
+            </div>
+          </div>
+          <div class="step-divider"></div>
+          <div class="step-item">
+            <div class="step-num">8</div>
+            <div class="step-content">
+              <div class="step-title">Crawl-Space Dusting</div>
+              <div class="step-text">Dust all crawlspace vents and entry doors (do not puncture vent screens). Dust any open crack and crevices behind AC units, electrical boxes, and water spigots. Dust any gaps below siding/stucco. Place one glue board inside the crawlspace door, close and secure shut.</div>
+              <div class="products-used"><span class="prod-tag">D-Fense Dust (Deltamethrin) - Control Solutions</span></div>
+            </div>
+          </div>
+          <div class="step-divider"></div>
+          <div class="step-item">
+            <div class="step-num">9</div>
+            <div class="step-content">
+              <div class="step-title">Post Service</div>
+              <div class="post-service-box">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" class="ps-icon"><circle cx="11" cy="11" r="10" stroke="#00AEEF" stroke-width="1.5"/><path d="M7 11l3 3 5-5" stroke="#00AEEF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="ps-text">
+                  <strong>Complete Post-Service Checklist</strong>
+                  Fill out a detailed service report in FieldRoutes. Knock on the door and report to the customer - emphasizing what you did and what you found, suggesting how they can help prevent future problems. Get a signature on the iPad and leave a review card. Ensure all back yard gates are secure and all equipment is loaded in your vehicle.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
