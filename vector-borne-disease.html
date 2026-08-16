@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vector-Borne Disease Reference | ClearDefense Pest Control</title>
+<style>
+  :root {
+    --cdpc-cyan: #00AEEF;
+    --cdpc-black: #000000;
+    --ink: #14181b;
+    --ink-soft: #5a666e;
+    --rule: #d9e1e6;
+    --tint: #f4f8fa;
+    --tint-cyan: #eaf8fe;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: var(--ink);
+    font-family: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 22px 60px; }
+
+  /* ---------- HEADER ---------- */
+  .doc-header {
+    background: var(--cdpc-black);
+    border-bottom: 5px solid var(--cdpc-cyan);
+    padding: 22px 0;
+  }
+  .doc-header-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .shield {
+    width: 62px;
+    height: 62px;
+    flex: 0 0 62px;
+    object-fit: contain;
+  }
+  .titles { min-width: 0; }
+  .brandline {
+    font-family: 'Barlow Condensed', 'Barlow', 'Arial Narrow', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: var(--cdpc-cyan);
+    margin: 0 0 2px;
+  }
+  .doc-title {
+    font-family: 'Barlow Condensed', 'Barlow', 'Arial Narrow', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.05;
+  }
+  .doc-sub {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #b9c4ca;
+    margin: 5px 0 0;
+  }
+
+  /* ---------- INTRO ---------- */
+  .intro { padding-top: 26px; }
+  .intro p { margin: 0 0 12px; max-width: 74ch; }
+
+  .notice {
+    background: var(--cdpc-black);
+    color: #ffffff;
+    border-left: 6px solid var(--cdpc-cyan);
+    padding: 16px 20px;
+    margin: 22px 0 8px;
+  }
+  .notice h4 {
+    font-family: 'Barlow Condensed', 'Barlow', 'Arial Narrow', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--cdpc-cyan);
+    margin: 0 0 6px;
+  }
+  .notice p { margin: 0; color: #e8eef1; font-size: 14px; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 26px;
+    align-items: center;
+    padding: 14px 0 0;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  .chip {
+    display: inline-block;
+    background: var(--cdpc-cyan);
+    color: #ffffff;
+    font-family: 'Barlow Condensed', 'Barlow', 'Arial Narrow', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    vertical-align: 2px;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  .section { margin-top: 42px; }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 3px solid var(--cdpc-black);
+    padding-bottom: 8px;
+    margin-bottom: 6px;
+  }
+  .section-num {
+    background: var(--cdpc-cyan);
+    color: #ffffff;
+    font-family: 'Barlow Condensed', 'Barlow', 'Arial Narrow', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 11px;
+    border-radius: 2px;
+  }
+  .section-head h2 {
+    font-family: 'Barlow Condensed', 'Barlow', 'Arial Narrow', sans-serif;
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .section-note {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin: 10px 0 18px;
+    max-width: 82ch;
+  }
+
+  /* ---------- TABLE ---------- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  thead th {
+    background: var(--cdpc-black);
+    color: #ffffff;
+    font-family: 'Barlow Condensed', 'Barlow', 'Arial Narrow', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 9px 12px;
+    border-bottom: 3px solid var(--cdpc-cyan);
+  }
+  tbody td {
+    padding: 12px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) td { background: var(--tint); }
+  .dz { font-weight: 700; display: block; }
+  .agent {
+    display: block;
+    font-size: 12.5px;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+  .col-dz { width: 20%; }
+  .col-vec { width: 20%; }
+  .col-dist { width: 18%; }
+  .col-sx { width: 21%; }
+  .col-fn { width: 21%; }
+
+  /* ---------- CALLOUT ---------- */
+  .callout {
+    background: var(--tint-cyan);
+    border-left: 5px solid var(--cdpc-cyan);
+    padding: 14px 18px;
+    margin: 20px 0 0;
+  }
+  .callout h4 {
+    font-family: 'Barlow Condensed', 'Barlow', 'Arial Narrow', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+  }
+  .callout p, .callout li { font-size: 14px; margin: 0 0 6px; }
+  .callout ul { margin: 6px 0 0; padding-left: 20px; }
+  .callout li:last-child { margin-bottom: 0; }
+
+  /* ---------- FOOTER ---------- */
+  .doc-footer {
+    background: var(--cdpc-black);
+    border-top: 5px solid var(--cdpc-cyan);
+    color: #b9c4ca;
+    margin-top: 54px;
+    padding: 20px 0;
+  }
+  .doc-footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 22px;
+    font-size: 12.5px;
+    letter-spacing: 0.4px;
+  }
+  .doc-footer strong {
+    color: #ffffff;
+    font-family: 'Barlow Condensed', 'Barlow', 'Arial Narrow', sans-serif;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+  }
+  .doc-footer p { margin: 0 0 4px; }
+
+  /* ---------- MOBILE ---------- */
+  @media screen and (max-width: 820px) {
+    .doc-title { font-size: 26px; }
+    .shield { width: 50px; height: 50px; flex: 0 0 50px; }
+    .section-head h2 { font-size: 22px; }
+
+    table, thead, tbody, tr, td { display: block; width: 100%; }
+    thead { display: none; }
+    tbody tr {
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--cdpc-cyan);
+      margin-bottom: 14px;
+      background: #ffffff;
+    }
+    tbody tr:nth-child(even) td { background: transparent; }
+    tbody td {
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      padding: 10px 14px;
+    }
+    tbody tr td:last-child { border-bottom: none; }
+    tbody td::before {
+      content: attr(data-label);
+      display: block;
+      font-family: 'Barlow Condensed', 'Barlow', 'Arial Narrow', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--cdpc-cyan);
+      margin-bottom: 3px;
+    }
+    tbody td:first-child::before { display: none; }
+    tbody td:first-child { background: var(--tint); }
+  }
+
+  @media print {
+    body { font-size: 11pt; }
+    tr, .callout, .notice { page-break-inside: avoid; }
+    .section { page-break-inside: auto; }
+  }
+</style>
+
+<style>
+  .cdpc-bar { display:flex; align-items:center; justify-content:space-between;
+    gap:16px; padding:11px 28px; background:#f4f6f8;
+    border-bottom:1px solid #dfe3e8; flex-wrap:wrap; }
+  .cdpc-bar .left { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .cdpc-back { font-family:'Barlow Condensed','Barlow',-apple-system,Arial,sans-serif;
+    font-size:15px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    color:#0b0b0b; text-decoration:none; white-space:nowrap; }
+  .cdpc-back:hover { color:#00AEEF; }
+  .cdpc-crumb { font-family:'Barlow Condensed','Barlow',-apple-system,Arial,sans-serif;
+    font-size:13px; letter-spacing:.10em; text-transform:uppercase; color:#7a828a; }
+  .cdpc-print { font-family:'Barlow Condensed','Barlow',-apple-system,Arial,sans-serif;
+    font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+    color:#fff; background:#0e0e0e; border:none; border-radius:4px;
+    padding:8px 18px; cursor:pointer; display:inline-flex; align-items:center;
+    gap:8px; white-space:nowrap; }
+  .cdpc-print:hover { background:#00AEEF; }
+  .cdpc-print:focus-visible { outline:3px solid #00AEEF; outline-offset:2px; }
+  @media print {
+    .cdpc-bar { display:none !important; }
+    @page { margin:12mm; }
+  }
+</style>
+</head>
+<body>
+<div class="cdpc-bar">
+  <div class="left">
+    <a class="cdpc-back" href="vector-control.html">&#8592; Vector Control</a>
+    <span class="cdpc-crumb">Vector Control &middot; Reference</span>
+  </div>
+  <button class="cdpc-print" onclick="window.print()" aria-label="Print or save this page as PDF"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6V2h8v4M4 12H2V6h12v6h-2M4 10h8v4H4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>Print / Save PDF</button>
+</div>
+
+
+<header class="doc-header">
+  <div class="doc-header-inner">
+<img class="shield" src="data:image/png;base64,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" alt="ClearDefense Pest Control">
+    <div class="titles">
+      <p class="brandline">ClearDefense Pest Control</p>
+      <h1 class="doc-title">Vector-Borne Disease Reference</h1>
+      <p class="doc-sub">Vector Control &middot; Field Reference</p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="intro">
+    <p>This chart lists the diseases and conditions transmitted by mosquitoes, ticks, and fleas in the United States, along with the species that carry them. Use it to answer customer questions accurately, to justify service recommendations, and as a training reference for vector control programs.</p>
+    <p>Coverage is limited to pathogens and conditions with established or documented transmission in the United States and its territories. Travel-acquired illnesses without local vector transmission are not included.</p>
+
+    <div class="notice">
+      <h4>Technicians Do Not Diagnose</h4>
+      <p>Never tell a customer they have, or do not have, a disease. Never interpret symptoms. Refer all health questions to a physician and all pet health questions to a veterinarian. Speak in terms of risk and vector capability, not outcomes.</p>
+    </div>
+
+    <div class="legend">
+      <span><span class="chip">Priority</span> Elevated relevance in our primary service footprint</span>
+      <span><em>Italic text</em> indicates the pathogen or causative agent</span>
+    </div>
+  </section>
+
+  <!-- ============ MOSQUITO ============ -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>Mosquito-Borne</h2>
+    </div>
+    <p class="section-note">Roughly 200 mosquito species occur in the United States, but only a handful drive disease transmission. Container breeders such as <em>Aedes</em> and <em>Culex</em> are the species most often produced on a customer's own property, which is why source reduction carries more weight than adulticiding alone.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="col-dz">Disease</th>
+          <th class="col-vec">Primary Vectors</th>
+          <th class="col-dist">U.S. Distribution</th>
+          <th class="col-sx">Signs and Symptoms</th>
+          <th class="col-fn">Field Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Disease"><span class="dz">West Nile Virus <span class="chip">Priority</span></span><span class="agent">West Nile virus (flavivirus)</span></td>
+          <td data-label="Primary Vectors"><em>Culex pipiens</em>, <em>Cx. quinquefasciatus</em>, <em>Cx. tarsalis</em></td>
+          <td data-label="U.S. Distribution">All 48 continental states. The most commonly reported mosquito-borne illness in the country.</td>
+          <td data-label="Signs and Symptoms">About 8 in 10 infections cause no symptoms. Fever, headache, body aches, and rash in most symptomatic cases. Less than 1 percent develop neuroinvasive disease.</td>
+          <td data-label="Field Notes"><em>Culex</em> breed in stagnant, organically rich water: catch basins, clogged gutters, neglected pools, tarps, livestock troughs. Peak risk August into September. Biting activity runs dusk to dawn.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">La Crosse Encephalitis <span class="chip">Priority</span></span><span class="agent">La Crosse virus (orthobunyavirus)</span></td>
+          <td data-label="Primary Vectors"><em>Aedes triseriatus</em> (eastern treehole mosquito)</td>
+          <td data-label="U.S. Distribution">Upper Midwest, Appalachian, and mid-Atlantic regions. Tennessee, West Virginia, North Carolina, and Ohio report the majority of cases.</td>
+          <td data-label="Signs and Symptoms">Most severe cases occur in children under 16. Fever, headache, nausea, lethargy, and in severe cases seizures.</td>
+          <td data-label="Field Notes">Breeds in tree holes and artificial containers: tires, buckets, birdbaths, tarps, corrugated downspout extensions. Container elimination is the highest-impact control step on a residential account.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Eastern Equine Encephalitis</span><span class="agent">EEE virus (alphavirus)</span></td>
+          <td data-label="Primary Vectors"><em>Culiseta melanura</em> maintains the bird cycle. Bridge vectors to people include <em>Coquillettidia perturbans</em>, <em>Aedes</em>, and <em>Culex</em> species.</td>
+          <td data-label="U.S. Distribution">Atlantic and Gulf coastal states, plus the Great Lakes region.</td>
+          <td data-label="Signs and Symptoms">Rare but among the most severe arboviral illnesses. Fever, headache, and encephalitis. Roughly 30 percent of cases are fatal and survivors often have lasting neurologic damage.</td>
+          <td data-label="Field Notes">Tied to hardwood swamps and freshwater cedar bogs, so risk is landscape driven rather than yard driven. Risk climbs late summer after amplification in bird populations.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">St. Louis Encephalitis</span><span class="agent">SLE virus (flavivirus)</span></td>
+          <td data-label="Primary Vectors"><em>Culex</em> species, including <em>Cx. quinquefasciatus</em>, <em>Cx. nigripalpus</em>, and <em>Cx. tarsalis</em></td>
+          <td data-label="U.S. Distribution">Scattered across the southern, central, and western states.</td>
+          <td data-label="Signs and Symptoms">Most infections cause no illness. Fever and headache when symptomatic. Adults over 60 face the highest risk of encephalitis.</td>
+          <td data-label="Field Notes">Same breeding sources and same control approach as West Nile virus. Both often circulate in the same areas at the same time.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Jamestown Canyon Virus</span><span class="agent">Jamestown Canyon virus (orthobunyavirus)</span></td>
+          <td data-label="Primary Vectors">Multiple <em>Aedes</em> and <em>Culiseta</em> species</td>
+          <td data-label="U.S. Distribution">Reported most often in the upper Midwest and Northeast, but detected broadly.</td>
+          <td data-label="Signs and Symptoms">Fever, fatigue, headache. Occasionally progresses to meningitis or encephalitis.</td>
+          <td data-label="Field Notes">Deer serve as the amplifying host. Transmission window runs spring through fall, earlier in the season than West Nile virus.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Western Equine Encephalitis</span><span class="agent">WEE virus (alphavirus)</span></td>
+          <td data-label="Primary Vectors"><em>Culex tarsalis</em>, <em>Aedes melanimon</em></td>
+          <td data-label="U.S. Distribution">Western and central states. No confirmed human cases in decades, but the virus persists in the bird cycle.</td>
+          <td data-label="Signs and Symptoms">Fever, headache, and in rare severe cases encephalitis. Infants face the highest risk.</td>
+          <td data-label="Field Notes">Associated with irrigated agriculture and flood-irrigated pasture. Horses are affected far more often than people.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Dengue</span><span class="agent">Dengue virus, four serotypes</span></td>
+          <td data-label="Primary Vectors"><em>Aedes aegypti</em>, <em>Aedes albopictus</em></td>
+          <td data-label="U.S. Distribution">Endemic in Puerto Rico, the U.S. Virgin Islands, American Samoa, and Guam. Periodic local transmission in Florida, Texas, Hawaii, Arizona, and California.</td>
+          <td data-label="Signs and Symptoms">High fever, severe headache, pain behind the eyes, joint and muscle pain, rash. Severe dengue is a medical emergency.</td>
+          <td data-label="Field Notes">Both vectors are daytime biters that rest in shaded vegetation and under decks. They breed in small containers holding as little as a bottle cap of water.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Chikungunya</span><span class="agent">Chikungunya virus (alphavirus)</span></td>
+          <td data-label="Primary Vectors"><em>Aedes aegypti</em>, <em>Aedes albopictus</em></td>
+          <td data-label="U.S. Distribution">Mostly travel-associated. Limited local transmission documented in Florida and Texas.</td>
+          <td data-label="Signs and Symptoms">Abrupt fever with severe joint pain that can persist for months.</td>
+          <td data-label="Field Notes">Same vectors and same source reduction plan as dengue and Zika. One container program addresses all three.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Zika</span><span class="agent">Zika virus (flavivirus)</span></td>
+          <td data-label="Primary Vectors"><em>Aedes aegypti</em>, <em>Aedes albopictus</em>. Also transmitted person to person.</td>
+          <td data-label="U.S. Distribution">Local transmission occurred in Florida and Texas during 2016 and 2017. Territories remain at risk.</td>
+          <td data-label="Signs and Symptoms">Often mild or absent. Rash, fever, joint pain, red eyes. Infection during pregnancy can cause severe birth defects.</td>
+          <td data-label="Field Notes">Customer concern spikes with any news coverage. Keep the response factual and focused on container elimination and harborage reduction.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Malaria</span><span class="agent"><em>Plasmodium</em> species (protozoan parasite)</span></td>
+          <td data-label="Primary Vectors"><em>Anopheles quadrimaculatus</em> in the East, <em>An. freeborni</em> in the West</td>
+          <td data-label="U.S. Distribution">Nearly all cases are travel-associated. Small clusters of locally acquired cases occurred in Florida, Texas, Maryland, and Arkansas in 2023.</td>
+          <td data-label="Signs and Symptoms">Cyclical fever, chills, sweats, headache, fatigue.</td>
+          <td data-label="Field Notes"><em>Anopheles</em> prefer clean, sunlit standing water such as pond margins and ditches rather than the foul water <em>Culex</em> use.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Dog Heartworm <span class="chip">Priority</span></span><span class="agent"><em>Dirofilaria immitis</em> (nematode)</span></td>
+          <td data-label="Primary Vectors">Over 20 species across <em>Aedes</em>, <em>Culex</em>, and <em>Anopheles</em></td>
+          <td data-label="U.S. Distribution">Reported in all 50 states. Heaviest along the Gulf Coast, the Southeast, and the Mississippi River Valley.</td>
+          <td data-label="Signs and Symptoms">Dogs and cats only. Cough, exercise intolerance, weight loss, and eventually heart failure.</td>
+          <td data-label="Field Notes">The most useful talking point with pet owners because the risk is immediate, local, and familiar. Recommend the customer keep their veterinary preventive current alongside mosquito service.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <h4>Mosquito Program Reminders</h4>
+      <ul>
+        <li>Source reduction outranks every other tactic. One overlooked container can out-produce an entire barrier treatment.</li>
+        <li>Inspect and document: gutters, corrugated downspout extensions, tires, tarps, toys, plant saucers, birdbaths, boat covers, wheelbarrows, unused pools, French drains, and low turf that holds water.</li>
+        <li>Treat resting harborage on the underside of foliage, dense shrub interiors, under decks, and shaded structural voids.</li>
+        <li>Log every breeding source and conducive condition in the FieldRoutes service note so the next tech sees the same picture.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ TICK ============ -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Tick-Borne</h2>
+    </div>
+    <p class="section-note">Tick species determines disease risk more than any other factor, so correct identification matters. A single tick can also carry more than one pathogen. Most transmission comes from nymphs, which are about the size of a poppy seed and are routinely missed during self-checks.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="col-dz">Disease</th>
+          <th class="col-vec">Primary Vectors</th>
+          <th class="col-dist">U.S. Distribution</th>
+          <th class="col-sx">Signs and Symptoms</th>
+          <th class="col-fn">Field Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Disease"><span class="dz">Rocky Mountain Spotted Fever <span class="chip">Priority</span></span><span class="agent"><em>Rickettsia rickettsii</em></span></td>
+          <td data-label="Primary Vectors"><em>Dermacentor variabilis</em> (American dog tick), <em>D. andersoni</em> (Rocky Mountain wood tick), <em>Rhipicephalus sanguineus</em> (brown dog tick) in Arizona and along the southern border</td>
+          <td data-label="U.S. Distribution">Despite the name, most reported cases come from North Carolina, Tennessee, Missouri, Arkansas, and Oklahoma.</td>
+          <td data-label="Signs and Symptoms">Sudden fever, severe headache, and a rash that often starts on the wrists and ankles. Can be fatal within days without prompt treatment.</td>
+          <td data-label="Field Notes">The highest-consequence tick illness in most of our footprint. Brown dog tick involvement means peridomestic infestations tied to dogs and kennels, not just wooded lots.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Alpha-gal Syndrome <span class="chip">Priority</span></span><span class="agent">IgE allergy to galactose-alpha-1,3-galactose. Not an infection.</span></td>
+          <td data-label="Primary Vectors"><em>Amblyomma americanum</em> (lone star tick)</td>
+          <td data-label="U.S. Distribution">Southeast, South Central, and mid-Atlantic, matching the lone star tick's expanding range.</td>
+          <td data-label="Signs and Symptoms">Delayed allergic reaction, typically 3 to 6 hours after eating mammalian meat. Ranges from hives and stomach upset to anaphylaxis.</td>
+          <td data-label="Field Notes">Increasingly common across our service area and often the reason a customer calls. Treat it as a real motivator, not a curiosity, and never speculate about whether a customer has it.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Ehrlichiosis <span class="chip">Priority</span></span><span class="agent"><em>Ehrlichia chaffeensis</em>, <em>E. ewingii</em></span></td>
+          <td data-label="Primary Vectors"><em>Amblyomma americanum</em> (lone star tick)</td>
+          <td data-label="U.S. Distribution">Southeast, South Central, and mid-Atlantic states.</td>
+          <td data-label="Signs and Symptoms">Fever, chills, severe headache, muscle aches, and sometimes a rash. More common in the Southeast than Lyme disease.</td>
+          <td data-label="Field Notes">Lone star ticks are aggressive questers that actively pursue a host, so customers notice them. All three life stages bite people.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Lyme Disease</span><span class="agent"><em>Borrelia burgdorferi</em>, <em>B. mayonii</em></span></td>
+          <td data-label="Primary Vectors"><em>Ixodes scapularis</em> (blacklegged or deer tick) in the East and upper Midwest, <em>Ixodes pacificus</em> on the West Coast</td>
+          <td data-label="U.S. Distribution">Concentrated in the Northeast, mid-Atlantic, and upper Midwest, with pockets in northern California and Oregon. Confirmed cases in the Southeast are comparatively rare.</td>
+          <td data-label="Signs and Symptoms">An expanding rash in most cases, plus fever, fatigue, and joint pain. Untreated infection can cause arthritis and neurologic or cardiac complications.</td>
+          <td data-label="Field Notes">Transmission generally requires 36 to 48 hours of attachment, which makes prompt removal genuinely protective. Nymphal activity peaks May through July.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Anaplasmosis</span><span class="agent"><em>Anaplasma phagocytophilum</em></span></td>
+          <td data-label="Primary Vectors"><em>Ixodes scapularis</em>, <em>Ixodes pacificus</em></td>
+          <td data-label="U.S. Distribution">Northeast, upper Midwest, and parts of the West Coast.</td>
+          <td data-label="Signs and Symptoms">Fever, chills, severe headache, muscle aches. Older adults face higher risk of severe illness.</td>
+          <td data-label="Field Notes">Shares a vector with Lyme disease and babesiosis, so coinfection in a single bite is possible.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Babesiosis</span><span class="agent"><em>Babesia microti</em> (protozoan)</span></td>
+          <td data-label="Primary Vectors"><em>Ixodes scapularis</em></td>
+          <td data-label="U.S. Distribution">Northeast and upper Midwest.</td>
+          <td data-label="Signs and Symptoms">Malaria-like illness with fever, chills, sweats, and fatigue. Can be severe in older adults, immunocompromised patients, and people without a spleen.</td>
+          <td data-label="Field Notes">White-footed mice are the reservoir, so rodent harborage reduction supports the tick program.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Powassan Virus</span><span class="agent">Powassan virus (flavivirus)</span></td>
+          <td data-label="Primary Vectors"><em>Ixodes scapularis</em>, <em>Ixodes cookei</em></td>
+          <td data-label="U.S. Distribution">Northeast and Great Lakes region.</td>
+          <td data-label="Signs and Symptoms">Rare but frequently severe. Fever, headache, weakness, and encephalitis. Lasting neurologic effects are common in survivors.</td>
+          <td data-label="Field Notes">Can transmit in as little as 15 minutes of attachment, which is the strongest argument for immediate tick removal rather than waiting.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Heartland and Bourbon Viruses</span><span class="agent">Heartland virus, Bourbon virus</span></td>
+          <td data-label="Primary Vectors"><em>Amblyomma americanum</em> (lone star tick)</td>
+          <td data-label="U.S. Distribution">Midwest and Southeast, with cases reported in Missouri, Tennessee, Kansas, and Oklahoma.</td>
+          <td data-label="Signs and Symptoms">Fever, fatigue, headache, muscle aches, with low white blood cell and platelet counts. No specific treatment exists.</td>
+          <td data-label="Field Notes">Both are recently described and rare, but they occur in our region. Worth knowing by name if a customer raises them.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Southern Tick-Associated Rash Illness</span><span class="agent">Causative agent not confirmed</span></td>
+          <td data-label="Primary Vectors"><em>Amblyomma americanum</em> (lone star tick)</td>
+          <td data-label="U.S. Distribution">Southeast and South Central states.</td>
+          <td data-label="Signs and Symptoms">A circular rash resembling Lyme disease, plus fatigue, headache, and muscle aches.</td>
+          <td data-label="Field Notes">Explains many Lyme-like rashes reported in the Southeast where blacklegged ticks are uncommon. Do not offer this as an explanation to a customer, refer them to a physician.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Tularemia</span><span class="agent"><em>Francisella tularensis</em></span></td>
+          <td data-label="Primary Vectors"><em>Dermacentor variabilis</em>, <em>D. andersoni</em>, <em>Amblyomma americanum</em>. Also deer flies and direct contact with infected rabbits and rodents.</td>
+          <td data-label="U.S. Distribution">Reported nationwide, concentrated in Arkansas, Missouri, Kansas, and Oklahoma.</td>
+          <td data-label="Signs and Symptoms">Ulcer at the bite site, swollen lymph nodes, fever. Other forms occur depending on route of exposure.</td>
+          <td data-label="Field Notes">Also a wildlife handling risk. Wear gloves and use a sealed bag for any dead rabbit or rodent removal, and never handle carcasses bare-handed.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Rickettsia parkeri Rickettsiosis</span><span class="agent"><em>Rickettsia parkeri</em></span></td>
+          <td data-label="Primary Vectors"><em>Amblyomma maculatum</em> (Gulf Coast tick)</td>
+          <td data-label="U.S. Distribution">Gulf Coast and southern Atlantic coastal states.</td>
+          <td data-label="Signs and Symptoms">A dark scab at the bite site, fever, headache, and rash. Generally milder than Rocky Mountain spotted fever.</td>
+          <td data-label="Field Notes">Gulf Coast ticks favor tall grass and coastal prairie edges rather than deep woods, so mowing and edge management matter.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Colorado Tick Fever</span><span class="agent">Colorado tick fever virus</span></td>
+          <td data-label="Primary Vectors"><em>Dermacentor andersoni</em> (Rocky Mountain wood tick)</td>
+          <td data-label="U.S. Distribution">Rocky Mountain states, typically above 4,000 feet elevation.</td>
+          <td data-label="Signs and Symptoms">Fever, chills, headache, and body aches, often returning in a second wave after a brief recovery.</td>
+          <td data-label="Field Notes">Activity peaks spring into early summer at elevation.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Tick-Borne Relapsing Fever</span><span class="agent"><em>Borrelia hermsii</em> and related species</span></td>
+          <td data-label="Primary Vectors"><em>Ornithodoros</em> soft ticks</td>
+          <td data-label="U.S. Distribution">Western mountain states, strongly associated with rodent-infested rustic cabins.</td>
+          <td data-label="Signs and Symptoms">Repeating cycles of high fever separated by symptom-free intervals.</td>
+          <td data-label="Field Notes">Soft ticks feed for minutes at night and drop off, so the customer usually never sees a tick. Control is rodent removal plus exclusion of the nesting voids.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Tick Paralysis</span><span class="agent">Neurotoxin in tick saliva. Not an infection.</span></td>
+          <td data-label="Primary Vectors"><em>Dermacentor</em> species most often, plus several others</td>
+          <td data-label="U.S. Distribution">Nationwide.</td>
+          <td data-label="Signs and Symptoms">Weakness that starts in the legs and moves upward. Most often affects children and pets. Symptoms resolve after the tick is removed.</td>
+          <td data-label="Field Notes">Reinforces full-body checks after outdoor exposure. Attached ticks are frequently found at the hairline and behind the ears.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <h4>Watch Item: Asian Longhorned Tick</h4>
+      <p><em>Haemaphysalis longicornis</em> is an invasive species now established across much of the eastern United States. No human pathogen transmission has been confirmed domestically to date, but it reproduces without mating and can build enormous populations on a single host. It is a serious livestock and equine concern. Report unusual heavy tick loads on animals to your branch manager.</p>
+    </div>
+
+    <div class="callout">
+      <h4>Tick Program Reminders</h4>
+      <ul>
+        <li>Ticks concentrate at habitat edges. Focus on the transition between turf and woods, fence lines, leaf litter, ground cover, stone walls, and wood piles.</li>
+        <li>Rodent and deer activity drive tick populations. Note wildlife pressure and harborage during every inspection.</li>
+        <li>Customer guidance: tuck pants into socks, use repellent, shower within two hours of exposure, and perform a full-body check the same day.</li>
+        <li>Removal method: fine-tipped tweezers close to the skin, steady upward pull, no twisting, no heat, no petroleum jelly.</li>
+        <li>Advise customers to note the date and to contact a physician if fever or rash develops after a bite.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ FLEA ============ -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Flea-Borne</h2>
+    </div>
+    <p class="section-note">The cat flea, <em>Ctenocephalides felis</em>, is responsible for the overwhelming majority of flea infestations in the United States on both cats and dogs. Flea-borne disease is far less common than tick-borne disease here, but the wildlife and rodent connection makes it a real consideration on accounts with rodent pressure or feral animal activity.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="col-dz">Disease</th>
+          <th class="col-vec">Primary Vectors</th>
+          <th class="col-dist">U.S. Distribution</th>
+          <th class="col-sx">Signs and Symptoms</th>
+          <th class="col-fn">Field Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Disease"><span class="dz">Flea-Borne Typhus <span class="chip">Priority</span></span><span class="agent"><em>Rickettsia typhi</em>. Also called murine typhus.</span></td>
+          <td data-label="Primary Vectors"><em>Xenopsylla cheopis</em> (oriental rat flea), <em>Ctenocephalides felis</em> (cat flea)</td>
+          <td data-label="U.S. Distribution">Most cases reported from Texas, California, and Hawaii, with the range appearing to expand.</td>
+          <td data-label="Signs and Symptoms">Fever, headache, body aches, and rash. Rarely fatal but can require hospitalization.</td>
+          <td data-label="Field Notes">Transmitted through infected flea feces scratched into the bite, not the bite itself. Rats, opossums, and feral cats sustain the cycle, so rodent and wildlife exclusion is the real control.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Flea-Borne Spotted Fever</span><span class="agent"><em>Rickettsia felis</em></span></td>
+          <td data-label="Primary Vectors"><em>Ctenocephalides felis</em> (cat flea)</td>
+          <td data-label="U.S. Distribution">Scattered nationwide, likely underreported because it resembles flea-borne typhus.</td>
+          <td data-label="Signs and Symptoms">Fever, headache, rash, and sometimes a scab at the bite site.</td>
+          <td data-label="Field Notes">Carried by the same flea species found on the average household pet, which makes routine flea control the practical preventive.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Plague</span><span class="agent"><em>Yersinia pestis</em></span></td>
+          <td data-label="Primary Vectors"><em>Oropsylla montana</em> (ground squirrel flea) and other wild rodent fleas</td>
+          <td data-label="U.S. Distribution">Rural western states: New Mexico, Arizona, Colorado, California, Nevada, Oregon, and Utah. A handful of cases occur each year.</td>
+          <td data-label="Signs and Symptoms">Sudden fever, chills, weakness, and a swollen painful lymph node. Septicemic and pneumonic forms are more severe. Treatable with prompt antibiotics.</td>
+          <td data-label="Field Notes">In endemic areas, treat for fleas before removing rodents. Killing the host first drives infected fleas to look for a new one. Never handle dead rodents without gloves.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Cat Scratch Disease</span><span class="agent"><em>Bartonella henselae</em></span></td>
+          <td data-label="Primary Vectors">Cat fleas spread the bacterium between cats. People are infected through scratches or bites from a carrier cat, or by flea dirt entering a wound.</td>
+          <td data-label="U.S. Distribution">Nationwide, most common in the Southeast and in warm humid regions where fleas thrive year round.</td>
+          <td data-label="Signs and Symptoms">A bump at the scratch site, swollen tender lymph nodes, fever, and fatigue. Kittens are the most common source.</td>
+          <td data-label="Field Notes">Flea control on the animal is the prevention step. A strong reason to insist on veterinary flea treatment alongside any structural flea service.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Flea Tapeworm</span><span class="agent"><em>Dipylidium caninum</em> (cestode)</span></td>
+          <td data-label="Primary Vectors">Cat and dog fleas, which must be swallowed to transmit the parasite</td>
+          <td data-label="U.S. Distribution">Nationwide wherever fleas occur.</td>
+          <td data-label="Signs and Symptoms">Primarily pets. Rice-like segments near the tail or in bedding. Rare in children who swallow an infected flea.</td>
+          <td data-label="Field Notes">The most familiar flea-related problem to pet owners. Useful for explaining why a partial flea job is not a finished flea job.</td>
+        </tr>
+        <tr>
+          <td data-label="Disease"><span class="dz">Flea Allergy Dermatitis</span><span class="agent">Allergic reaction to proteins in flea saliva. Not an infection.</span></td>
+          <td data-label="Primary Vectors"><em>Ctenocephalides felis</em> (cat flea)</td>
+          <td data-label="U.S. Distribution">Nationwide, and the leading cause of skin disease in dogs and cats.</td>
+          <td data-label="Signs and Symptoms">Intense itching, hair loss along the lower back and tail base, scabbing, and secondary skin infection. A few bites can trigger a reaction.</td>
+          <td data-label="Field Notes">Explains why a sensitized pet still shows symptoms at very low flea counts. Set that expectation up front so the customer does not read it as service failure.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <h4>Flea Program Reminders</h4>
+      <ul>
+        <li>Structural treatment without veterinary treatment on the animal will not resolve an infestation. Both are required and the customer needs to hear that at the first visit.</li>
+        <li>Target where the pet rests, not just open floor: bedding, furniture bases, carpet edges, along baseboards, and under low furniture.</li>
+        <li>Pupae are protected inside the cocoon and emerge over the following weeks. Continued adult activity after service is expected, not a failure.</li>
+        <li>Customer prep drives the outcome: thorough vacuuming, laundering pet bedding on hot, and vacuuming again daily for two weeks to trigger emergence.</li>
+        <li>Check for wildlife under crawl spaces, decks, and sheds. Untreated rodents, opossums, or feral cats will reseed the account.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<footer class="doc-footer">
+  <div class="doc-footer-inner">
+    <p><strong>ClearDefense Pest Control &middot; Field Resources &middot; Internal Use Only</strong></p>
+    <p>Vector Control &middot; Vector-Borne Disease Reference &middot; Revision 1.0</p>
+    <p>Provided for technician training and customer education. This document is not medical or veterinary advice. Refer all health questions to a licensed professional.</p>
+  </div>
+</footer>
+
+</body>
+</html>
