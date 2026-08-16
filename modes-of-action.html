@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modes of Action Field Guide | ClearDefense Pest Control</title>
+
+<!-- ============================================================
+     ASSET SLOT 1 OF 2: EMBEDDED FONTS
+     Paste the @font-face block from any existing CDPC protocol
+     file directly below this comment to restore offline fonts.
+     Until then the file falls back to Arial / Arial Narrow,
+     which matches the wkhtmltopdf substitution standard.
+     ============================================================ -->
+
+<style>
+:root{
+  --cdpc-black:#000000;
+  --cdpc-cyan:#00AEEF;          /* adjust here if brand cyan differs */
+  --cdpc-cyan-dark:#0089BC;
+  --cdpc-cyan-pale:#E6F7FE;
+  --ink:#1A1A1A;
+  --ink-soft:#4A4A4A;
+  --rule:#D8D8D8;
+  --paper:#FFFFFF;
+  --shell:#F2F3F5;
+  --warn:#C1272D;
+  --warn-pale:#FCEDED;
+  --ok:#1B7F4B;
+  --ok-pale:#EAF6EF;
+  --font-body:'Barlow','Helvetica Neue',Arial,sans-serif;
+  --font-head:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--shell);
+  line-height:1.55;
+  font-size:15px;
+}
+.sheet{
+  max-width:8.5in;
+  margin:0 auto;
+  background:var(--paper);
+  box-shadow:0 0 24px rgba(0,0,0,.14);
+}
+
+/* ---------- PRINT BUTTON ---------- */
+.print-btn{
+  position:fixed;top:18px;right:18px;z-index:900;
+  background:var(--cdpc-cyan);color:#fff;border:none;
+  font-family:var(--font-head);font-size:15px;font-weight:600;
+  letter-spacing:.09em;text-transform:uppercase;
+  padding:11px 20px;border-radius:3px;cursor:pointer;
+  box-shadow:0 3px 10px rgba(0,0,0,.28);
+}
+.print-btn:hover{background:var(--cdpc-cyan-dark);}
+
+/* ---------- HEADER ---------- */
+.doc-head{
+  background:var(--cdpc-black);
+  color:#fff;
+  padding:26px 40px 22px;
+  display:flex;align-items:center;gap:22px;
+}
+.doc-head .logo{
+  width:66px;height:66px;flex:0 0 66px;
+  display:flex;align-items:center;justify-content:center;
+}
+.doc-head .logo img{width:100%;height:100%;object-fit:contain;display:block;}
+.head-text{flex:1;min-width:0;}
+.head-eyebrow{
+  font-family:var(--font-head);font-size:13px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--cdpc-cyan);
+}
+.head-title{
+  font-family:var(--font-head);font-size:38px;font-weight:700;
+  line-height:1.03;text-transform:uppercase;letter-spacing:.015em;margin-top:2px;
+}
+.head-sub{font-size:13.5px;color:#C9C9C9;margin-top:5px;}
+.cyan-rule{height:5px;background:var(--cdpc-cyan);}
+
+/* ---------- META BAR ---------- */
+.meta-bar{
+  display:flex;flex-wrap:wrap;
+  border-bottom:1px solid var(--rule);background:#FAFAFA;
+}
+.meta-cell{
+  flex:1 1 25%;padding:9px 14px;border-right:1px solid var(--rule);min-width:130px;
+}
+.meta-cell:last-child{border-right:none;}
+.meta-label{
+  font-family:var(--font-head);font-size:10.5px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+}
+.meta-value{font-size:13.5px;font-weight:600;}
+
+/* ---------- BODY ---------- */
+.body{padding:30px 40px 44px;}
+.lede{
+  font-size:16px;color:var(--ink-soft);
+  border-left:4px solid var(--cdpc-cyan);
+  padding:2px 0 2px 16px;margin-bottom:26px;
+}
+
+.part{margin-top:34px;}
+.part:first-of-type{margin-top:0;}
+.part-head{
+  display:flex;align-items:center;gap:13px;
+  border-bottom:3px solid var(--cdpc-black);
+  padding-bottom:7px;margin-bottom:16px;
+}
+.part-num{
+  background:var(--cdpc-black);color:var(--cdpc-cyan);
+  font-family:var(--font-head);font-size:19px;font-weight:700;
+  width:36px;height:36px;flex:0 0 36px;
+  display:flex;align-items:center;justify-content:center;border-radius:3px;
+}
+.part-title{
+  font-family:var(--font-head);font-size:27px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.03em;line-height:1.1;
+}
+
+h3.sub{
+  font-family:var(--font-head);font-size:19px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.05em;
+  margin:22px 0 9px;color:var(--cdpc-black);
+}
+p{margin-bottom:11px;}
+ul,ol{margin:0 0 12px 20px;}
+li{margin-bottom:5px;}
+strong{font-weight:600;}
+
+/* ---------- MOA CARD ---------- */
+.moa{
+  border:1px solid var(--rule);border-left:5px solid var(--cdpc-cyan);
+  border-radius:3px;margin-bottom:14px;background:var(--paper);
+  break-inside:avoid;page-break-inside:avoid;
+}
+.moa.ref{border-left-color:#9AA0A6;}
+.moa.gone{border-left-color:var(--warn);}
+.moa-top{
+  display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;
+  padding:12px 15px 10px;border-bottom:1px solid var(--rule);background:#FCFCFC;
+}
+.grp{
+  background:var(--cdpc-black);color:#fff;border-radius:3px;
+  font-family:var(--font-head);text-align:center;
+  padding:5px 10px;flex:0 0 auto;min-width:56px;
+}
+.grp .g-lab{font-size:9.5px;letter-spacing:.15em;color:var(--cdpc-cyan);line-height:1.2;}
+.grp .g-num{font-size:20px;font-weight:700;line-height:1.05;}
+.moa-id{flex:1 1 210px;min-width:0;}
+.moa-name{
+  font-family:var(--font-head);font-size:20px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.02em;line-height:1.15;
+}
+.moa-target{font-size:12.5px;color:var(--ink-soft);font-style:italic;}
+.pill{
+  font-family:var(--font-head);font-size:10.5px;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;
+  padding:4px 9px;border-radius:2px;white-space:nowrap;align-self:center;
+}
+.pill.have{background:var(--ok-pale);color:var(--ok);border:1px solid var(--ok);}
+.pill.ref{background:#EFEFEF;color:#5A5A5A;border:1px solid #B9B9B9;}
+.pill.gone{background:var(--warn-pale);color:var(--warn);border:1px solid var(--warn);}
+.moa-body{padding:12px 15px 13px;}
+.f-row{display:flex;gap:11px;margin-bottom:9px;}
+.f-row:last-child{margin-bottom:0;}
+.f-key{
+  font-family:var(--font-head);font-size:11.5px;font-weight:600;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--cdpc-cyan-dark);
+  flex:0 0 112px;padding-top:3px;line-height:1.3;
+}
+.f-val{flex:1;font-size:14.5px;min-width:0;}
+.f-val p{margin-bottom:7px;}
+.f-val p:last-child{margin-bottom:0;}
+.actives{font-size:13.5px;}
+.cdpc-hit{
+  display:inline-block;background:var(--cdpc-cyan-pale);
+  border:1px solid var(--cdpc-cyan);color:var(--cdpc-cyan-dark);
+  font-weight:600;font-size:12.5px;border-radius:2px;
+  padding:1px 7px;margin:2px 4px 2px 0;
+}
+
+/* ---------- TABLES ---------- */
+.tbl-wrap{overflow-x:auto;margin-bottom:16px;-webkit-overflow-scrolling:touch;}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px;}
+th{
+  background:var(--cdpc-black);color:#fff;text-align:left;
+  font-family:var(--font-head);font-size:12px;font-weight:600;
+  letter-spacing:.11em;text-transform:uppercase;padding:8px 10px;
+}
+td{border-bottom:1px solid var(--rule);padding:7px 10px;vertical-align:top;}
+tbody tr:nth-child(even){background:#FAFBFC;}
+td.grp-cell{font-weight:700;font-family:var(--font-head);font-size:15px;white-space:nowrap;}
+
+/* ---------- CALLOUTS ---------- */
+.callout{
+  border-radius:3px;padding:12px 15px;margin:14px 0;
+  border-left:5px solid var(--cdpc-cyan);background:var(--cdpc-cyan-pale);
+  break-inside:avoid;page-break-inside:avoid;
+}
+.callout.warn{border-left-color:var(--warn);background:var(--warn-pale);}
+.callout.rule{border-left-color:var(--cdpc-black);background:#F4F5F6;}
+.co-title{
+  font-family:var(--font-head);font-size:14px;font-weight:700;
+  letter-spacing:.11em;text-transform:uppercase;margin-bottom:5px;
+}
+.callout .co-title{color:var(--cdpc-cyan-dark);}
+.callout.warn .co-title{color:var(--warn);}
+.callout.rule .co-title{color:var(--cdpc-black);}
+.callout p:last-child,.callout ul:last-child{margin-bottom:0;}
+
+/* ---------- FOOTER ---------- */
+.doc-foot{
+  background:var(--cdpc-black);color:#B4B4B4;
+  padding:16px 40px;font-size:11.5px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.doc-foot strong{color:#fff;}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:640px){
+  body{font-size:14.5px;}
+  .doc-head{padding:20px 18px 17px;gap:14px;}
+  .doc-head .logo{width:50px;height:50px;flex:0 0 50px;}
+  .head-title{font-size:28px;}
+  .body{padding:22px 18px 34px;}
+  .doc-foot{padding:14px 18px;}
+  .meta-cell{flex:1 1 50%;}
+  .f-row{flex-direction:column;gap:2px;}
+  .f-key{flex:none;padding-top:0;}
+  .part-title{font-size:22px;}
+  .print-btn{top:auto;bottom:14px;right:14px;padding:10px 16px;font-size:13px;}
+}
+
+/* ---------- PRINT ---------- */
+@media print{
+  body{background:#fff;font-size:10.5pt;}
+  .sheet{box-shadow:none;max-width:none;}
+  .print-btn{display:none !important;}
+  .doc-head,.doc-foot{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .grp,th,.part-num{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .moa,.callout,table{break-inside:avoid;page-break-inside:avoid;}
+  .part{break-before:auto;}
+  table{min-width:0;}
+  .tbl-wrap{overflow:visible;}
+  @page{margin:0.45in;}
+}
+</style>
+
+<style>
+  .cdpc-bar { display:flex; align-items:center; justify-content:space-between;
+    gap:16px; padding:11px 28px; background:#f4f6f8;
+    border-bottom:1px solid #dfe3e8; flex-wrap:wrap; }
+  .cdpc-bar .left { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .cdpc-back { font-family:'Barlow Condensed','Barlow',-apple-system,Arial,sans-serif;
+    font-size:15px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    color:#0b0b0b; text-decoration:none; white-space:nowrap; }
+  .cdpc-back:hover { color:#00AEEF; }
+  .cdpc-crumb { font-family:'Barlow Condensed','Barlow',-apple-system,Arial,sans-serif;
+    font-size:13px; letter-spacing:.10em; text-transform:uppercase; color:#7a828a; }
+  .cdpc-print { font-family:'Barlow Condensed','Barlow',-apple-system,Arial,sans-serif;
+    font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+    color:#fff; background:#0e0e0e; border:none; border-radius:4px;
+    padding:8px 18px; cursor:pointer; display:inline-flex; align-items:center;
+    gap:8px; white-space:nowrap; }
+  .cdpc-print:hover { background:#00AEEF; }
+  .cdpc-print:focus-visible { outline:3px solid #00AEEF; outline-offset:2px; }
+  @media print {
+    .cdpc-bar { display:none !important; }
+    @page { margin:12mm; }
+  }
+</style>
+</head>
+<body>
+<div class="cdpc-bar">
+  <div class="left">
+    <a class="cdpc-back" href="references.html">&#8592; References</a>
+    <span class="cdpc-crumb">Reference</span>
+  </div>
+</div>
+
+
+<button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+
+<div class="sheet">
+
+  <!-- CDPC shield logo, base64 embedded for standalone operation -->
+  <header class="doc-head">
+    <div class="logo"><img alt="ClearDefense Pest Control" src="data:image/png;base64,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"></div>
+    <div class="head-text">
+      <div class="head-eyebrow">Technical Reference</div>
+      <div class="head-title">Modes of Action</div>
+      <div class="head-sub">How our chemistry works, why rotation matters, and what to reach for when it stops working</div>
+    </div>
+  </header>
+  <div class="cyan-rule"></div>
+
+  <div class="meta-bar">
+    <div class="meta-cell"><div class="meta-label">Section</div><div class="meta-value">References</div></div>
+    <div class="meta-cell"><div class="meta-label">Audience</div><div class="meta-value">Technicians &amp; Managers</div></div>
+    <div class="meta-cell"><div class="meta-label">Revision</div><div class="meta-value">1.0</div></div>
+    <div class="meta-cell"><div class="meta-label">Owner</div><div class="meta-value">Technical Dept.</div></div>
+  </div>
+
+  <div class="body">
+
+    <p class="lede">A mode of action is the specific biological system a product attacks. Two products can have different brand names, different labels, different price points, and still hit the exact same target. When that happens, switching between them is not rotation. It is the same treatment twice, and the pests that survived the first one will survive the second.</p>
+
+    <!-- ================= PART 1 ================= -->
+    <section class="part">
+      <div class="part-head">
+        <div class="part-num">1</div>
+        <div class="part-title">CDPC Inventory at a Glance</div>
+      </div>
+      <p>Every product currently on the van, sorted by group. Products appearing in more than one row contain more than one mode of action. Group numbers come from the IRAC classification system, explained in Part 2.</p>
+
+      <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th style="width:14%">Group</th><th style="width:26%">Class</th><th style="width:26%">Active</th><th>Product Examples</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="grp-cell">2B</td><td>Phenylpyrazole</td><td>Fipronil</td><td>Maxforce Fleet, Maxforce FC Magnum</td></tr>
+          <tr><td class="grp-cell">3A</td><td>Pyrethroid</td><td>Deltamethrin</td><td>Suspend PolyZone, D-Fense Dust</td></tr>
+          <tr><td class="grp-cell">3A</td><td>Pyrethroid</td><td>Bifenthrin</td><td>Wisdom Lawn, Wisdom EZ</td></tr>
+          <tr><td class="grp-cell">3A</td><td>Pyrethroid</td><td>Esfenvalerate + prallethrin</td><td>Onslaught FastCap</td></tr>
+          <tr><td class="grp-cell">3A</td><td>Pyrethroid</td><td>Beta-cyfluthrin</td><td>Temprid FX, Temprid SC Ultra</td></tr>
+          <tr><td class="grp-cell">4A</td><td>Neonicotinoid</td><td>Dinotefuran</td><td>Alpine WSG, Alpine Fly Bait</td></tr>
+          <tr><td class="grp-cell">4A</td><td>Neonicotinoid</td><td>Imidacloprid</td><td>Temprid FX, Temprid SC Ultra</td></tr>
+          <tr><td class="grp-cell">4A</td><td>Neonicotinoid</td><td>Clothianidin</td><td>Vendetta Nitro, Sumari</td></tr>
+          <tr><td class="grp-cell">7A</td><td>Juvenile hormone analog</td><td>Methoprene</td><td>Altosid Pro G</td></tr>
+          <tr><td class="grp-cell">7C</td><td>Juvenile hormone mimic</td><td>Pyriproxyfen</td><td>Vendetta Nitro, Sumari</td></tr>
+          <tr><td class="grp-cell">20A</td><td>Complex III inhibitor</td><td>Hydramethylnon</td><td>Maxforce Complete</td></tr>
+          <tr><td class="grp-cell">UN</td><td>Borate</td><td>Boric acid / DOT</td><td>Niban, Nibor-D</td></tr>
+          <tr><td class="grp-cell">SYN</td><td>Synergist, not an MoA</td><td>Piperonyl butoxide</td><td>Onslaught FastCap</td></tr>
+          <tr><td class="grp-cell">ROD</td><td>Anticoagulant, 2nd gen</td><td>Bromadiolone</td><td>Contrac Blox</td></tr>
+          <tr><td class="grp-cell">ROD</td><td>Neurotoxin, non-anticoag</td><td>Bromethalin</td><td>Fastrac Blox</td></tr>
+          <tr><td class="grp-cell">NON</td><td>Not a pesticide</td><td>Enzyme / bacterial, quat, physical</td><td>Bac-Azap, DSV, Natural Catch traps</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout warn">
+        <div class="co-title">The Rotation Trap Hiding in This Table</div>
+        <p>Five separate line items are Group 3A. Suspend, D-Fense Dust, Wisdom granules, Onslaught, and half of Temprid all attack the identical sodium channel. A tech who runs Suspend on the structure, Wisdom on the turf, and dusts voids with D-Fense has applied one mode of action three times in one service. Add Onslaught the following quarter and it is four straight applications of Group 3A.</p>
+      </div>
+    </section>
+
+    <!-- ================= PART 2 ================= -->
+    <section class="part">
+      <div class="part-head">
+        <div class="part-num">2</div>
+        <div class="part-title">Fundamentals</div>
+      </div>
+
+      <h3 class="sub">The IRAC Group System</h3>
+      <p>The Insecticide Resistance Action Committee assigns every active ingredient a group number based on its target site. The number is printed on most modern labels, usually top left of the front panel or in the resistance management section. <strong>The group number is the only thing that matters for rotation.</strong> Brand, formulation, and manufacturer do not.</p>
+      <p>Sub-letters such as 3A or 7C separate chemical families that share a target site. For rotation purposes, treat the number as the deciding factor. Moving from 7A to 7C is not a meaningful rotation.</p>
+
+      <div class="callout rule">
+        <div class="co-title">The One Sentence Version</div>
+        <p>If the group number is the same, it is the same treatment no matter what the jug says.</p>
+      </div>
+
+      <h3 class="sub">How Resistance Actually Develops</h3>
+      <p>Resistance is not something an individual insect acquires. It is a population shift. Every population contains a small number of individuals that already carry a trait allowing them to survive exposure. Repeated use of one mode of action kills everything except those individuals, and they become the breeding stock. Four mechanisms drive it:</p>
+      <ul>
+        <li><strong>Target site resistance.</strong> The binding site itself is mutated so the molecule no longer fits. The classic example is knockdown resistance, or kdr, in German cockroaches and bed bugs, which alters the sodium channel targeted by every pyrethroid. One mutation defeats an entire group at once.</li>
+        <li><strong>Metabolic resistance.</strong> The insect overproduces detoxifying enzymes such as cytochrome P450 monooxygenases, esterases, or glutathione S-transferases, and breaks the active down before it reaches the target. This is the mechanism synergists are designed to counter.</li>
+        <li><strong>Behavioral resistance.</strong> The insect avoids the product entirely. Glucose aversion in German cockroaches is the textbook case. Populations exist that taste glucose as bitter and reject any bait carrying it, while the active ingredient itself still works perfectly.</li>
+        <li><strong>Reduced penetration.</strong> A thickened cuticle slows absorption and gives detox enzymes more time to work. Usually a minor contributor stacked on top of the others.</li>
+      </ul>
+
+      <div class="callout">
+        <div class="co-title">Field Note: Read the Failure Before You Blame the Chemical</div>
+        <p>Most callbacks blamed on resistance are not resistance. Before escalating, rule out missed harborage, an untreated source such as a neighboring unit or exterior conducive condition, sanitation, product washed off or degraded by UV or irrigation, wrong dilution, wrong placement, and reintroduction. True resistance is what remains after all of those are eliminated.</p>
+      </div>
+
+      <h3 class="sub">Repellent vs Non-Repellent</h3>
+      <p>This distinction drives more field outcomes than anything else in this document.</p>
+      <ul>
+        <li><strong>Repellent</strong> products are detected and avoided. Pyrethroids are the primary example. They produce a barrier the insect will not cross. Good for exclusion and perimeter work, poor for colony elimination, because the colony simply routes around the treatment and the workers you needed to carry the dose back home never contact it.</li>
+        <li><strong>Non-repellent</strong> products cannot be detected. Insects walk through freely, pick up the active, and carry it back into the nest. Fipronil, indoxacarb, chlorfenapyr, and chlorantraniliprole are the important ones. Slower to visible results, far better for colony and termite work.</li>
+      </ul>
+
+      <h3 class="sub">Transfer Effect and Delayed Toxicity</h3>
+      <p>Transfer, or the horizontal effect, is the movement of active ingredient from an exposed donor insect to unexposed nestmates through grooming, trophallaxis, contact, and cannibalism of poisoned corpses. It requires two things: the product must be non-repellent so the insect picks it up, and it must be slow enough that the donor makes it home before dying. Fipronil is the benchmark, with documented secondary and even tertiary transfer.</p>
+      <p>This is also why bait potency is capped. A bait that kills too fast produces dead foragers at the placement, not a dead colony. Slow is the feature, not the flaw. If a bait is not moving, the problem is almost never that it is too weak.</p>
+
+      <div class="callout warn">
+        <div class="co-title">Do Not Do This</div>
+        <p>Never spray a repellent pyrethroid over or around a bait placement. The insects that would have fed on the bait are now repelled from reaching it. You have spent the money on the bait and eliminated its function in the same visit.</p>
+      </div>
+    </section>
+
+    <!-- ================= PART 3 ================= -->
+    <section class="part">
+      <div class="part-head">
+        <div class="part-num">3</div>
+        <div class="part-title">Nerve and Muscle Targets</div>
+      </div>
+      <p>The largest and fastest acting category. These groups produce the knockdown techs and customers associate with a product working. Roughly two thirds of all documented resistance sits here.</p>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">1A</div></div>
+          <div class="moa-id"><div class="moa-name">Carbamates</div><div class="moa-target">Acetylcholinesterase inhibitors</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Propoxur, carbaryl, bendiocarb, methomyl</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Nerve signals cross a gap between nerve cells using acetylcholine, and the enzyme acetylcholinesterase clears that acetylcholine so the nerve can reset. Carbamates bind to and block the enzyme. Acetylcholine accumulates, the nerve fires continuously, and the insect goes into tremors, paralysis, and death. The binding is reversible, which makes it shorter lived than the organophosphate version of the same attack.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Fast, broad spectrum, strong odor. Largely displaced by pyrethroids and neonicotinoids on cost, safety profile, and regulatory pressure. Carbaryl survives mostly in turf and ornamental use. Worth knowing because carbamates and organophosphates share a target site, so they do not rotate against each other.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Highly toxic to bees. Cross resistance with Group 1B is common.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">1B</div></div>
+          <div class="moa-id"><div class="moa-name">Organophosphates</div><div class="moa-target">Acetylcholinesterase inhibitors</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Chlorpyrifos (Dursban), acephate (Orthene), malathion, naled, diazinon</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Same target as carbamates, but the bond formed with acetylcholinesterase is far more stable and over time becomes effectively permanent, a process called aging. The enzyme is destroyed rather than temporarily occupied, so effects are more severe and longer lasting in both the insect and any non-target that gets a dose.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>This was the backbone of structural pest control for decades. Chlorpyrifos indoor and residential uses were cancelled around 2000 to 2001 and diazinon followed. Acephate persists in some ant bait and turf applications. Malathion and naled still appear in public health mosquito adulticiding.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Cholinesterase inhibition in humans is cumulative across exposures. Any legacy product a customer produces from a garage shelf should be treated as a disposal conversation, not a use conversation.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa gone">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">2A</div></div>
+          <div class="moa-id"><div class="moa-name">Cyclodiene Organochlorines</div><div class="moa-target">GABA-gated chloride channel blockers</div></div>
+          <div class="pill gone">Cancelled</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Chlordane, aldrin, dieldrin, heptachlor, endosulfan</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>GABA is the insect nervous system's brake. It opens chloride channels that calm nerve firing. Cyclodienes plug those channels, the brake is removed, and the nervous system runs away into convulsions and death.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Included here because you will encounter it. Chlordane was the standard termite pretreat through 1988 and delivered thirty plus year barriers, which is why older customers ask why our termiticides do not last like they used to. It was cancelled for extreme environmental persistence and bioaccumulation, not for lack of performance.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Never handle or reuse legacy stock. If a customer reports buried or stored containers, that is a state agency and hazardous waste referral, not a service call.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">2B</div></div>
+          <div class="moa-id"><div class="moa-name">Phenylpyrazoles (Fiproles)</div><div class="moa-target">GABA-gated chloride channel blockers</div></div>
+          <div class="pill have">In Inventory</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Fipronil</div></div>
+          <div class="f-row"><div class="f-key">Product Examples</div><div class="f-val"><span class="cdpc-hit">Maxforce Fleet</span><span class="cdpc-hit">Maxforce FC Magnum</span></div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">Termidor SC and Termidor HE, the dominant liquid termiticide in the industry</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Same GABA channel target as the cyclodienes but with dramatically higher selectivity for the insect version of the receptor over the mammalian version, which is what makes it usable. Blocking GABA removes inhibitory control of the nervous system, producing hyperexcitation and death. Fipronil also acts on glutamate-gated chloride channels, which exist in insects and not in mammals, adding to the selectivity margin.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>This is the reference standard for non-repellent performance. Termites and ants cannot detect it and move through treated soil or surfaces normally. Death is delayed by days, which is exactly the window needed for the exposed insect to return to the colony and transfer the dose through grooming and trophallaxis. Documented secondary and tertiary transfer, meaning an insect that contacted a corpse can kill a third insect.</p><p>Fleet is the granular and gel ant platform, FC Magnum the roach gel. Termidor built its reputation on the same chemistry applied as a continuous soil barrier around a structure.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Severely toxic to bees, fish, and aquatic invertebrates. Follow label setbacks from water. Do not combine fipronil placements with repellent perimeter sprays in the same zone, since the transfer effect depends on free movement across the treated area. Slow visible results are normal and expected. Set that expectation with the customer at the time of service, not at the callback.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">3A</div></div>
+          <div class="moa-id"><div class="moa-name">Pyrethroids and Pyrethrins</div><div class="moa-target">Voltage-gated sodium channel modulators</div></div>
+          <div class="pill have">In Inventory</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Deltamethrin, bifenthrin, cyfluthrin and beta-cyfluthrin, esfenvalerate, prallethrin, permethrin, lambda-cyhalothrin, cypermethrin, natural pyrethrins</div></div>
+          <div class="f-row"><div class="f-key">Product Examples</div><div class="f-val"><span class="cdpc-hit">Suspend PolyZone</span><span class="cdpc-hit">D-Fense Dust</span><span class="cdpc-hit">Wisdom Lawn / EZ</span><span class="cdpc-hit">Onslaught FastCap</span><span class="cdpc-hit">Temprid FX / SC Ultra</span></div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Nerve impulses travel by opening voltage-gated sodium channels to let sodium rush into the cell, then closing them immediately. Pyrethroids hold those channels open. Sodium keeps flowing, the nerve fires repetitively and cannot reset, and the result is the rapid knockdown, uncoordinated movement, and paralysis techs recognize on sight.</p><p>Type I pyrethroids such as permethrin and bifenthrin produce classic knockdown. Type II pyrethroids, which carry a cyano group, include deltamethrin, cyfluthrin, and esfenvalerate, and hold the channel open longer for more complete kill with somewhat less immediate knockdown.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Fast, broad spectrum, low mammalian toxicity, inexpensive, and available in every formulation we use. That combination is why it dominates the van, and also why it is our single largest resistance exposure. Repellent by nature, which makes it excellent for perimeter barriers and exclusion pressure and poor for colony work.</p><p>Formulation matters more than most techs realize. Suspend PolyZone wraps deltamethrin in a polymer shell for extended residual on porous exterior surfaces and improved rain resistance. Onslaught FastCap pairs esfenvalerate with prallethrin, a fast volatile flushing agent, plus PBO.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Knockdown resistance, or kdr, mutates the sodium channel itself and defeats every product in this group simultaneously. It is widespread in German cockroaches and bed bugs. Do not treat a pyrethroid failure by trying a different pyrethroid.</p><p>Extremely toxic to bees and aquatic life. Never allow runoff to reach storm drains. Bifenthrin in particular is a repeat offender in urban waterway detections, which drives ongoing regulatory scrutiny of granular turf applications.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">4A</div></div>
+          <div class="moa-id"><div class="moa-name">Neonicotinoids</div><div class="moa-target">Nicotinic acetylcholine receptor competitive modulators</div></div>
+          <div class="pill have">In Inventory</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Imidacloprid, dinotefuran, clothianidin, thiamethoxam, acetamiprid</div></div>
+          <div class="f-row"><div class="f-key">Product Examples</div><div class="f-val"><span class="cdpc-hit">Alpine WSG</span><span class="cdpc-hit">Alpine Fly Bait</span><span class="cdpc-hit">Temprid FX / SC Ultra</span><span class="cdpc-hit">Vendetta Nitro</span><span class="cdpc-hit">Sumari</span></div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Rather than blocking the enzyme that clears acetylcholine, neonicotinoids imitate acetylcholine itself and bind directly to the receptor. Unlike real acetylcholine they are not broken down, so the receptor stays locked on. The nervous system is flooded with a signal it cannot clear, producing tremors, paralysis, and death. Insect nicotinic receptors differ enough from mammalian ones to give a wide safety margin.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Non-repellent, which makes them strong bait and ant program actives. Systemic in plants, which is why they show up in ornamental and termite soil applications. Dinotefuran is the most water soluble of the group and moves well, which is what makes Alpine WSG effective for broad surface and turf work.</p><p>Temprid combines imidacloprid with beta-cyfluthrin specifically to pair a non-repellent 4A with a fast repellent 3A. Useful, but note it is not a rotation. It is two groups delivered simultaneously, and the pyrethroid component still counts against your 3A exposure.</p><p>Sumari takes a different approach to the premix, pairing clothianidin with the IGR pyriproxyfen rather than with a pyrethroid. The result is non-repellent throughout, so bait placements stay viable, and it carries no signal word. Residual on ants runs up to about three months. Because the second active is a growth regulator rather than a second adulticide, it adds generational pressure without adding another nerve target.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Central to the pollinator debate and under active regulatory review in multiple states. Follow bloom and blooming weed restrictions on the label without exception. Documented resistance in German cockroaches and some fly populations. Some neonic baits have shown reduced acceptance in glucose-averse roach strains, which is a bait matrix problem rather than an active ingredient problem.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">5</div></div>
+          <div class="moa-id"><div class="moa-name">Spinosyns</div><div class="moa-target">Nicotinic acetylcholine receptor allosteric modulators</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Spinosad, spinetoram</div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">Conserve, Natular mosquito larvicide, various organic-labeled ant and fly baits</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Also targets the nicotinic acetylcholine receptor, but binds at a different site on the receptor than the neonicotinoids do. That distinction is why it earns its own group and why it rotates against 4A. It also has secondary activity at GABA receptors. Produces involuntary muscle contractions, tremors, and paralysis.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Derived from a soil bacterium, which gives it organic certification in many formulations and makes it valuable for sensitive accounts, food handling areas, and organic-certified commercial sites. Works by both contact and ingestion, with ingestion substantially more effective. Strong on thrips, caterpillars, fire ants, and mosquito larvae.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Toxic to bees while the spray is wet, considerably safer once dried. Short residual under UV exposure. Resistance has been documented where it has been used repeatedly as a standalone.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">6</div></div>
+          <div class="moa-id"><div class="moa-name">Avermectins and Milbemycins</div><div class="moa-target">Glutamate-gated chloride channel allosteric modulators</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Abamectin, emamectin benzoate, ivermectin</div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">Advance 375A ant bait, Optigard ant gel, Avert roach bait</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Locks open glutamate-gated chloride channels, which exist in invertebrates but not in mammals. Chloride floods in, the nerve is hyperpolarized and cannot fire, and the insect is paralyzed. Feeding stops first, then movement, then death over one to several days.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>A workhorse ant bait active. The delayed action and low use rate are ideal for colony transfer. Abamectin is used at very small percentages, often 0.011 percent, because potency is high and the goal is a dose slow enough to travel. Also active against mites.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Breaks down rapidly in sunlight, so it is a void, crack and crevice, and bait station active rather than an exposed surface one. Toxic to bees and aquatic invertebrates.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">9</div></div>
+          <div class="moa-id"><div class="moa-name">Chordotonal Organ Modulators</div><div class="moa-target">TRPV channel modulators, sub-groups 9B and 9C</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Pymetrozine (9B), flonicamid (9C), afidopyropen (9D)</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Targets the chordotonal organ, an insect sense organ handling balance, gravity, and vibration. Disruption leaves the insect unable to coordinate feeding. It withdraws its stylet and starves while otherwise appearing alive and mobile for some time.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Almost entirely an agricultural and ornamental tool for aphids, whiteflies, and plant hoppers. Included here because it is a genuinely distinct target site and a useful rotation partner in ornamental programs attached to residential accounts.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Feeding stops long before death, so a customer inspecting the plant will still see live insects. Explain that up front.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">22A</div></div>
+          <div class="moa-id"><div class="moa-name">Oxadiazines</div><div class="moa-target">Voltage-dependent sodium channel blockers</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Indoxacarb (22A), metaflumizone (22B)</div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">Advion roach gel, Advion ant gel, Arilon, Siesta fire ant bait</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Important distinction from Group 3A. Pyrethroids hold the sodium channel open. Indoxacarb blocks it closed. Nerve impulses cannot propagate at all, producing paralysis and death without the excitatory phase. Because it is the opposite manipulation of a related channel, kdr resistance does not carry over.</p><p>It is also a proinsecticide. What is applied is not the toxic form. Insect enzymes convert indoxacarb into its active metabolite inside the body. Insects have the enzymes to do this efficiently, mammals largely do not, which is the source of its wide safety margin.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Non-repellent with excellent transfer through both trophallaxis and cannibalism of dead nestmates. Advion roach gel is widely regarded as the most reliable German cockroach bait available and is the standard escalation when a program stalls. Effective against many pyrethroid resistant populations precisely because the target manipulation differs.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Bioactivation means results are never instant. Do not apply repellents over placements. Toxic to fish.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">28</div></div>
+          <div class="moa-id"><div class="moa-name">Diamides</div><div class="moa-target">Ryanodine receptor modulators</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Chlorantraniliprole, cyantraniliprole, flubendiamide</div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">Altriset termiticide, Acelepryn turf insecticide</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>This one skips the nervous system and goes to the muscle. Ryanodine receptors control the release of stored calcium inside muscle cells, and calcium release is what makes a muscle contract. Diamides jam these receptors open. Calcium stores dump uncontrolled, muscles enter sustained contraction and then fail entirely. The insect stops feeding within hours and is paralyzed within one to three days.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>The reason this matters for termite work is the mammalian toxicity profile. Insect ryanodine receptors are selectively targeted, and Altriset carries no signal word, which changes the conversation for schools, healthcare, daycare, and chemically sensitive customers in a way no other liquid termiticide can. Non-repellent with transfer through grooming. Termites stop feeding within hours of exposure, so structural damage halts well before the colony dies.</p><p>Acelepryn is the turf side of the same chemistry and is notable for a favorable pollinator profile relative to pyrethroid and neonicotinoid grub controls.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Slower colony elimination than fipronil and typically a higher material cost. The tradeoff is bought deliberately for sensitive accounts. Diamide resistance is well documented in agricultural moth pests, a reminder that a favorable safety profile does not exempt a group from rotation discipline.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">30</div></div>
+          <div class="moa-id"><div class="moa-name">Meta-Diamides / Isoxazolines</div><div class="moa-target">GABA-gated chloride channel allosteric modulators</div></div>
+          <div class="pill ref">Emerging</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Broflanilide, fluralaner, isocycloseram</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Also acts on the GABA-gated chloride channel, but binds at a different site than fipronil and the cyclodienes. That difference is significant: populations carrying the Rdl mutation that confers fipronil resistance are generally still susceptible to Group 30. Blocking chloride flow removes inhibitory nerve control and produces hyperexcitation and death.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>The newest structural mode of action to reach the market in years, moving into termite and public health vector programs. Notable for slow, non-repellent activity with strong transfer. Fluralaner is the same chemistry family used in veterinary flea and tick chewables, which is worth knowing when a customer mentions their dog is on Bravecto and asks whether our flea service is redundant.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>New chemistry is a resistance management asset. It should be protected by rotation from day one, not run into the ground the way the industry ran pyrethroids.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PART 4 ================= -->
+    <section class="part">
+      <div class="part-head">
+        <div class="part-num">4</div>
+        <div class="part-title">Growth and Development Disruptors</div>
+      </div>
+      <p>Insect growth regulators do not kill adults. They prevent the population from producing the next generation. They are the most misunderstood category on the van because a tech looking for dead bugs will conclude they did nothing.</p>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">7A</div></div>
+          <div class="moa-id"><div class="moa-name">Juvenile Hormone Analogs</div><div class="moa-target">Juvenile hormone mimics</div></div>
+          <div class="pill have">In Inventory</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Methoprene (7A), hydroprene (7A), fenoxycarb (7B)</div></div>
+          <div class="f-row"><div class="f-key">Product Examples</div><div class="f-val"><span class="cdpc-hit">Altosid Pro G</span></div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">Gentrol Point Source and IGR concentrate (hydroprene)</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Juvenile hormone is the signal that tells a larva to stay a larva. Its natural decline is what permits the final molt into a reproductive adult. These products keep an artificial juvenile hormone signal present, so the insect never receives permission to become an adult. It molts into a larger larva, or into a twisted non-viable intermediate, and dies without reproducing. Adults exposed can be sterilized.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Altosid Pro G is our mosquito larvicide, applied to standing water, catch basins, and chronically wet areas. Larvae continue swimming normally and pupate, but no adult ever emerges. That is a successful treatment, and it looks like nothing happened.</p><p>Hydroprene is the roach and stored product side of the same group. In roach programs it produces twisted wings and non-viable adults and, critically, adds resistance pressure the population has no defense against because the mechanism is developmental rather than neural.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Zero effect on existing adults. An IGR is a companion to an adulticide or bait, never a substitute. Expect a full generation cycle before population decline is visible. Sell the timeline before you apply it.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">7C</div></div>
+          <div class="moa-id"><div class="moa-name">Pyriproxyfen</div><div class="moa-target">Juvenile hormone mimic</div></div>
+          <div class="pill have">In Inventory</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Pyriproxyfen</div></div>
+          <div class="f-row"><div class="f-key">Product Examples</div><div class="f-val"><span class="cdpc-hit">Vendetta Nitro</span><span class="cdpc-hit">Sumari</span></div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">NyGuard IGR concentrate, Archer, Tekko</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Same juvenile hormone strategy as 7A but a structurally different molecule with notably longer residual and strong ovicidal activity, meaning it can prevent eggs from hatching in addition to blocking the molt to adult.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>The standard flea program IGR. Fleas in a carpet reach the pupal stage inside a protected cocoon that resists nearly everything applied to the surface, so surface adulticide alone guarantees a callback when those pupae emerge. Pyriproxyfen with residual measured in months covers that emergence window and is the reason a flea job succeeds or fails.</p><p>Vendetta Nitro pairs it with clothianidin so a single roach gel delivers a fast 4A kill plus long term reproductive suppression from one placement. Sumari is the liquid version of that same pairing, clothianidin with pyriproxyfen, and its label declares both 4A and 7C on the front panel.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Highly active at very low rates. Follow label dilution exactly. Advise the customer to vacuum before and frequently after the flea service, since vibration and warmth trigger pupal emergence and pull them out of the protected stage into contact with the treatment.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">15</div></div>
+          <div class="moa-id"><div class="moa-name">Benzoylureas</div><div class="moa-target">Chitin biosynthesis inhibitors, Type 0</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Noviflumuron, hexaflumuron, diflubenzuron, lufenuron, novaluron</div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">Sentricon with Always Active (noviflumuron), Recruit HD/AG, Dimilin</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Chitin is the structural polymer of the insect exoskeleton. These compounds block its synthesis, so when the insect molts it cannot build a functional new cuticle. It becomes trapped mid-molt, or forms a cuticle so weak it ruptures under the pressure of the molt itself. Death occurs at molt, not before.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>This is the entire basis of termite baiting. Subterranean termite workers molt frequently, they groom and share food throughout the colony, and the compound is tasteless and undetectable in the bait matrix. Foragers carry it back, the colony distributes it, and every molting individual dies. Because workers feed the soldiers and reproductives, the colony collapses from starvation as the worker caste disappears. This is true colony elimination rather than a barrier.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Slow by design. Colony elimination is typically measured in months. It is a monitoring and service commitment, not a one-visit fix, and the customer must understand that before the agreement is signed. Also toxic to crustaceans and other molting aquatic invertebrates.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">16 / 17 / 18</div></div>
+          <div class="moa-id"><div class="moa-name">Other Molt Disruptors</div><div class="moa-target">Buprofezin, cyromazine, ecdysone agonists</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p><strong>Group 16, buprofezin.</strong> Inhibits chitin synthesis by a different route than the benzoylureas, which is why it is grouped separately. Primarily scale, whitefly, and mealybug work in ornamentals.</p><p><strong>Group 17, cyromazine.</strong> A molting disruptor specific to flies. Applied to manure and organic breeding media, larvae fail to complete the molt to pupa. This is the core of a poultry, dairy, or dumpster fly larval program where the goal is stopping production rather than killing adults.</p><p><strong>Group 18, ecdysone receptor agonists</strong> such as methoxyfenozide and tebufenozide. The reverse strategy from the juvenile hormone mimics. Rather than blocking maturity, these trigger a premature and incomplete molt. The larva begins molting before it is ready, cannot finish, and dies. Mostly caterpillar control in turf and ornamental programs.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Cyromazine is the practical one for us. In a commercial fly account where sanitation and breeding media are the real problem, a larvicide applied to the source outperforms any amount of adult knockdown at the perimeter.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PART 5 ================= -->
+    <section class="part">
+      <div class="part-head">
+        <div class="part-num">5</div>
+        <div class="part-title">Energy and Metabolism Targets</div>
+      </div>
+      <p>These attack the mitochondria, where cells produce ATP. No energy production means no muscle function, no nerve function, and no life. Effects are slow, which for baits is an advantage rather than a defect.</p>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">13</div></div>
+          <div class="moa-id"><div class="moa-name">Pyrroles</div><div class="moa-target">Uncouplers of oxidative phosphorylation</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Chlorfenapyr</div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">Phantom, Phantom II</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Cells generate ATP by pumping protons across the mitochondrial membrane to build a gradient, then letting them flow back through ATP synthase. Chlorfenapyr punches the membrane full of holes. Protons leak back freely, the gradient collapses, and no ATP is made. Stored energy is released as heat instead. The insect dies of energy failure.</p><p>Like indoxacarb it is a proinsecticide, converted by insect enzymes into the active form tralopyril after entering the body.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Non-repellent, slow, and works by both contact and ingestion. Its major value is that it operates entirely outside the nervous system, so it is unaffected by kdr and by nearly all neural resistance mechanisms. That makes it a primary escalation option for pyrethroid resistant bed bugs and difficult roach accounts.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Not labeled for broadcast surface application indoors. It is a crack, crevice, void, and spot product. Do not expect quick knockdown, and check label restrictions on turf and ornamental use carefully.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">20A</div></div>
+          <div class="moa-id"><div class="moa-name">Hydramethylnon</div><div class="moa-target">Mitochondrial Complex III electron transport inhibitor</div></div>
+          <div class="pill have">In Inventory</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Hydramethylnon</div></div>
+          <div class="f-row"><div class="f-key">Product Examples</div><div class="f-val"><span class="cdpc-hit">Maxforce Complete</span></div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">Amdro fire ant bait, Siege gel</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Blocks Complex III in the mitochondrial electron transport chain, shutting down ATP production a step upstream of where chlorfenapyr acts. The insect becomes lethargic, stops feeding, and dies over one to several days as its energy reserves run out.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>A dedicated bait active. It has no repellency and no contact activity worth counting, so it must be eaten. The slow energy decline is precisely what makes it a good colony bait: foragers have ample time to return and share. Maxforce Complete uses a protein and carbohydrate blend that broadens acceptance across ant species with shifting seasonal preferences, and it is effective on roaches and crickets as well.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Degrades in sunlight, so exposed broadcast placements lose potency. Place in shade, along runways, and under edges. Keep bait fresh. Grease and protein baits go rancid and old bait is refused bait, which reads as a product failure and is actually a rotation-of-stock failure.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">12 / 21 / 24 / 25</div></div>
+          <div class="moa-id"><div class="moa-name">Other Mitochondrial Inhibitors</div><div class="moa-target">ATP synthase, Complex I, Complex IV, Complex II</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p><strong>Group 12</strong> inhibits ATP synthase directly, the final enzyme that assembles ATP. Diafenthiuron and propargite, mostly miticides. <strong>Group 21A</strong> blocks Complex I, the entry point of the electron transport chain. Fenpyroximate and tolfenpyrad, principally METI miticides. <strong>Group 24A</strong> blocks Complex IV, the final electron handoff to oxygen. This is phosphine, generated from aluminum or magnesium phosphide, used in stored product fumigation and burrow fumigation for rodents. <strong>Group 25</strong> blocks Complex II.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>The reason to know these exist is that they are all mitochondrial. A program built on hydramethylnon, chlorfenapyr, and a METI miticide is attacking three points on the same assembly line. That is better than nothing, but it is a weaker rotation than moving between a nerve target, a growth target, and an energy target.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Phosphine generating fumigants are restricted use, require specific certification, and have caused fatalities in residential misuse. Any burrow fumigation is a certified applicator function performed strictly to label.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PART 6 ================= -->
+    <section class="part">
+      <div class="part-head">
+        <div class="part-num">6</div>
+        <div class="part-title">Midgut and Microbial</div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">11A</div></div>
+          <div class="moa-id"><div class="moa-name">Bacterial Midgut Disruptors</div><div class="moa-target">Microbial disruptors of insect midgut membranes</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Bacillus thuringiensis israelensis (Bti), Bacillus sphaericus, Bt kurstaki</div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">Mosquito Dunks and Bits, VectoBac, VectoLex</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>The bacteria produce crystalline protein toxins. When a larva eats them, the alkaline environment of the insect midgut dissolves the crystal and releases the active proteins, which bind to specific receptors on the gut lining and punch pores through it. The gut wall fails, contents leak into the body cavity, and the larva stops feeding within an hour and dies within a day or two.</p><p>The selectivity is remarkable and comes from two requirements. The gut has to be alkaline, and the correct receptor has to be present. Mammalian stomachs are acidic and lack the receptor entirely. Bti hits only mosquito, black fly, and fungus gnat larvae. Bt kurstaki hits only caterpillars.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>The safest larvicide available and the right answer for ornamental ponds, rain barrels, bird baths, and any water feature a customer cares about. Harmless to fish, frogs, and beneficial aquatic insects. Ideal in a sensitive pet household where the standing water is part of the pet's environment.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Must be ingested, so it only works on actively feeding larvae. It does nothing to pupae, which do not feed, and nothing to adults. Short residual, typically days to a few weeks depending on formulation, so it requires a return interval. Reapply after flushing rain.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PART 7 ================= -->
+    <section class="part">
+      <div class="part-head">
+        <div class="part-num">7</div>
+        <div class="part-title">Physical and Non-Specific</div>
+      </div>
+      <p>Grouped by IRAC as unknown or non-specific, because they do not hit a single defined receptor. That is exactly why resistance to them is rare to nonexistent. An insect cannot mutate its way out of physical abrasion.</p>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">UN</div></div>
+          <div class="moa-id"><div class="moa-name">Borates</div><div class="moa-target">Stomach poison, multi-site metabolic disruption</div></div>
+          <div class="pill have">In Inventory</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Orthoboric acid, disodium octaborate tetrahydrate (DOT)</div></div>
+          <div class="f-row"><div class="f-key">Product Examples</div><div class="f-val"><span class="cdpc-hit">Niban</span><span class="cdpc-hit">Nibor-D</span></div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">Bora-Care and Tim-bor for wood treatment</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Borates must be eaten. Once in the gut they act on multiple fronts at once: they disrupt the gut epithelium, interfere with enzyme systems including those handling energy metabolism, and in termites they damage the protozoa in the hindgut that digest cellulose. That last mechanism means the termite starves with a full stomach. Because the attack is diffuse across several systems rather than one receptor, there is no single target site for a mutation to defend, and no meaningful field resistance has developed in decades of use.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Slow, in the range of three to ten days, and completely non-repellent. Niban granular is a durable outdoor and crawlspace product for roaches, crickets, ants, and silverfish that holds up to moisture better than most granulars. Nibor-D works as a dust, a foam, or a spray, which makes it flexible for voids and wall treatments.</p><p>Borates applied to bare wood soak in and stay there essentially permanently as long as the wood does not get wet, which is the basis of new construction pretreat and crawlspace wood treatment.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Water soluble, so any wood treatment must stay dry to persist. No contact activity worth counting, it must be consumed. Do not apply so heavily that placements become visible or repellent by bulk. Boric acid is genuinely toxic if ingested by children or pets, so treat placement discipline seriously despite its reputation as the mild option.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">UN</div></div>
+          <div class="moa-id"><div class="moa-name">Desiccant Dusts</div><div class="moa-target">Physical destruction of the cuticular wax layer</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Amorphous silica gel, diatomaceous earth</div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">CimeXa, Drione, food grade DE</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Purely mechanical. The insect exoskeleton is sealed by a thin waxy layer that holds water in. Silica gel adsorbs that wax directly. Diatomaceous earth uses microscopically sharp fossilized diatom shells to abrade it away. Either way the seal is broken, the insect loses water it cannot replace, and it dies of dehydration over several days.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Because the mechanism is physical, resistance is essentially impossible and residual in a dry undisturbed void is measured in years. Silica gel materially outperforms diatomaceous earth in structural work: it is lighter, adheres better to the insect, and is effective at a fraction of the deposit. This is the go-to for bed bugs in wall voids, outlets, and bed frames, and for roaches and silverfish in dry voids.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>The single most common field error is over-application. A visible pile of dust is a repellent barrier the insect walks around. The correct deposit is a light film barely visible on a dark surface. Useless once wet or caked. Wear respiratory protection when applying, and never apply to exposed surfaces where occupants or pets can disturb it into the air.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">UN</div></div>
+          <div class="moa-id"><div class="moa-name">Botanicals and Essential Oils</div><div class="moa-target">Octopamine receptor and multi-site disruption</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Thyme, rosemary, peppermint, clove, geraniol, cedarwood oil</div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">Essentria IC3, EcoVia, various FIFRA 25(b) exempt products</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Most act on octopamine receptors, an invertebrate neurotransmitter system with no mammalian counterpart, disrupting heart rate, movement, and behavior. There is also a general solvent effect on the cuticle. Because the action is diffuse, IRAC does not assign a numbered group.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Many are FIFRA 25(b) minimum risk exempt, which makes them useful where a customer has requested a no-conventional-pesticide program, or in sensitive accounts, food handling areas, and organic certified sites. Strong contact knockdown and a noticeable repellent effect.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Short residual, often hours to a few days. Strong odor that some customers dislike and some will not tolerate. Repellency can scatter a roach or ant population into new harborage and can spoil bait placements. Exempt status does not mean harmless, and it does not mean the label can be ignored.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">8</div></div>
+          <div class="moa-id"><div class="moa-name">Fumigants</div><div class="moa-target">Miscellaneous non-specific multi-site inhibitors</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Sulfuryl fluoride, methyl bromide, chloropicrin</div></div>
+          <div class="f-row"><div class="f-key">Reference</div><div class="f-val actives">Vikane and ProFume (sulfuryl fluoride)</div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Attacks many enzyme systems simultaneously rather than one receptor. Sulfuryl fluoride releases fluoride ions that block multiple metabolic enzymes, particularly in energy metabolism, throughout the entire body. Delivered as a gas, it penetrates every cubic inch of an enclosed structure including inside wood, furniture, and wall voids, which is the point.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Whole structure fumigation is the definitive answer for drywood termites, severe bed bug infestations, and stored product pests in a facility, because it reaches every harborage at once with no placement judgment involved. Chloropicrin is added as a warning agent because it causes immediate eye irritation, giving anyone who enters an unmistakable signal to leave.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Restricted use, separate licensing and certification, and no residual whatsoever. Reinfestation can begin the day the tent comes off, so it must be paired with a follow-up program. Sulfuryl fluoride is not effective on eggs of some species, which drives the dosage calculation. Fumigation is a specialist function and is never improvised.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">GROUP</div><div class="g-num">SYN</div></div>
+          <div class="moa-id"><div class="moa-name">Synergists</div><div class="moa-target">Metabolic enzyme inhibitors, not a mode of action</div></div>
+          <div class="pill have">In Inventory</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Piperonyl butoxide (PBO), MGK-264</div></div>
+          <div class="f-row"><div class="f-key">Product Examples</div><div class="f-val"><span class="cdpc-hit">Onslaught FastCap</span></div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>PBO has essentially no insecticidal activity of its own. It inhibits the cytochrome P450 enzymes the insect uses to detoxify the insecticide. With detox disabled, the active ingredient stays intact and reaches its target, so a lower dose does more work and populations relying on metabolic resistance lose their defense.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>This is why a synergized pyrethroid can knock down a population that shrugged off a straight pyrethroid. It is a real and useful advantage.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Understand exactly what PBO does and does not do. It defeats metabolic resistance. It does nothing against target site resistance. If a population carries kdr, the sodium channel is still mutated and the pyrethroid still cannot bind, synergist or not. A synergist is not a rotation partner and never counts as a second mode of action.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PART 8 ================= -->
+    <section class="part">
+      <div class="part-head">
+        <div class="part-num">8</div>
+        <div class="part-title">Rodenticide Modes of Action</div>
+      </div>
+      <p>Rodenticides sit outside the IRAC system, which classifies insecticides only. They have their own framework, and mixing the two vocabularies causes confusion in training. Keep them separate.</p>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">CLASS</div><div class="g-num">AC</div></div>
+          <div class="moa-id"><div class="moa-name">Anticoagulants, Second Generation</div><div class="moa-target">Vitamin K epoxide reductase inhibitors</div></div>
+          <div class="pill have">In Inventory</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Bromadiolone, brodifacoum, difethialone, difenacoum</div></div>
+          <div class="f-row"><div class="f-key">Product Examples</div><div class="f-val"><span class="cdpc-hit">Contrac Blox (bromadiolone)</span></div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Blood clotting requires clotting factors II, VII, IX, and X, and the liver can only produce them with a recycled form of vitamin K. The enzyme vitamin K epoxide reductase performs that recycling. Anticoagulants block the enzyme, the vitamin K supply runs out, clotting factor production stops, and existing factors degrade over several days. Once they are depleted, normal minor internal bleeding no longer clots and the animal dies of internal hemorrhage.</p><p>Second generation means a single feeding delivers a lethal dose, unlike first generation actives such as diphacinone and chlorophacinone which require feeding across multiple days.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>The delay of three to seven days between feeding and death is the essential feature. Rats are neophobic and cautious about new food, and if a rat dies quickly next to a bait station the rest of the colony associates that bait with danger and stops feeding. That is bait shyness, and the delay is what prevents it. Rodents keep feeding normally across several nights and the whole population takes a dose.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>Secondary poisoning is the real risk. Second generation actives persist a long time in liver tissue, so a hawk, owl, or cat that eats a poisoned rodent can receive a meaningful dose. Tamper resistant stations, secured bait, and diligent carcass recovery are not paperwork, they are the control. Vitamin K1 is the antidote and veterinary and human poison control should be given the specific active ingredient, so know what is in your station.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">CLASS</div><div class="g-num">NA</div></div>
+          <div class="moa-id"><div class="moa-name">Bromethalin</div><div class="moa-target">Uncoupler of oxidative phosphorylation in the central nervous system</div></div>
+          <div class="pill have">In Inventory</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">Actives</div><div class="f-val actives">Bromethalin</div></div>
+          <div class="f-row"><div class="f-key">Product Examples</div><div class="f-val"><span class="cdpc-hit">Fastrac Blox</span></div></div>
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p>Not an anticoagulant at all. Bromethalin uncouples oxidative phosphorylation in nerve cells, the same class of mechanism chlorfenapyr uses in insects. Without ATP the sodium potassium pumps that maintain cell balance fail, fluid accumulates in the nervous system, and pressure builds in the brain and spinal cord. The animal develops cerebral edema, becomes uncoordinated, and dies.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Rodents stop feeding within a few hours of a lethal dose and typically die in one to three days. Faster than an anticoagulant. Critically, it is the rotation partner for anticoagulant resistant populations, which are documented and increasing in some urban rat populations. A station that keeps getting hit with no population decline is the signal to switch classes, not brands.</p></div></div>
+          <div class="f-row"><div class="f-key">Watch for</div><div class="f-val"><p>There is no antidote. Vitamin K1 does nothing here. That single fact should govern how bromethalin is placed, secured, and documented in any account with children or pets. If a pet exposure is reported, the specific active ingredient must be communicated to the veterinarian immediately, because the treatment path is entirely different from an anticoagulant exposure. Lower secondary poisoning risk than second generation anticoagulants, since less accumulates in tissue.</p></div></div>
+        </div>
+      </div>
+
+      <div class="moa">
+        <div class="moa-top">
+          <div class="grp"><div class="g-lab">CLASS</div><div class="g-num">OTH</div></div>
+          <div class="moa-id"><div class="moa-name">Cholecalciferol and Zinc Phosphide</div><div class="moa-target">Hypercalcemia; phosphine gas generation</div></div>
+          <div class="pill ref">Reference Only</div>
+        </div>
+        <div class="moa-body">
+          <div class="f-row"><div class="f-key">How it works</div><div class="f-val"><p><strong>Cholecalciferol,</strong> vitamin D3, at toxic dose drives calcium out of bone and into the bloodstream. Sustained hypercalcemia mineralizes soft tissue including the kidneys, heart, and blood vessels, causing organ failure over three to four days. Effective against anticoagulant resistant rodents and carries low secondary poisoning risk. There is no simple antidote and treatment of an exposed pet is expensive and intensive.</p><p><strong>Zinc phosphide</strong> reacts with stomach acid to generate phosphine gas inside the animal, which blocks Complex IV of the electron transport chain, the same target as fumigant phosphine. Acts within hours. Used mostly in agricultural, burrow, and outdoor settings. Serious inhalation hazard to the applicator and requires strict label adherence.</p></div></div>
+          <div class="f-row"><div class="f-key">In the field</div><div class="f-val"><p>Both are class rotation options where anticoagulant resistance is suspected. Neither belongs in a standard residential program without a specific documented reason and approval.</p></div></div>
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <div class="co-title">Rodent Program Reality Check</div>
+        <p>Rodenticide is the last step, not the first. Exclusion, harborage removal, and sanitation drive the outcome. A property with unsealed entry points and available food will consume bait indefinitely and never clear. If a station is being hit month after month with no decline, the finding is a structural one, and the report should read as a construction and sanitation recommendation, not a request for more bait.</p>
+      </div>
+    </section>
+
+    <!-- ================= PART 9 ================= -->
+    <section class="part">
+      <div class="part-head">
+        <div class="part-num">9</div>
+        <div class="part-title">Not Pesticides</div>
+      </div>
+      <p>These carry no mode of action and never count toward rotation. They appear here because techs sometimes list them as part of a treatment.</p>
+      <div class="tbl-wrap">
+      <table>
+        <thead><tr><th style="width:24%">Product</th><th style="width:26%">What it is</th><th>How it works</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Bac-Azap</strong></td><td>Bacterial and enzyme odor eliminator</td><td>Live bacteria and enzymes digest the organic residue producing the odor rather than masking it. Used on rodent and animal carcass contamination, urine, grease, and drain organic buildup. Removing that residue also removes a food source and pheromone trail, which supports the pest program indirectly.</td></tr>
+          <tr><td><strong>DSV</strong></td><td>Disinfectant, sanitizer, virucide</td><td>Quaternary ammonium chemistry disrupts microbial cell membranes. Used for pathogen decontamination after rodent or bird activity. It is an antimicrobial, not an insecticide, and has no effect on any arthropod.</td></tr>
+          <tr><td><strong>Natural Catch traps</strong></td><td>Attractant trap, fruit fly</td><td>Fermentation-based lure draws adult flies into a capture chamber. Purely mechanical capture. Excellent for monitoring and for confirming whether a source has actually been eliminated, but it is a monitoring tool first and a control tool second.</td></tr>
+          <tr><td><strong>Glue boards, snap traps, light traps</strong></td><td>Mechanical</td><td>Physical capture. No resistance possible, no residue, no re-entry interval. Often the correct answer in food handling, healthcare, and sensitive accounts where product use is restricted.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <!-- ================= PART 10 ================= -->
+    <section class="part">
+      <div class="part-head">
+        <div class="part-num">10</div>
+        <div class="part-title">Rotation Rules</div>
+      </div>
+
+      <div class="callout rule">
+        <div class="co-title">The Six Rules</div>
+        <ol style="margin-bottom:0;">
+          <li><strong>Rotate by group number, never by brand.</strong> If the number matches, it is the same treatment.</li>
+          <li><strong>Rotate by generation, not by visit.</strong> Switching mid-generation exposes the same individuals to two modes of action and selects for insects resistant to both. Hold a mode of action through one full pest generation, then change.</li>
+          <li><strong>Count every application on the property.</strong> The exterior granular, the perimeter spray, and the void dust all count. Three Group 3A products in one service is one mode of action applied three times.</li>
+          <li><strong>Rotate across systems where possible.</strong> Nerve, then growth, then energy is a stronger rotation than moving between two different nerve targets.</li>
+          <li><strong>A synergist is not a mode of action.</strong> Neither is a second active from the same group. A premix of two groups is two groups at once, which is useful, but the next visit still has to move off both.</li>
+          <li><strong>Never spray a repellent over a bait.</strong> This cancels the bait and wastes the visit.</li>
+        </ol>
+      </div>
+
+      <h3 class="sub">Sample Quarterly Rotation Using Current Inventory</h3>
+      <div class="tbl-wrap">
+      <table>
+        <thead><tr><th style="width:14%">Quarter</th><th style="width:30%">Primary</th><th style="width:16%">Group</th><th>Rationale</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Q1</strong></td><td>Suspend PolyZone perimeter</td><td class="grp-cell">3A</td><td>Extended residual carries the low pressure season. Pair with an IGR, not a second 3A.</td></tr>
+          <tr><td><strong>Q2</strong></td><td>Alpine WSG</td><td class="grp-cell">4A</td><td>Moves off the sodium channel entirely as populations build. Non-repellent, so bait placements stay viable.</td></tr>
+          <tr><td><strong>Q3</strong></td><td>Temprid FX plus Maxforce bait</td><td class="grp-cell">4A + 3A, 2B</td><td>Peak pressure. The premix delivers knockdown and residual while fipronil bait works the colony on a third group.</td></tr>
+          <tr><td><strong>Q4</strong></td><td>Niban plus targeted dust</td><td class="grp-cell">UN</td><td>Overwintering and harborage focus. Borate carries no resistance liability and holds well in crawlspaces.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="font-size:13.5px;color:var(--ink-soft);">Illustrative only. Actual rotation follows the Season Mix Quick Reference and the current Approved Products List, and label directions always govern.</p>
+
+      <h3 class="sub">Gaps in the Current Inventory</h3>
+      <p>Reading the inventory table against the full group list shows where our rotation options are thin. Every group listed below is a documented escalation path we do not currently stock.</p>
+      <div class="tbl-wrap">
+      <table>
+        <thead><tr><th style="width:16%">Group</th><th style="width:30%">Would provide</th><th>Scenario it solves</th></tr></thead>
+        <tbody>
+          <tr><td class="grp-cell">22A</td><td>Indoxacarb bait</td><td>Roach program stalled on a 4A or 2B bait. Different target manipulation, unaffected by kdr, strong cannibalism transfer.</td></tr>
+          <tr><td class="grp-cell">13</td><td>Chlorfenapyr</td><td>Pyrethroid resistant bed bugs or roaches. Operates outside the nervous system entirely.</td></tr>
+          <tr><td class="grp-cell">6</td><td>Abamectin ant bait</td><td>Ant bait rotation partner against 2B and 20A without repeating a group.</td></tr>
+          <tr><td class="grp-cell">UN</td><td>Silica gel dust</td><td>Bed bug voids and long term dry harborage. Resistance-proof, multi-year residual.</td></tr>
+          <tr><td class="grp-cell">11A</td><td>Bti larvicide</td><td>Mosquito larval sites in ornamental water features and sensitive pet households where Altosid placement is restricted.</td></tr>
+          <tr><td class="grp-cell">28</td><td>Chlorantraniliprole</td><td>Termite or turf work in schools, healthcare, daycare, and chemically sensitive accounts.</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout">
+        <div class="co-title">Escalation Path</div>
+        <p>When a program is failing and the checklist in Part 2 has ruled out application, sanitation, and reintroduction causes, document the group numbers used on that property over the last three services and route the account to the Technical Department with that list attached. A rotation recommendation cannot be made without it, and the group history is the single most useful thing a tech can supply.</p>
+      </div>
+    </section>
+
+    <!-- ================= PART 11 ================= -->
+    <section class="part">
+      <div class="part-head">
+        <div class="part-num">11</div>
+        <div class="part-title">Field Cheat Sheet</div>
+      </div>
+      <div class="tbl-wrap">
+      <table>
+        <thead><tr><th style="width:34%">Situation</th><th>Mode of action logic</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Ants keep coming back after a good perimeter spray</strong></td><td>A repellent 3A is routing the colony around the treatment. Move to a non-repellent or bait so foragers carry the dose home.</td></tr>
+          <tr><td><strong>Bait is untouched</strong></td><td>Check for repellent overspray, competing food, stale product, and matrix preference. This is rarely an active ingredient problem.</td></tr>
+          <tr><td><strong>Bait is being eaten but the population holds</strong></td><td>Colony size or multiple colonies. Increase placements. Do not switch to a faster kill, which reduces transfer.</td></tr>
+          <tr><td><strong>Roaches knocked down hard, back in three weeks</strong></td><td>Adults died, egg cases did not. Add an IGR, Group 7. Knockdown is not population control.</td></tr>
+          <tr><td><strong>Flea callback three weeks after service</strong></td><td>Normal pupal emergence. Confirm the pyriproxyfen residual is intact and reinforce vacuuming.</td></tr>
+          <tr><td><strong>Third pyrethroid in a row has failed</strong></td><td>Assume kdr. Stop trying Group 3A. Move to 22A, 13, or a physical mode of action.</td></tr>
+          <tr><td><strong>Mosquito adulticide works for days only</strong></td><td>Adulticide without larval source reduction is a treadmill. Find and treat the breeding site.</td></tr>
+          <tr><td><strong>Rodent stations hit every month, no decline</strong></td><td>Exclusion and sanitation failure, or anticoagulant resistance. Address the structure first, then consider a class change.</td></tr>
+          <tr><td><strong>Customer wants minimal chemical exposure</strong></td><td>Lead with physical and non-specific modes: borates, desiccants, traps, exclusion, Bti, and 25(b) exempt materials.</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout warn">
+        <div class="co-title">Label Authority</div>
+        <p>This document explains how chemistry works. It does not authorize any application. The label is the law, and where anything here conflicts with a current product label, the label governs without exception. Apply only products on the current Approved Products List, only to sites the label permits, only at labeled rates.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="cyan-rule"></div>
+  <footer class="doc-foot">
+    <div><strong>ClearDefense Pest Control</strong> &nbsp;|&nbsp; Technical Department</div>
+    <div>Modes of Action Field Guide &nbsp;|&nbsp; Rev 1.0 &nbsp;|&nbsp; Internal Training Use</div>
+  </footer>
+
+</div>
+</body>
+</html>
