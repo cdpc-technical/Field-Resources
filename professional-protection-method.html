@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Protection Method | ClearDefense Field Resources</title>
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<!-- ============================================================
+     OFFLINE FONT SLOT
+     Paste the base64 @font-face block for Barlow + Barlow Condensed
+     here to make this file fully offline-capable.
+     @font-face { font-family:'Barlow'; src:url(data:font/woff2;base64,....) format('woff2'); font-weight:400; font-display:swap; }
+     ============================================================ -->
+
+<style>
+:root{
+  --cyan:#00AEEF;
+  --cyan-dk:#0090c6;
+  --black:#000000;
+  --ink:#141719;
+  --slate:#4a5257;
+  --line:#dfe4e7;
+  --paper:#f4f6f7;
+  --white:#ffffff;
+  --go:#1f9d55;
+  --stop:#c0392b;
+  --warn:#e08a00;
+  --sans:'Barlow','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --cond:'Barlow Condensed','Barlow','Arial Narrow',Arial,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.55;
+}
+
+/* ---------- NAV BAR ---------- */
+.navbar{
+  position:sticky;top:0;z-index:50;background:var(--black);
+  border-bottom:3px solid var(--cyan);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;padding:9px 16px;
+}
+.navbar a,.navbar button{font-family:var(--cond);text-decoration:none;}
+.nav-back{
+  color:var(--cyan);font-size:15px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;white-space:nowrap;
+}
+.nav-back:active{color:var(--white);}
+.nav-crumb{
+  color:#8b969c;font-family:var(--cond);font-size:13px;letter-spacing:.08em;
+  text-transform:uppercase;text-align:center;flex:1;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.nav-crumb b{color:var(--white);font-weight:600;}
+.nav-print{
+  background:transparent;border:1px solid var(--cyan);color:var(--cyan);
+  border-radius:3px;padding:5px 12px;font-size:13px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap;
+}
+.nav-print:hover{background:var(--cyan);color:var(--black);}
+
+/* ---------- HEADER ---------- */
+.masthead{background:var(--black);color:var(--white);padding:26px 20px 30px;}
+.mast-inner{max-width:900px;margin:0 auto;}
+.mast-top{display:flex;align-items:center;gap:22px;margin-bottom:20px;}
+.logoplate{
+  flex:none;background:var(--white);border-radius:4px;
+  padding:11px 16px;line-height:0;
+}
+.logoplate img{display:block;width:200px;max-width:100%;height:auto;}
+.mast-title{flex:1;min-width:0;}
+.mast-rule{border-top:1px solid #2a2f33;}
+.eyebrow{
+  font-family:var(--cond);font-size:12px;font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--cyan);margin-bottom:6px;
+}
+h1{
+  font-family:var(--cond);font-size:38px;font-weight:700;line-height:1.05;
+  letter-spacing:.01em;text-transform:uppercase;margin:0 0 8px;
+}
+@media (min-width:821px){h1{white-space:nowrap;}}
+@media (max-width:820px){
+  .mast-top{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:16px;}
+  h1{white-space:normal;font-size:34px;}
+}
+.byline{font-size:14px;color:#b9c2c7;letter-spacing:.04em;margin:0;}
+.byline b{color:var(--white);font-weight:600;}
+.lede{
+  font-size:17px;color:#dfe5e8;max-width:70ch;margin:0 auto;
+  padding-top:18px;border-top:1px solid #2a2f33;text-align:center;
+}
+.lede b{color:var(--cyan);font-weight:600;}
+
+/* ---------- LAYOUT ---------- */
+.wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+section{
+  background:var(--white);border:1px solid var(--line);border-radius:4px;
+  margin-top:22px;overflow:hidden;
+}
+.sec-head{
+  background:var(--ink);color:var(--white);padding:12px 18px;
+  display:flex;align-items:baseline;gap:12px;
+}
+.sec-num{
+  font-family:var(--cond);font-size:15px;font-weight:700;color:var(--cyan);
+  letter-spacing:.1em;flex:none;
+}
+.sec-title{
+  font-family:var(--cond);font-size:24px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;margin:0;line-height:1.1;
+}
+.sec-body{padding:20px 18px 24px;}
+.sec-body>p:first-child{margin-top:0;}
+.sec-body>*:last-child{margin-bottom:0;}
+h3{
+  font-family:var(--cond);font-size:19px;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink);margin:26px 0 10px;
+  padding-bottom:5px;border-bottom:2px solid var(--cyan);
+}
+h4{
+  font-family:var(--cond);font-size:16px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--slate);margin:16px 0 6px;
+}
+p{margin:0 0 12px;}
+
+/* ---------- SPLIT CARDS ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+.card{border:1px solid var(--line);border-radius:4px;padding:14px 16px;background:var(--white);}
+.card.go{border-top:4px solid var(--go);}
+.card.stop{border-top:4px solid var(--stop);}
+.card h5{
+  font-family:var(--cond);font-size:17px;font-weight:700;letter-spacing:.07em;
+  text-transform:uppercase;margin:0 0 10px;
+}
+.card.go h5{color:var(--go);}
+.card.stop h5{color:var(--stop);}
+.card ul{margin:0;padding-left:0;list-style:none;}
+.card li{position:relative;padding-left:24px;margin-bottom:8px;font-size:15px;}
+.card li:last-child{margin-bottom:0;}
+.card.go li::before{
+  content:"\2713";position:absolute;left:0;top:0;color:var(--go);font-weight:700;
+}
+.card.stop li::before{
+  content:"\2715";position:absolute;left:0;top:0;color:var(--stop);font-weight:700;
+}
+
+/* ---------- CALLOUT ---------- */
+.callout{
+  background:#eef9fe;border-left:5px solid var(--cyan);
+  padding:14px 16px;margin:18px 0;border-radius:0 4px 4px 0;
+}
+.callout .co-label{
+  font-family:var(--cond);font-size:13px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--cyan-dk);display:block;margin-bottom:5px;
+}
+.callout p:last-child{margin-bottom:0;}
+
+.rule-strip{
+  background:var(--ink);color:var(--white);border-left:5px solid var(--stop);
+  padding:14px 16px;margin:18px 0;border-radius:0 4px 4px 0;
+}
+.rule-strip .co-label{
+  font-family:var(--cond);font-size:13px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:#ff8b7d;display:block;margin-bottom:5px;
+}
+.rule-strip p{margin:0;font-size:15px;}
+
+/* ---------- SCRIPT LINES ---------- */
+.script{margin:12px 0;}
+.script li{
+  list-style:none;background:var(--paper);border:1px solid var(--line);
+  border-left:4px solid var(--cyan);border-radius:0 4px 4px 0;
+  padding:11px 14px;margin-bottom:9px;font-size:15px;font-style:italic;color:var(--ink);
+}
+.script{padding-left:0;}
+.script li:last-child{margin-bottom:0;}
+.script.no li{border-left-color:var(--stop);background:#fdf1f0;}
+
+/* ---------- TAG BUBBLES ---------- */
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 16px;padding:0;list-style:none;}
+.tag{
+  display:inline-block;max-width:100%;background:var(--ink);color:var(--white);
+  font-family:var(--cond);font-size:13px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;padding:5px 11px;border-radius:100px;
+  white-space:normal;overflow-wrap:break-word;word-break:break-word;line-height:1.3;
+}
+.tag.cy{background:var(--cyan);color:var(--black);}
+
+/* ---------- STEP BLOCKS ---------- */
+.step{border-top:1px solid var(--line);}
+.step:first-of-type{border-top:none;}
+.step-head{display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--paper);}
+.step-badge{
+  flex:none;width:46px;height:46px;border-radius:50%;background:var(--cyan);
+  color:var(--black);font-family:var(--cond);font-size:22px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;line-height:1;
+}
+.step-name{
+  font-family:var(--cond);font-size:26px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;margin:0;line-height:1;
+}
+.step-sub{
+  font-family:var(--sans);font-size:13px;font-weight:400;letter-spacing:.02em;
+  text-transform:none;color:var(--slate);display:block;margin-top:3px;
+}
+.step-body{padding:16px 18px 22px;}
+.step-body>*:last-child{margin-bottom:0;}
+.step-body h3:first-child{margin-top:0;}
+
+.checklist{margin:0 0 14px;padding-left:0;list-style:none;}
+.checklist li{
+  position:relative;padding-left:22px;margin-bottom:7px;font-size:15px;
+}
+.checklist li::before{
+  content:"";position:absolute;left:2px;top:8px;width:8px;height:8px;
+  background:var(--cyan);border-radius:2px;
+}
+.checklist li b{font-weight:600;}
+
+/* ---------- TABLE ---------- */
+.tbl-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0;}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:420px;}
+th{
+  background:var(--ink);color:var(--white);font-family:var(--cond);font-size:15px;
+  font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  text-align:left;padding:10px 12px;
+}
+td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+tr:nth-child(even) td{background:#fafbfc;}
+td:first-child{font-weight:600;width:34%;}
+
+/* ---------- FIELD CARD ---------- */
+.fieldcard{
+  background:var(--black);color:var(--white);border-radius:4px;
+  margin-top:22px;padding:22px 18px;border-top:4px solid var(--cyan);
+}
+.fieldcard h2{
+  font-family:var(--cond);font-size:22px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;margin:0 0 4px;
+}
+.fieldcard .fc-sub{font-size:13px;color:#9aa4aa;margin:0 0 18px;}
+.fc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.fc-item{background:#131719;border:1px solid #262c30;border-radius:4px;padding:12px 12px 14px;}
+.fc-item .n{
+  font-family:var(--cond);font-size:13px;font-weight:700;color:var(--cyan);
+  letter-spacing:.14em;display:block;margin-bottom:4px;
+}
+.fc-item .t{
+  font-family:var(--cond);font-size:19px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;display:block;margin-bottom:5px;
+}
+.fc-item .d{font-size:13px;color:#b9c2c7;line-height:1.4;display:block;}
+.fc-close{
+  margin-top:16px;padding-top:14px;border-top:1px solid #262c30;
+  font-family:var(--cond);font-size:17px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--cyan);text-align:center;
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  max-width:900px;margin:0 auto;padding:24px 20px 40px;
+  font-size:12px;color:var(--slate);line-height:1.6;
+}
+.docctl{display:flex;flex-wrap:wrap;gap:6px 22px;border-top:2px solid var(--ink);padding-top:12px;}
+.docctl span b{
+  font-family:var(--cond);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink);font-weight:600;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:640px){
+  body{font-size:15px;}
+  .navbar{padding:8px 12px;gap:8px;}
+  .nav-crumb{display:none;}
+  .nav-back{font-size:14px;}
+  .nav-print{padding:5px 10px;font-size:12px;}
+  .masthead{padding:20px 16px 24px;}
+  .mast-top{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:16px;}
+  .logoplate{padding:9px 12px;}
+  .logoplate img{width:190px;}
+  .lede{padding-top:14px;}
+  h1{font-size:30px;white-space:normal;}
+  .lede{font-size:15px;}
+  .byline{font-size:13px;}
+  .wrap{padding:0 12px 44px;}
+  .sec-head{padding:11px 14px;gap:9px;}
+  .sec-title{font-size:20px;}
+  .sec-body{padding:16px 14px 20px;}
+  .split{grid-template-columns:1fr;gap:12px;}
+  .step-head{padding:14px;gap:11px;}
+  .step-badge{width:40px;height:40px;font-size:19px;}
+  .step-name{font-size:22px;}
+  .step-body{padding:14px 14px 18px;}
+  h3{font-size:17px;}
+  .fc-grid{grid-template-columns:1fr 1fr;}
+  .tag{font-size:12px;padding:5px 10px;}
+  .fieldcard{padding:18px 14px;}
+}
+@media (max-width:400px){
+  h1{font-size:26px;white-space:normal;}
+  .fc-grid{grid-template-columns:1fr;}
+  .logoplate img{width:165px;}
+}
+
+/* ---------- PRINT ---------- */
+@media print{
+  body{background:#fff;font-size:11pt;}
+  .navbar,.nav-print{display:none !important;}
+  .masthead{background:#000 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .sec-head,.step-badge,th,.fieldcard,.tag{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  section,.step,.fieldcard{page-break-inside:avoid;}
+  .wrap{padding:0;}
+  a{text-decoration:none;color:inherit;}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="navbar">
+  <a class="nav-back" href="index.html">&#8592; All Field Resources</a>
+  <div class="nav-crumb">Field Resources / <b>Professional Protection Method</b></div>
+  <button class="nav-print" onclick="window.print()">Print</button>
+</nav>
+
+<!-- ================= MASTHEAD ================= -->
+<header class="masthead">
+  <div class="mast-inner">
+    <div class="mast-top">
+      <div class="logoplate">
+        <img src="data:image/png;base64,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" alt="ClearDefense Pest Control">
+      </div>
+      <div class="mast-title">
+        <div class="eyebrow">Field Resources / Training &amp; Methods</div>
+        <h1>Professional Protection Method</h1>
+        <div class="byline">Developed by <b>Alex Burnett</b> &nbsp;&#124;&nbsp; ClearDefense Pest Control</div>
+      </div>
+    </div>
+
+    <p class="lede">Our Professional Protection Method is a professional outreach initiative
+    designed to communicate potential pest risks to customers as well as adjacent homeowners.
+    We focus on <b>courtesy and risk notification</b>, explicitly avoiding any sales pressure.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ================= 01 PURPOSE ================= -->
+<section>
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">Purpose and Eligibility Criteria</h2>
+  </div>
+  <div class="sec-body">
+
+    <div class="split">
+      <div class="card go">
+        <h5>What This Is</h5>
+        <ul>
+          <li>Professional courtesy and risk notification</li>
+          <li>Founded on ethical responsibility</li>
+          <li>Aimed at informing the homes most likely affected by a risk</li>
+        </ul>
+      </div>
+      <div class="card stop">
+        <h5>What This Is Not</h5>
+        <ul>
+          <li>Door-to-door sales</li>
+          <li>Cold pitching</li>
+          <li>Pressure-based signup</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="co-label">Rationale</span>
+      <p>We believe that if a risk is identified, it is professional to inform those who might
+      be affected. This aligns with our commitment to protection, ethics, and professional
+      responsibility.</p>
+    </div>
+
+    <h3>When a Technician Should Talk to a Neighbor</h3>
+    <p>A technician may engage with neighbors under these conditions:</p>
+    <div class="split">
+      <div class="card go">
+        <h5>Engage When</h5>
+        <ul>
+          <li>Active pest issue confirmed (ants, roaches, rodents, mosquitoes)</li>
+          <li>Seasonal or environmental risk is present</li>
+          <li>Issue likely shared due to proximity (shared walls, soil, water, harborage)</li>
+        </ul>
+      </div>
+      <div class="card stop">
+        <h5>Never Speak to Neighbors If</h5>
+        <ul>
+          <li>Random streets</li>
+          <li>No visible or known risk</li>
+          <li>Just because we're there</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Guidance on Communication</h3>
+    <p>Use these company-approved phrases to introduce the concept:</p>
+    <ul class="script">
+      <li>"This is not outreach. This is early risk notification."</li>
+      <li>"Once the neighbor is informed, the job is done."</li>
+      <li>"Sometimes protecting one home means informing the homes around it."</li>
+    </ul>
+
+    <div class="rule-strip">
+      <span class="co-label">Avoid Saying</span>
+      <p>"We want you to sell the neighbors."</p>
+    </div>
+
+    <p>This approach ensures we maintain professionalism and build trust within the community.</p>
+
+  </div>
+</section>
+
+<!-- ================= 02 THE FOUR STEPS ================= -->
+<section>
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">The Four Steps</h2>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step-head">
+      <div class="step-badge">1</div>
+      <div class="step-name">Observe</div>
+    </div>
+    <div class="step-body">
+      <p>Conducting a thorough observation is crucial in our Professional Protection Method.
+      Technicians must focus on the target property and its surroundings to identify potential
+      pest risks and inform neighbors accordingly.</p>
+
+      <h3>Conducting Focused Observations</h3>
+
+      <h4>Identifying Active Pest Infestations</h4>
+      <ul class="checklist">
+        <li>Look for visible insects such as ants, roaches, or mosquitoes.</li>
+        <li>Check for rodent droppings or nests indicating rodent activity.</li>
+        <li>Note any unusual pest sightings reported by the homeowner.</li>
+      </ul>
+
+      <h4>Recognizing Conducive Conditions</h4>
+      <ul class="checklist">
+        <li>Identify areas with excessive moisture that attract pests.</li>
+        <li>Look for harborage sites like wood piles or clutter near the home.</li>
+        <li>Check gutters and drains that might be blocked or overflowing.</li>
+      </ul>
+
+      <h4>Noting Seasonal Pressures</h4>
+      <ul class="checklist">
+        <li>Monitor for increased pest activity during warmer months.</li>
+        <li>Be aware of specific seasonal pests, such as mosquitoes in spring and summer.</li>
+      </ul>
+
+      <h4>Assessing Shared Environmental Factors</h4>
+      <ul class="checklist">
+        <li>Evaluate proximity and shared features like walls or fences between homes.</li>
+        <li>Consider common landscaping elements that may support pest movement.</li>
+      </ul>
+
+      <p>By conducting detailed observations, technicians can effectively identify potential
+      risks and proceed with informing neighbors as per our protocol.</p>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-head">
+      <div class="step-badge">2</div>
+      <div class="step-name">Explain</div>
+    </div>
+    <div class="step-body">
+      <p>When approaching a homeowner, our goal is to provide a straightforward and professional
+      explanation. This ensures that the homeowner is aware of potential risks without feeling
+      pressured or alarmed.</p>
+
+      <h3>Guidelines for Explaining to the Homeowner</h3>
+      <p>Inform the homeowner why their property might be affected by the pest issue observed
+      on the property or nearby. Highlight the normalcy of such occurrences to alleviate concerns.</p>
+      <ul class="checklist">
+        <li><b>Identify the reason for concern:</b> Explain that the proximity to an active
+        pest issue could potentially impact their property.</li>
+        <li><b>Normalize the situation:</b> Assure them that these issues are common and can
+        be managed effectively.</li>
+        <li><b>Maintain a professional tone:</b> Use neutral language to keep the interaction
+        calm and informative.</li>
+      </ul>
+
+      <h3>Sample Script Lines</h3>
+      <ul class="script">
+        <li>"It's quite common for these problems to arise, especially this time of year."</li>
+        <li>"I want to make sure you're informed so you can take any steps you feel necessary."</li>
+      </ul>
+
+      <p>Offering this information in a succinct and reassuring manner demonstrates our
+      commitment to ethical and considerate communication.</p>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step-head">
+      <div class="step-badge">3</div>
+      <div class="step-name">Recommend</div>
+    </div>
+    <div class="step-body">
+      <p>Presenting options effectively is crucial for maintaining a professional approach in
+      our Professional Protection Method. We prioritize providing information and choice
+      without pressure.</p>
+
+      <h3>Offer Options</h3>
+      <p>During interactions with neighbors, it's essential to first offer educational materials
+      that help them understand potential pest risks and solutions. This empowers them to make
+      informed decisions.</p>
+      <ul class="checklist">
+        <li>Provide <b>brochures</b> with detailed information on pest prevention and control.</li>
+        <li>Share <b>reference links</b> to reputable pest control resources online for
+        further reading.</li>
+      </ul>
+
+      <p>Once educational resources are discussed, mention our professional services as one
+      option among others. Ensure clarity by presenting each choice neutrally.</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>Option</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Educational Materials</td>
+              <td>Brochures, articles, and reference links on pest management strategies.</td>
+            </tr>
+            <tr>
+              <td>Professional Service</td>
+              <td>Optional pest control services provided by our trained technicians.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rule-strip">
+        <span class="co-label">Remember</span>
+        <p>By structuring conversations this way, we respect the neighbor's autonomy while
+        ensuring they have access to necessary information. Our role is to inform, not to sell.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <div class="step-head">
+      <div class="step-badge">4</div>
+      <div class="step-name">Release</div>
+    </div>
+    <div class="step-body">
+      <p>Once the necessary information is conveyed, it's crucial to conclude the interaction
+      professionally and respectfully. The goal is to leave the neighbor with helpful resources
+      and a sense of awareness, without any obligation to take further action.</p>
+
+      <p>After explaining potential risks, we provide informational materials, such as brochures
+      or flyers, to support their understanding. This material serves as a reference for any
+      future considerations they might have regarding pest control services.</p>
+
+      <h3>Courteous Sign-Offs</h3>
+      <ul class="script">
+        <li>"Thank you for your time today. Feel free to reach out if you have any questions."</li>
+        <li>"We're here to help if you need us. Have a great day!"</li>
+        <li>"If you decide you need assistance, don't hesitate to contact us. Take care!"</li>
+      </ul>
+
+      <p>These closing phrases ensure the neighbor understands that our role is to inform and
+      assist, leaving them empowered to make their own decisions. This approach reinforces our
+      commitment to professional responsibility and community care, whether or not they choose
+      to engage further with our services.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FIELD CARD ================= -->
+<div class="fieldcard">
+  <h2>Quick Reference</h2>
+  <p class="fc-sub">The four steps at a glance.</p>
+  <div class="fc-grid">
+    <div class="fc-item"><span class="n">Step 1</span><span class="t">Observe</span></div>
+    <div class="fc-item"><span class="n">Step 2</span><span class="t">Explain</span></div>
+    <div class="fc-item"><span class="n">Step 3</span><span class="t">Recommend</span></div>
+    <div class="fc-item"><span class="n">Step 4</span><span class="t">Release</span></div>
+  </div>
+  <div class="fc-close">Once the neighbor is informed, the job is done.</div>
+</div>
+
+</div>
+
+<footer>
+  <div class="docctl">
+    <span><b>Document</b> Professional Protection Method</span>
+    <span><b>Author</b> Alex Burnett</span>
+    <span><b>Owner</b> Technical Department</span>
+    <span><b>Version</b> 1.0</span>
+    <span><b>Audience</b> Service Technicians, Service Managers, General Managers</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var MAX = 38, MIN = 24;
+  function fitTitle(){
+    var h1 = document.querySelector('h1');
+    var box = document.querySelector('.mast-title');
+    if(!h1 || !box) return;
+    if(window.innerWidth < 821){ h1.style.fontSize = ''; return; }
+    var size = MAX;
+    h1.style.fontSize = size + 'px';
+    while(h1.scrollWidth > box.clientWidth && size > MIN){
+      size -= 1;
+      h1.style.fontSize = size + 'px';
+    }
+  }
+  fitTitle();
+  window.addEventListener('resize', fitTitle);
+  window.addEventListener('beforeprint', fitTitle);
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fitTitle); }
+})();
+</script>
+</body>
+</html>
