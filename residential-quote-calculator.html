@@ -421,7 +421,9 @@ function calc(){
   const hasPkg = cur || pkg !== "none";      // current customers already hold a pest package
   const tRate = hasPkg ? t.pk : t.sa;
   const mosqInit = bill === "monthly" ? ac.mo : ac.sv;
-  const mosqInitLbl = `${ac.lb} &middot; ${bill === "monthly" ? "monthly" : "per-service"} rate, one time`;
+  const mosqInitLbl = bill === "monthly"
+    ? `${ac.lb} &middot; monthly rate, counts as the first month`
+    : `${ac.lb} &middot; per-service rate, counts as the first service`;
 
   let due = 0, mo = 0, yr = 0;
   const lines = [], flags = [];
@@ -432,8 +434,8 @@ function calc(){
       due += mosqInit;
       lines.push(["Mosquito initial", mosqInitLbl, money(mosqInit)]);
       if(bill === "monthly"){
-        mo += ac.mo; yr += mosqInit + ac.mo * 12;
-        lines.push(["Mosquito upgrade", `${ac.lb} &middot; monthly`, money(ac.mo)+"/mo"]);
+        mo += ac.mo; yr += ac.mo * 12;
+        lines.push(["Mosquito upgrade", `${ac.lb} &middot; monthly, 11 more after the initial`, money(ac.mo)+"/mo"]);
       } else {
         yr += mosqInit + ac.sv * (MOSQ_SVC_PER_YR - 1);
         lines.push(["Mosquito upgrade", `${ac.lb} &middot; per service, ${MOSQ_SVC_PER_YR - 1} more this season`, money(ac.sv)+"/svc"]);
@@ -451,7 +453,7 @@ function calc(){
       mo += amt; yr += amt * 12;
       lines.push([pkg==="std"?"Standard Package":"Basic Package", `${g.lb}${pkg==="std"?" + "+ac.lb:""} &middot; monthly`, money(amt)+"/mo"]);
       if(pkg === "std"){
-        due += mosqInit; yr += mosqInit;
+        due += mosqInit;
         lines.push(["Mosquito initial", mosqInitLbl, money(mosqInit)]);
       }
     } else {
@@ -541,9 +543,8 @@ function calc(){
 /* ---------- year in full (CDPC YIF Calculator logic) ---------- */
 const YIF = {
   qtlySvc: 4,         // quarterly services in the year
-  discount: 50,
-  newInitMin: 49,     // new customer earns the discount when the initial is above this
-  existRateMin: 129   // existing customer earns the discount when the per-service rate is above this
+  discount: 50,       // prepay discount, new customer quarterly sub only
+  newInitMin: 49      // discount earned when the initial is above this
 };
 
 function buildYIF(){
@@ -559,15 +560,14 @@ function buildYIF(){
   const rows = [];
   let total = 0, disc = 0;
 
-  // general pest quarterly sub — the only line the prepay discount touches
-  const hasGP = cur || pkg === "basic" || pkg === "std";
+  // current customers keep their existing pest sub, so year in full prices the upgrade only
+  const hasGP = !cur && (pkg === "basic" || pkg === "std");
   if(hasGP){
-    const base = cur ? g.sv * YIF.qtlySvc : init + g.sv * YIF.qtlySvc;
-    const earns = cur ? g.sv > YIF.existRateMin : init > YIF.newInitMin;
-    if(earns) disc = YIF.discount;
+    const base = init + g.sv * YIF.qtlySvc;
+    if(init > YIF.newInitMin) disc = YIF.discount;
     total += base;
     rows.push(["Quarterly sub",
-      `${g.lb} &middot; ${cur ? `${YIF.qtlySvc} services at ${money(g.sv)}` : `${money(init)} initial + ${YIF.qtlySvc} services at ${money(g.sv)}`}`,
+      `${g.lb} &middot; ${money(init)} initial + ${YIF.qtlySvc} services at ${money(g.sv)}`,
       money(base)]);
   }
 
@@ -607,12 +607,15 @@ function buildYIF(){
     : "";
 
   $("yif").innerHTML = `
-    <h3>Year in Full &mdash; ${cur ? "current customer" : "new customer"}</h3>
+    <h3>Year in Full &mdash; ${cur ? "upgrade only" : "new customer"}</h3>
     ${rows.map(r=>`<div class="l"><div class="n">${r[0]}<em>${r[1]}</em></div><div class="a">${r[2]}</div></div>`).join("")}
     ${disc ? `<div class="l disc"><div class="n">Prepay discount<em>Quarterly sub only</em></div><div class="a">-${money(disc)}</div></div>` : ""}
     <div class="tot2"><div class="n">Paid in full today</div><div class="a">${money(total - disc)}</div></div>
     ${compare}
-    <div class="fine">${hasGP && !disc ? `No discount &mdash; ${cur ? `the per-service rate must exceed ${money(YIF.existRateMin)}` : `the initial must exceed ${money(YIF.newInitMin)}`}. ` : ""}The prepay discount applies to the pest control package quarterly sub only. Mosquito prices at the per-service rate. Taxes not included.</div>
+    <div class="fine">${cur
+      ? "Covers the upgrade only. The customer's existing pest control package sub is not included, and the prepay discount does not apply to upgrades. "
+      : (hasGP && !disc ? `No discount &mdash; the initial must exceed ${money(YIF.newInitMin)}. ` : "") + "The prepay discount applies to the pest control package quarterly sub only. "
+    }Mosquito prices at the per-service rate. Taxes not included.</div>
   `;
 }
 
