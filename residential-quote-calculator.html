@@ -139,6 +139,7 @@ select:focus,input:focus{outline:2px solid var(--cyan);outline-offset:1px;border
 .yif .tot2{display:flex;align-items:baseline;gap:10px;padding-top:12px}
 .yif .tot2 .n{flex:1;font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--cyan)}
 .yif .tot2 .a{font-family:'Barlow Condensed',Arial Narrow,sans-serif;font-size:34px;font-weight:700;line-height:1}
+.yif .cmp{font-size:12.5px;color:var(--cyan);font-weight:600;margin-top:4px;letter-spacing:.02em}
 .yif .fine{font-size:11.5px;color:#79838d;margin-top:10px;line-height:1.4}
 .actions{padding:14px 16px;border-top:1px solid var(--line);display:flex;gap:8px}
 .actions-solo{padding-top:0;border-top:0}
@@ -300,15 +301,19 @@ footer{max-width:1180px;margin:0 auto;padding:0 24px 36px;font-size:12px;color:v
         <div class="lb">Due at initial service</div>
         <div class="v" id="due">$0</div>
       </div>
-      <div class="tot">
-        <div class="lb" id="reclb">Recurring</div>
-        <div class="v" id="rec">$0</div>
-        <div class="lb" style="margin-top:8px">Package rate</div>
-        <div class="v" id="pkgrate" style="font-size:26px;line-height:1.15">&mdash;</div>
+      <div class="tot" id="rateblock">
+        <div id="rechalf">
+          <div class="lb">Recurring</div>
+          <div class="v" id="rec">$0</div>
+        </div>
+        <div id="svchalf">
+          <div class="lb">Per service</div>
+          <div class="v" id="pkgrate" style="font-size:26px;line-height:1.15">&mdash;</div>
+        </div>
       </div>
       <div class="lines" id="lines"><div class="empty">Choose a service to build the quote.</div></div>
       <div class="tot yrblock">
-        <div class="lb">First-year total</div>
+        <div class="lb">First-year total &mdash; as billed</div>
         <div class="v" id="yr">$0</div>
       </div>
       <div class="flags" id="flags"></div>
@@ -402,6 +407,8 @@ document.querySelectorAll("#term input, #spec input").forEach(el=>el.addEventLis
 document.querySelectorAll("select").forEach(el=>el.addEventListener("change",calc));
 $("init").addEventListener("input",calc);
 
+let lastYearTotal = 0;   // first-year total as billed, for the YIF comparison
+
 /* ---------- calculate ---------- */
 function calc(){
   const g = GPC[+$("sqft").value];
@@ -460,7 +467,7 @@ function calc(){
 
   // termite
   if(term === "yes"){
-    due += tRate.i;
+    due += tRate.i; yr += tRate.i;
     lines.push([cur?"Termite upgrade install":"Termite install", `${t.lb} &middot; ${hasPkg?"package":"stand-alone"} rate`, money(tRate.i)]);
     mo += tRate.mo; yr += tRate.mo * 12;
     lines.push(["Termite renewal", "Monthly", money(tRate.mo)+"/mo"]);
@@ -485,23 +492,23 @@ function calc(){
 
   // render
   $("due").textContent = money(due);
-  $("rec").innerHTML = mo ? money(mo) + ' <small>/mo</small>' : "&mdash;";
-  $("reclb").textContent = "Recurring";
-  if(pkg === "none"){
-    $("pkgrate").innerHTML = "&mdash;";
-  } else if(cur){
-    $("pkgrate").innerHTML = bill === "monthly"
-      ? money(ac.mo) + ' <small>/mo</small>'
-      : money(ac.sv) + ' <small>/service</small>';
-  } else if(bill === "monthly"){
-    const amt = pkg === "std" ? g.std[ac.k] : g.mo;
-    $("pkgrate").innerHTML = money(amt) + ' <small>/mo</small>';
-  } else if(pkg === "std"){
-    $("pkgrate").innerHTML = `${money(g.sv)} <small>/svc pest control</small><br>${money(ac.sv)} <small>/svc mosquito</small>`;
-  } else {
-    $("pkgrate").innerHTML = money(g.sv) + ' <small>/service</small>';
+
+  // show recurring monthly or per-service pricing, never both
+  const showSvc = bill === "service" && pkg !== "none";
+  const showRec = mo > 0;
+  $("rec").innerHTML = money(mo) + ' <small>/mo</small>';
+  if(showSvc){
+    $("pkgrate").innerHTML = (!cur && pkg === "std")
+      ? `${money(g.sv)} <small>/svc pest control</small><br>${money(ac.sv)} <small>/svc mosquito</small>`
+      : money(cur ? ac.sv : g.sv) + ' <small>/service</small>';
   }
+  $("rechalf").style.display = showRec ? "" : "none";
+  $("svchalf").style.display = showSvc ? "" : "none";
+  $("svchalf").style.marginTop = showRec ? "10px" : "0";
+  $("rateblock").style.display = (showRec || showSvc) ? "" : "none";
+
   $("yr").textContent = money(yr);
+  lastYearTotal = yr;
   $("lines").innerHTML = lines.length
     ? lines.map(l=>`<div class="line"><div class="n">${l[0]}<em>${l[1]||""}</em></div><div class="a${l[2]==="QUOTE"?" flag":""}">${l[2]==="QUOTE"?"Inspection":l[2]}</div></div>`).join("")
     : `<div class="empty">Choose a service to build the quote.</div>`;
@@ -590,11 +597,21 @@ function buildYIF(){
     return;
   }
 
+  const paid = total - disc;
+  const delta = lastYearTotal - paid;
+  const compare = lastYearTotal
+    ? `<div class="cmp">${
+        delta > 0 ? `Saves ${money(delta)} against ${money(lastYearTotal)} paid as billed`
+      : delta < 0 ? `${money(-delta)} more than ${money(lastYearTotal)} paid as billed`
+      : `Same total as paying as billed`}</div>`
+    : "";
+
   $("yif").innerHTML = `
     <h3>Year in Full &mdash; ${cur ? "current customer" : "new customer"}</h3>
     ${rows.map(r=>`<div class="l"><div class="n">${r[0]}<em>${r[1]}</em></div><div class="a">${r[2]}</div></div>`).join("")}
     ${disc ? `<div class="l disc"><div class="n">Prepay discount<em>Quarterly sub only</em></div><div class="a">-${money(disc)}</div></div>` : ""}
-    <div class="tot2"><div class="n">Total YIF cost</div><div class="a">${money(total - disc)}</div></div>
+    <div class="tot2"><div class="n">Paid in full today</div><div class="a">${money(total - disc)}</div></div>
+    ${compare}
     <div class="fine">${hasGP && !disc ? `No discount &mdash; ${cur ? `the per-service rate must exceed ${money(YIF.existRateMin)}` : `the initial must exceed ${money(YIF.newInitMin)}`}. ` : ""}The prepay discount applies to the pest control package quarterly sub only. Mosquito prices at the per-service rate. Taxes not included.</div>
   `;
 }
