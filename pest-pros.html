@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Pest Pros | ClearDefense Pest Control</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0096CE; --surface:#00AEEF; --card:#0e0e0e; --card-hi:#1c2126;
+    --line:#3f454c; --line-soft:#2a2f35;
+    --text:#f2f5f8; --muted:#9aa2ab; --dim:#c3cad1;
+    --cd-cyan:#00AEEF; --cd-cyan-lt:#7fd8f7; --cd-red:#ff8577;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Barlow',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+    background:var(--bg); color:var(--text); -webkit-text-size-adjust:100%; }
+  .page { max-width:900px; margin:0 auto; background:var(--surface); min-height:100vh; }
+
+  .header { background:#000; padding:18px 24px; display:flex;
+    align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .hleft { display:flex; align-items:center; gap:14px; }
+  .company { font-family:'Barlow Condensed',sans-serif; font-size:25px; font-weight:800;
+    color:#fff; letter-spacing:.04em; line-height:1; text-transform:uppercase; }
+  .company span { color:var(--cd-cyan); }
+  .company.small { font-size:16px; color:#8a9099; margin-top:1px; }
+  .htitle { font-family:'Barlow Condensed',sans-serif; font-size:26px; font-weight:800;
+    color:#fff; text-transform:uppercase; letter-spacing:.05em; line-height:1; text-align:right; }
+  .htitle span { color:var(--cd-cyan); }
+  .hmeta { font-family:'Barlow Condensed',sans-serif; font-size:12px; color:#8a9099;
+    letter-spacing:.12em; text-transform:uppercase; text-align:right; margin-top:5px; }
+  .brandplate { background:#fff; border-radius:8px; padding:12px 18px;
+    display:inline-flex; align-items:center; }
+  .brandmark { width:auto; height:72px; max-width:100%; object-fit:contain; display:block; }
+  @media (max-width:700px) {
+    .brandplate { padding:10px 14px; }
+    .brandmark { height:58px; }
+  }
+  @media (max-width:560px) {
+    .brandplate { padding:9px 12px; border-radius:6px; }
+    .brandmark { height:46px; }
+  }
+  .cyan-strip { background:var(--cd-cyan); height:4px; }
+
+  .metabar { background:#0b3646; border-bottom:1px solid rgba(255,255,255,.14);
+    padding:11px 24px; display:flex; gap:26px; flex-wrap:wrap;
+    font-family:'Barlow Condensed',sans-serif; font-size:13px;
+    letter-spacing:.1em; text-transform:uppercase; color:#cdd4da; }
+  .metabar b { color:#fff; font-weight:700; }
+  .metabar .cls { color:var(--cd-red); font-weight:700; }
+
+  .wrap { padding:22px 24px 40px; }
+
+  .searchbar { position:relative; margin-bottom:26px; }
+  #q { width:100%; padding:14px 16px 14px 44px; font-family:'Barlow',sans-serif;
+    font-size:16px; color:var(--text); background:#14181c;
+    border:2px solid #05303f; border-radius:6px; }
+  #q::placeholder { color:#7d858e; }
+  #q:focus { outline:none; border-color:var(--cd-cyan); }
+  .searchbar svg { position:absolute; left:15px; top:50%; transform:translateY(-50%);
+    pointer-events:none; }
+  .searchbar svg circle, .searchbar svg path { stroke:#9aa2ab; }
+  .nores { display:none; padding:24px 4px; color:#05303f; font-size:15px; font-weight:500; }
+
+  .sec { margin-bottom:30px; }
+  .sec-head { display:flex; align-items:center; gap:14px; margin-bottom:6px; }
+  .sec-head h2 { font-family:'Barlow Condensed',sans-serif; font-size:20px; font-weight:700;
+    text-transform:uppercase; letter-spacing:.11em; color:#05303f; white-space:nowrap; }
+  .sec-head .line { flex:1; height:2px; background:rgba(5,48,63,.28); }
+  .sec-head .count { font-family:'Barlow Condensed',sans-serif; font-size:14px;
+    color:rgba(5,48,63,.72); letter-spacing:.08em; }
+  .grp { font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:700;
+    text-transform:uppercase; letter-spacing:.14em; color:#05303f;
+    margin:18px 0 7px; }
+
+  .rows { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
+  .row { display:flex; align-items:center; gap:14px; padding:13px 14px;
+    border:1px solid var(--line-soft); border-radius:6px;
+    text-decoration:none; color:inherit; background:var(--card);
+    min-height:52px; transition:border-color .12s, background .12s; }
+  .row:hover { border-color:var(--cd-cyan); background:var(--card-hi); }
+  .row:focus-visible { outline:3px solid var(--cd-cyan); outline-offset:2px; }
+  .num { font-family:'Barlow Condensed',sans-serif; font-size:19px; font-weight:800;
+    color:var(--cd-cyan); min-width:30px; letter-spacing:.02em; }
+  .txt { flex:1; display:flex; flex-direction:column; gap:1px; min-width:0; }
+  .name { font-size:15.5px; font-weight:600; color:var(--text); line-height:1.25; }
+  .sub { font-size:12.5px; color:var(--muted); line-height:1.3; }
+  .chev { font-size:22px; color:#454d56; font-weight:400; }
+  .row:hover .chev { color:var(--cd-cyan); }
+  .row.tool .name { font-size:16px; }
+
+  .row.soon { cursor:default; opacity:.72; border-style:dashed; }
+  .row.soon:hover { border-color:var(--line-soft); background:var(--card); }
+  .row.soon .num { color:#6d757d; }
+  .soon-badge { font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--cd-cyan);
+    border:1px solid rgba(0,174,239,.45); background:rgba(0,174,239,.12);
+    border-radius:20px; padding:3px 10px; white-space:nowrap; }
+
+  .row.ext .chev { font-size:18px; }
+  .extnote { font-size:13px; color:#05303f; background:rgba(255,255,255,.32);
+    border:1px solid rgba(5,48,63,.20); border-radius:6px;
+    padding:10px 13px; margin-bottom:18px; line-height:1.45; }
+  .extnote b { font-weight:600; }
+  .footer { background:#000; padding:18px 24px; display:flex;
+    justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; }
+  .footer-text { font-size:11.5px; color:#8a9099; }
+  .footer-brand { font-family:'Barlow Condensed',sans-serif; font-size:15px;
+    font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:.09em; }
+  .footer-brand span { color:var(--cd-cyan); }
+
+  .tiles { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  .tile { display:flex; align-items:flex-start; gap:15px; padding:22px 20px;
+    border:1px solid var(--line-soft); border-radius:8px; background:var(--card);
+    text-decoration:none; color:inherit; transition:border-color .12s, background .12s; }
+  .tile:hover { border-color:var(--cd-cyan); background:var(--card-hi); }
+  .tile:focus-visible { outline:3px solid var(--cd-cyan); outline-offset:2px; }
+  .tile-ico { flex:none; width:42px; height:42px; border-radius:7px;
+    background:rgba(0,174,239,.12); border:1px solid rgba(0,174,239,.30);
+    display:flex; align-items:center; justify-content:center; }
+  .tile-txt { min-width:0; display:flex; flex-direction:column; align-items:flex-start; }
+  .tile-name { display:block; font-family:'Barlow Condensed',sans-serif; font-size:19px;
+    font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--text);
+    line-height:1.2; }
+  .tile-sub { display:block; font-size:12.5px; color:var(--muted); line-height:1.4;
+    margin-top:7px; }
+  .tile-count { display:inline-block; font-family:'Barlow Condensed',sans-serif; font-size:12px;
+    font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--cd-cyan);
+    margin-top:12px; padding:3px 9px; border-radius:20px;
+    background:rgba(0,174,239,.10); border:1px solid rgba(0,174,239,.28); }
+  .hits { display:none; }
+  .hits.on { display:block; }
+  .tiles.off { display:none; }
+
+  .catback { display:inline-flex; align-items:center; gap:7px;
+    font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; color:#05303f;
+    text-decoration:none; margin-bottom:16px; }
+  .catback:hover { color:#fff; }
+
+  @media (max-width:700px) { .tiles, .rows { grid-template-columns:1fr; } }
+  @media (max-width:560px) {
+    .header { padding:14px 16px; }
+    .htitle { font-size:21px; text-align:left; }
+    .hmeta { text-align:left; }
+    .metabar { padding:10px 16px; gap:16px; font-size:12px; }
+    .wrap { padding:18px 16px 32px; }
+    .company { font-size:21px; }
+  }
+  @media print {
+    .searchbar { display:none; }
+    body, .page { background:#fff; color:#000; }
+    .row, .tile { background:#fff; border-color:#ccc; }
+    .name, .tile-name, .sec-head h2 { color:#000; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="hleft">
+      <span class="brandplate"><img class="brandmark" src="data:image/png;base64,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" alt="ClearDefense Pest Control"></span>
+    </div>
+    <div>
+      <div class="htitle">FIELD <span>RESOURCES</span></div>
+      <div class="hmeta">Training videos</div>
+    </div>
+  </div>
+  <div class="cyan-strip"></div>
+  <div class="metabar">
+    <span>Issued By <b>Ryan Hughes</b></span>
+    <span>Version <b>3.0</b></span>
+    <span>Year <b>2026</b></span>
+    <span class="cls">Internal Use Only</span>
+  </div>
+  <div class="wrap">
+    <a class="catback" href="index.html">&#8592; All Field Resources</a>
+        <div class="extnote">These open in <b>Loom</b> in a new tab.</div>
+    <div class="sec" data-sec>
+      <div class="sec-head"><h2>Pest Pros</h2><span class="line"></span><span class="count">7</span></div>
+      <div class="rows"><a class="row tool ext" href="https://www.loom.com/share/4469eab132554b7f98a921127bd54ba5" target="_blank" rel="noopener noreferrer"><span class="txt"><span class="name">Gel Baits and Techniques</span></span><span class="chev" aria-hidden="true">&#8599;</span></a><a class="row tool ext" href="https://www.loom.com/share/ae5c8446b5864afd82e3ef7d2341f4b0" target="_blank" rel="noopener noreferrer"><span class="txt"><span class="name">Dual Product Applications in FieldRoutes</span></span><span class="chev" aria-hidden="true">&#8599;</span></a><a class="row tool ext" href="https://www.loom.com/share/48996a4877d6407a8c52dfb9cd233816" target="_blank" rel="noopener noreferrer"><span class="txt"><span class="name">Application Rate Training</span></span><span class="chev" aria-hidden="true">&#8599;</span></a><a class="row tool ext" href="https://www.loom.com/share/ff7ba254a0e24bbf90303eb7fb5794a8" target="_blank" rel="noopener noreferrer"><span class="txt"><span class="name">Product Labels</span><span class="sub">Reading and applying label directions</span></span><span class="chev" aria-hidden="true">&#8599;</span></a><a class="row tool ext" href="https://www.loom.com/share/ae4cb353fb6f436b80c1b0e1d3944a0d" target="_blank" rel="noopener noreferrer"><span class="txt"><span class="name">Spider Control &mdash; The Stacked Approach</span></span><span class="chev" aria-hidden="true">&#8599;</span></a><a class="row tool ext" href="https://www.loom.com/share/4d9b91e057b24a03a5463632d82cd076" target="_blank" rel="noopener noreferrer"><span class="txt"><span class="name">Pump Priming</span></span><span class="chev" aria-hidden="true">&#8599;</span></a><a class="row tool ext" href="https://www.loom.com/share/9d36867f13f543f58511870c16f3888e" target="_blank" rel="noopener noreferrer"><span class="txt"><span class="name">Cold Weather Vehicle Protocol</span></span><span class="chev" aria-hidden="true">&#8599;</span></a></div>
+    </div>
+
+  </div>
+  <div class="footer">
+    <div class="footer-text">Issued by Ryan Hughes &middot; Technical Manager &nbsp;|&nbsp; Version 3.0 &nbsp;|&nbsp; 2026 &nbsp;|&nbsp; Internal Use Only</div>
+    <div class="footer-brand">Clear<span>Defense</span> Pest Control</div>
+  </div>
+</div>
+
+</body>
+</html>
