@@ -320,27 +320,19 @@ footer{
 </style>
 
 <style>
-  .ppm-menu { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:6px; }
-  .ppm-card { display:flex; align-items:center; gap:15px; padding:18px 18px;
-    border:1px solid #dfe3e8; border-radius:8px; background:#fff;
-    text-decoration:none; color:inherit; transition:border-color .12s, background .12s; }
-  .ppm-card:hover { border-color:#00AEEF; background:#f7fbfd; }
-  .ppm-card:focus-visible { outline:3px solid #00AEEF; outline-offset:2px; }
-  .ppm-badge { flex:none; width:38px; height:38px; border-radius:8px; background:#0e0e0e;
-    color:#fff; font-family:'Barlow Condensed','Barlow',sans-serif; font-size:19px;
-    font-weight:800; display:flex; align-items:center; justify-content:center; }
-  .ppm-card.intro .ppm-badge { background:#00AEEF; font-size:13px; letter-spacing:.06em; }
-  .ppm-ctxt { min-width:0; display:flex; align-items:center; }
-  .ppm-cname { font-family:'Barlow Condensed','Barlow',sans-serif; font-size:19px; font-weight:700;
-    text-transform:uppercase; letter-spacing:.04em; color:#0e0e0e; line-height:1.15; }
-  .ppm-card.intro { grid-column:1 / -1; }
-  @media (max-width:700px) { .ppm-menu { grid-template-columns:1fr; } }
+  .ppm-navbar { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    margin:26px 0 8px; padding-top:18px; border-top:1px solid #e2e6ea; }
+  .ppm-nav { font-family:'Barlow Condensed','Barlow',sans-serif; font-size:15px; font-weight:600;
+    letter-spacing:.05em; text-transform:uppercase; text-decoration:none; color:#0e0e0e;
+    border:1px solid #d8dce6; border-radius:6px; padding:10px 16px; background:#fff; }
+  .ppm-nav:hover { border-color:#00AEEF; color:#00AEEF; }
+  @media print { .ppm-navbar { display:none; } }
 </style>
 </head>
 <body>
 <nav class="navbar">
-<a class="nav-back" href="index.html">&#8592; All Field Resources</a>
-<div class="nav-crumb">Field Resources / <b>Professional Protection Method</b></div>
+<a class="nav-back" href="professional-protection-method.html">&#8592; Protection Method</a>
+<div class="nav-crumb">Field Resources / <b>Purpose &amp; Eligibility</b></div>
 <button class="nav-print" onclick="window.print()">Print</button>
 </nav>
 <header class="masthead">
@@ -350,17 +342,78 @@ footer{
 <img alt="ClearDefense Pest Control" src="data:image/png;base64,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"/>
 </div>
 <div class="mast-title">
-<div class="eyebrow">Field Resources / Training &amp; Methods</div>
-<h1>Professional Protection Method</h1>
+<div class="eyebrow">Professional Protection Method / Intro</div>
+<h1>Purpose and Eligibility</h1>
 <div class="byline">Developed by <b>Alex Burnett</b>  |  ClearDefense Pest Control</div>
 </div>
 </div>
-<p class="lede">Our Professional Protection Method is a professional outreach initiative
-    designed to communicate potential pest risks to customers as well as adjacent homeowners.
-    We focus on <b>courtesy and risk notification</b>, explicitly avoiding any sales pressure.</p>
+<p class="lede">Why we notify adjacent homeowners, when a technician should engage, and the language to use.</p>
 </div>
 </header><div class="wrap">
-<div class="ppm-menu"><a class="ppm-card intro" href="ppm-intro.html"><span class="ppm-badge">Intro</span><span class="ppm-ctxt"><span class="ppm-cname">Purpose and Eligibility</span></span></a><a class="ppm-card " href="ppm-1-observe.html"><span class="ppm-badge">1</span><span class="ppm-ctxt"><span class="ppm-cname">Observe</span></span></a><a class="ppm-card " href="ppm-2-explain.html"><span class="ppm-badge">2</span><span class="ppm-ctxt"><span class="ppm-cname">Explain</span></span></a><a class="ppm-card " href="ppm-3-recommend.html"><span class="ppm-badge">3</span><span class="ppm-ctxt"><span class="ppm-cname">Recommend</span></span></a><a class="ppm-card " href="ppm-4-release.html"><span class="ppm-badge">4</span><span class="ppm-ctxt"><span class="ppm-cname">Release</span></span></a></div>
+<section>
+<div class="sec-head">
+<span class="sec-num">01</span>
+<h2 class="sec-title">Purpose and Eligibility Criteria</h2>
+</div>
+<div class="sec-body">
+<div class="split">
+<div class="card go">
+<h5>What This Is</h5>
+<ul>
+<li>Professional courtesy and risk notification</li>
+<li>Founded on ethical responsibility</li>
+<li>Aimed at informing the homes most likely affected by a risk</li>
+</ul>
+</div>
+<div class="card stop">
+<h5>What This Is Not</h5>
+<ul>
+<li>Door-to-door sales</li>
+<li>Cold pitching</li>
+<li>Pressure-based signup</li>
+</ul>
+</div>
+</div>
+<div class="callout">
+<span class="co-label">Rationale</span>
+<p>We believe that if a risk is identified, it is professional to inform those who might
+      be affected. This aligns with our commitment to protection, ethics, and professional
+      responsibility.</p>
+</div>
+<h3>When a Technician Should Talk to a Neighbor</h3>
+<p>A technician may engage with neighbors under these conditions:</p>
+<div class="split">
+<div class="card go">
+<h5>Engage When</h5>
+<ul>
+<li>Active pest issue confirmed (ants, roaches, rodents, mosquitoes)</li>
+<li>Seasonal or environmental risk is present</li>
+<li>Issue likely shared due to proximity (shared walls, soil, water, harborage)</li>
+</ul>
+</div>
+<div class="card stop">
+<h5>Never Speak to Neighbors If</h5>
+<ul>
+<li>Random streets</li>
+<li>No visible or known risk</li>
+<li>Just because we're there</li>
+</ul>
+</div>
+</div>
+<h3>Guidance on Communication</h3>
+<p>Use these company-approved phrases to introduce the concept:</p>
+<ul class="script">
+<li>"This is not outreach. This is early risk notification."</li>
+<li>"Once the neighbor is informed, the job is done."</li>
+<li>"Sometimes protecting one home means informing the homes around it."</li>
+</ul>
+<div class="rule-strip">
+<span class="co-label">Avoid Saying</span>
+<p>"We want you to sell the neighbors."</p>
+</div>
+<p>This approach ensures we maintain professionalism and build trust within the community.</p>
+</div>
+</section><div class="ppm-navbar"><a class="ppm-nav prev" href="professional-protection-method.html">&#8592; Protection Method</a><a class="ppm-nav next" href="ppm-1-observe.html">Observe &#8594;</a></div>
 </div>
 </body>
 </html>
